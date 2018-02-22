@@ -26,8 +26,11 @@ Route::get('/register', function () {
 Route::get('/lock', function () {
     return view('Errors/404');
 });
-Route::get('/datatable', function () {
-    return view('Pages/datatables_search');
+Route::get('/commandes', function () {
+    return view('Pages/commandes');
+});
+Route::get('/test', function () {
+    return view('Pages/datatable');
 });
 Route::get('/orders', function () {
     return view('Pages/orders');

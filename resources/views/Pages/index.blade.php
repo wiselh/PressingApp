@@ -1,9 +1,9 @@
 <!doctype html>
-
 <!--[if lte IE 9]>     <html lang="{{ app()->getLocale() }}" class="no-focus lt-ie10 lt-ie10-msg"> <![endif]-->
 <!--[if gt IE 9]><!--> <html lang="{{ app()->getLocale() }}" class="no-focus"> <!--<![endif]-->
     <head>
         @include('Layouts.head')
+        @yield('page_style')
     </head>
     <body>
     <!-- Page Container -->
@@ -27,10 +27,6 @@
         <script src="{{asset('assets/js/core/js.cookie.min.js')}}"></script>
         <script src="{{asset('assets/js/codebase.js')}}"></script>
 
-        <!-- Page JS Plugins -->
-        <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
-
-        <!-- Page JS Code -->
-        <script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
+        @yield('page_script')
     </body>
 </html>

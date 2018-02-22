@@ -74,7 +74,9 @@
 
         <div class="row gutters-tiny invisible" data-toggle="appear">
             <!-- Row #3 -->
+            <div class="col-xl-8 d-flex align-items-stretch">
 
+            </div>
             <div class="col-xl-4 d-flex align-items-stretch">
                 <div class="block block-transparent bg-primary-dark d-flex align-items-center w-100">
                     <div class="block-content block-content-full">
@@ -123,4 +125,12 @@
 </main>
 <!-- END Main Container -->
 
+@endsection
+
+
+@section('page_script')
+    <!-- Page JS Plugins -->
+    <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
+    <!-- Page JS Code -->
+    <script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
 @endsection
