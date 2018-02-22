@@ -74,50 +74,10 @@
 
         <div class="row gutters-tiny invisible" data-toggle="appear">
             <!-- Row #3 -->
-            <div class="col-xl-8 d-flex align-items-stretch">
+            <div class="col-xl-12 d-flex align-items-stretch" >
 
             </div>
-            <div class="col-xl-4 d-flex align-items-stretch">
-                <div class="block block-transparent bg-primary-dark d-flex align-items-center w-100">
-                    <div class="block-content block-content-full">
-                        <div class="py-15 px-20 clearfix border-black-op-b">
-                            <div class="float-right mt-15 d-none d-sm-block">
-                                <i class="si si-book-open fa-2x text-success"></i>
-                            </div>
-                            <div class="font-size-h3 font-w600 text-success" data-toggle="countTo" data-speed="1000" data-to="750">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-success-light">Articles</div>
-                        </div>
-                        <div class="py-15 px-20 clearfix border-black-op-b">
-                            <div class="float-right mt-15 d-none d-sm-block">
-                                <i class="si si-wallet fa-2x text-danger"></i>
-                            </div>
-                            <div class="font-size-h3 font-w600 text-danger">$<span data-toggle="countTo" data-speed="1000" data-to="980">0</span></div>
-                            <div class="font-size-sm font-w600 text-uppercase text-danger-light">Earnings</div>
-                        </div>
-                        <div class="py-15 px-20 clearfix border-black-op-b">
-                            <div class="float-right mt-15 d-none d-sm-block">
-                                <i class="si si-envelope-open fa-2x text-warning"></i>
-                            </div>
-                            <div class="font-size-h3 font-w600 text-warning" data-toggle="countTo" data-speed="1000" data-to="38">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-warning-light">Messages</div>
-                        </div>
-                        <div class="py-15 px-20 clearfix border-black-op-b">
-                            <div class="float-right mt-15 d-none d-sm-block">
-                                <i class="si si-users fa-2x text-info"></i>
-                            </div>
-                            <div class="font-size-h3 font-w600 text-info" data-toggle="countTo" data-speed="1000" data-to="260">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-info-light">Online</div>
-                        </div>
-                        <div class="py-15 px-20 clearfix">
-                            <div class="float-right mt-15 d-none d-sm-block">
-                                <i class="si si-drop fa-2x text-elegance"></i>
-                            </div>
-                            <div class="font-size-h3 font-w600 text-elegance" data-toggle="countTo" data-speed="1000" data-to="59">0</div>
-                            <div class="font-size-sm font-w600 text-uppercase text-elegance-light">Themes</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
             <!-- END Row #3 -->
         </div>
     </div>
