@@ -12,5 +12,28 @@
 */
 
 Route::get('/', function () {
-    return view('dashboard/index');
+    return view('Layouts/home');
 });
+Route::get('/index', function () {
+    return view('Layouts/home');
+});
+Route::get('/login', function () {
+    return view('Authentication/Login');
+});
+Route::get('/register', function () {
+    return view('Authentication/Register');
+});
+Route::get('/lock', function () {
+    return view('Errors/404');
+});
+Route::get('/datatable', function () {
+    return view('Pages/datatable');
+});
+Route::get('/orders', function () {
+    return view('Pages/orders');
+});
+Route::get('/order', function () {
+    return view('Pages/order');
+});
+
+
