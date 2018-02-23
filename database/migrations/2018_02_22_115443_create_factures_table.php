@@ -19,13 +19,8 @@ class CreateFacturesTable extends Migration
             $table->timestamp("date_facture");
             $table->timestamp("date_retrait_facture");
             $table->string("paye_facture");
-            $table->float("montant_facture");
-            $table->integer("qte_facture");
             $table->integer('id_client')->unsigned();
-            $table->integer('id_vetement')->unsigned();
-
-            $table->foreign('id_client')->references('id_client')->on('clients');
-            $table->foreign('id_vetement')->references('id_vetement')->on('vetements');
+            $table->foreign('id_client')->references('id_client')->on('clients')->onDelete('cascade');
             $table->timestamps();
         });
     }

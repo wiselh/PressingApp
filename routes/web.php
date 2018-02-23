@@ -12,10 +12,10 @@
 */
 
 Route::get('/', function () {
-    return view('Layouts/home');
+    return view('Pages/index');
 });
 Route::get('/index', function () {
-    return view('Layouts/home');
+    return view('Pages/index');
 });
 Route::get('/login', function () {
     return view('Authentication/Login');
@@ -24,23 +24,29 @@ Route::get('/register', function () {
     return view('Authentication/Register');
 });
 Route::get('/lock', function () {
-    return view('Errors/404');
+    return view('Authentication/lock');
 });
-Route::get('/commandes', function () {
-    return view('Pages/commandes');
-});
+
 Route::get('/test', function () {
     return view('Pages/datatable');
 });
-Route::get('/orders', function () {
-    return view('Pages/orders');
+Route::get('/tables1', function () {
+    return view('Pages/tables1');
 });
-Route::get('/order', function () {
-    return view('Pages/order');
+Route::get('/tables2', function () {
+    return view('Pages/tables2');
+});
+Route::get('/profile', function () {
+    return view('Pages/profile');
+});
+
+Route::get('/create', function () {
+    return view('Pages/create');
 });
 
 
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+//Auth::routes();
+//
+//Route::get('/home', 'HomeController@index')->name('home');

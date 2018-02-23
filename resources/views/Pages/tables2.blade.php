@@ -1,8 +1,5 @@
-@extends('Pages.index')
+@extends('Pages.main')
 @section('content')
-
-<!-- Main Container -->
-<main id="main-container">
     <!-- Hero -->
     <div class="bg-image" style="background-image: url('assets/img/photos/photo26@2x.jpg');">
         <div class="bg-black-op-75">
@@ -545,7 +542,6 @@
         <!-- END Orders -->
     </div>
     <!-- END Page Content -->
-</main>
-<!-- END Main Container -->
+
 
 @endsection

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Client;
+use App\Facture;
+use App\Vetement;
 use Illuminate\Http\Request;
 
 class FactureController extends Controller
@@ -34,7 +37,14 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $client = new Client();
+        $facture = new Facture();
+        $vetement = new Vetement();
+
+        $client->nom=$request->nom_client;
+        $client->nom=$request->tele_client;
+        $client->nom=$request->adress_client;
+
     }
 
     /**
