@@ -11,42 +11,34 @@
 |
 */
 
-Route::get('/', function () {
-    return view('Pages/index');
-});
-Route::get('/index', function () {
-    return view('Pages/index');
-});
-Route::get('/login', function () {
-    return view('Authentication/Login');
-});
-Route::get('/register', function () {
-    return view('Authentication/Register');
-});
-Route::get('/lock', function () {
-    return view('Authentication/lock');
-});
-
-Route::get('/test', function () {
-    return view('Pages/datatable');
-});
-Route::get('/tables1', function () {
-    return view('Pages/tables1');
-});
-Route::get('/tables2', function () {
-    return view('Pages/tables2');
-});
-Route::get('/profile', function () {
-    return view('Pages/profile');
-});
-
-Route::get('/create', function () {
-    return view('Pages/create');
-});
+Auth::routes();
 
 
+Route::post('/admin/{id}','ProfileController@updateAdmin');
+Route::resource('/factures','FactureController');
+Route::resource('/categories','CategorieController');
+Route::resource('/services','ServiceController');
+Route::resource('/clients','ClientController');
+
+Route::get('/pdf/{id}','ClientController@downloadPDF');
 
 
-//Auth::routes();
-//
+Route::get('/tst',  function () {
+    return view('Pages.template');
+});
+Route::post('/tst', 'FactureController@tst');
+
+
 //Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home',  function () {
+    return view('Pages.Facture.create');
+})->name('home');
+
+Route::get('/count', 'HomeController@commandesCounter');
+
+
+
+
+
+
+

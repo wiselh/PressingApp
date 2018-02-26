@@ -10,4 +10,11 @@ class Vetement extends Model
     {
      return $this->belongsTo(Categorie::class);
     }
+    /**
+     * Get the service record associated with the vetement.
+     */
+    public function service()
+    {
+        return $this->hasOne(Service::class);
+    }
 }

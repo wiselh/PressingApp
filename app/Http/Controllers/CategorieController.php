@@ -2,10 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CategorieController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -13,7 +21,10 @@ class CategorieController extends Controller
      */
     public function index()
     {
-        //
+
+        $categories = DB::table('categories')->get();
+        return view('Pages.Categorie.show', ['categories' => $categories]);
+
     }
 
     /**
@@ -23,7 +34,7 @@ class CategorieController extends Controller
      */
     public function create()
     {
-        //
+        return view('Pages.Categorie.show');
     }
 
     /**
@@ -34,7 +45,10 @@ class CategorieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $categorie = new Categorie();
+        $categorie->nom_categorie=$request->nom;
+        $categorie->save();
+        return redirect('/categories');
     }
 
     /**
@@ -45,7 +59,12 @@ class CategorieController extends Controller
      */
     public function show($id)
     {
-        //
+//        $categorie = Categorie::findOrFail($id);
+//        return view('Pages.Categorie.edit',compact('categorie'));
+
+
+        $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+        return view('Pages.Categorie.edit', ['categorie' => $categorie]);
     }
 
     /**
@@ -56,7 +75,8 @@ class CategorieController extends Controller
      */
     public function edit($id)
     {
-        //
+        $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+        return view('Pages.Categorie.edit', ['categorie' => $categorie]);
     }
 
     /**
@@ -68,7 +88,17 @@ class CategorieController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+//        $categorie = Categorie::findOrFail($id);
+//        $categorie->update($request->all());
+
+        DB::table('categories')
+            ->where('id_categorie', $id)
+            ->update(['nom_categorie' =>$request->nom ]);
+
+
+        return redirect('/categories');
+
+
     }
 
     /**
@@ -79,6 +109,9 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-        //
+//        $categorie = Categorie::findOrFail($id);
+//        $categorie = DB::table('categories')->where('id_categorie', $id)->first();
+        DB::table('categories')->where('id_categorie', '=', $id)->delete();
+        return redirect('/categories');
     }
 }

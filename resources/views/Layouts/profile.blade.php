@@ -17,7 +17,8 @@
                     <a class="img-link mr-5" href="">
                         <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar15.jpg" alt="">
                     </a>
-                    <a class="align-middle link-effect text-primary-dark font-w600" href="">Abdelhakim Lahlou</a>
+                    <a class="align-middle link-effect text-primary-dark font-w600" href=""></a>
+                    <b>{{ Auth::user()->name }}</b>
                 </div>
                 <!-- END User Info -->
             </div>
@@ -38,39 +39,45 @@
                     </div>
                 </div>
                 <div class="block-content">
-                    <form action="be_pages_dashboard.html" method="post" onsubmit="return false;">
+                    <form action="/admin/{{Auth::user()->id}}" method="post">
+                        {{csrf_field()}}
                         <div class="form-group mb-15">
                             <label for="side-overlay-profile-name">Nom</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="side-overlay-profile-name" name="side-overlay-profile-name" placeholder="Votre Nom" value="">
+                                <input type="text" class="form-control" id="side-overlay-profile-name"
+                                       name="name" placeholder="Votre Nom.." value="{{ Auth::user()->name }}">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
                             <label for="side-overlay-profile-name">Nom de l'Utilisateur</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="side-overlay-profile-username" name="side-overlay-profile-name" placeholder="Nom de l'Utilisateur.." value="">
+                                <input type="text" class="form-control" id="side-overlay-profile-username"
+                                       name="username" placeholder="Nom de l'Utilisateur.." value="{{ Auth::user()->username }}">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
                             <label for="side-overlay-profile-email">Adresse Email</label>
                             <div class="input-group">
-                                <input type="email" class="form-control" id="side-overlay-profile-email" name="side-overlay-profile-email" placeholder="Votre Email..." value="">
+                                <input type="email" class="form-control" id="side-overlay-profile-email"
+                                       name="email" placeholder="Votre Email..." value="{{ Auth::user()->email }}">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
                             <label for="side-overlay-profile-password">Nouveau Mot de pass</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="side-overlay-profile-password" name="side-overlay-profile-password" placeholder="Nouveau Mot de pass..">
+                                <input type="password" class="form-control" id="side-overlay-profile-password"
+                                       name="password" placeholder="Nouveau Mot de pass..">
                                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
                             <label for="side-overlay-profile-password-confirm">Confirme le Mot de pass</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="side-overlay-profile-password-confirm" name="side-overlay-profile-password-confirm" placeholder="Confirmer le mot de pass..">
+                                <input type="password" class="form-control" id="side-overlay-profile-password-confirm"
+                                       name="side-overlay-profile-password-confirm" placeholder="Confirmer le mot de pass..">
                                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                             </div>
                         </div>

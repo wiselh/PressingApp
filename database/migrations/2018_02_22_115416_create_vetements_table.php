@@ -15,10 +15,11 @@ class CreateVetementsTable extends Migration
     {
         Schema::create('vetements', function (Blueprint $table) {
             $table->increments('id_vetement');
-            $table->integer('categorie');
-            $table->string("couleur");
-            $table->float("type");
+            $table->string('categorie');
+            $table->string("couleur")->nullable();
             $table->float("prix");
+            $table->integer('id_service')->unsigned();
+            $table->foreign('id_service')->references('id_service')->on('services');
             $table->integer('id_facture')->unsigned();
             $table->foreign('id_facture')->references('id_facture')->on('factures')->onDelete('cascade');
             $table->timestamps();

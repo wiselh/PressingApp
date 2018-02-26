@@ -14,12 +14,7 @@
             </div>
             <!-- END Toggle Sidebar -->
 
-            <!-- Open Search Section -->
-            <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-            <button type="button" class="btn btn-circle btn-dual-secondary" data-toggle="layout" data-action="header_search_on">
-                <i class="fa fa-search"></i>
-            </button>
-            <!-- END Open Search Section -->
+
 
         </div>
         <!-- END Left Section -->
@@ -29,7 +24,7 @@
             <!-- User Dropdown -->
             <div class="btn-group" role="group">
                 <button type="button" class="btn btn-rounded btn-dual-secondary" id="page-header-user-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    A. LAHLOU<i class="fa fa-angle-down ml-5"></i>
+                    {{ Auth::user()->name }}<i class="fa fa-angle-down ml-5"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-right min-width-150" aria-labelledby="page-header-user-dropdown">
                     <!-- Toggle Side Overlay -->
@@ -39,9 +34,18 @@
                     </a>
                     <!-- END Side Overlay -->
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="op_auth_signin.html">
-                        <i class="si si-logout mr-5"></i> Deconnecter
+                    <a href="{{ route('logout') }}" class="dropdown-item"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        Deconnecter
                     </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                    {{--<a class="dropdown-item" href="op_auth_signin.html">--}}
+                        {{--<i class="si si-logout mr-5"></i> Deconnecter--}}
+                    {{--</a>--}}
                 </div>
             </div>
             <!-- END User Dropdown -->
@@ -50,30 +54,7 @@
     </div>
     <!-- END Header Content -->
 
-    <!-- Header Search -->
-    <div id="page-header-search" class="overlay-header">
-        <div class="content-header content-header-fullrow">
-            <form action="be_pages_generic_search.html" method="post">
-                <div class="input-group">
-                                <span class="input-group-btn">
-                                    <!-- Close Search Section -->
-                                    <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
-                                    <button type="button" class="btn btn-secondary" data-toggle="layout" data-action="header_search_off">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                    <!-- END Close Search Section -->
-                                </span>
-                    <input type="text" class="form-control" placeholder="Search or hit ESC.." id="page-header-search-input" name="page-header-search-input">
-                    <span class="input-group-btn">
-                                    <button type="submit" class="btn btn-secondary">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                </div>
-            </form>
-        </div>
-    </div>
-    <!-- END Header Search -->
+
 
     <!-- Header Loader -->
     <!-- Please check out the Activity page under Elements category to see examples of showing/hiding it -->

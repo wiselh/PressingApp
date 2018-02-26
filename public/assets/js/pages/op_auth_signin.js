@@ -21,23 +21,19 @@ var OpAuthSignIn = function() {
                 jQuery(e).remove();
             },
             rules: {
-                'login-username': {
-                    required: true,
-                    minlength: 3
+                'email': {
+                    required: true
                 },
-                'login-password': {
-                    required: true,
-                    minlength: 5
+                'password': {
+                    required: true
                 }
             },
             messages: {
-                'login-username': {
-                    required: 'Please enter a username',
-                    minlength: 'Your username must consist of at least 3 characters'
+                'email': {
+                    required: 'Entrez votre email'
                 },
-                'login-password': {
-                    required: 'Please provide a password',
-                    minlength: 'Your password must be at least 5 characters long'
+                'password': {
+                    required: 'Entrez votre mot de pass'
                 }
             }
         });
