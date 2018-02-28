@@ -32,64 +32,63 @@
                     <div class="row gutters-tiny invisible" data-toggle="appear">
                         <!-- Row #1 -->
                         <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/factures">
+                            <a class="block text-center" href="/commandes">
                                 <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
-                                    <div class="ribbon-box">{{10}}</div>
                                     <p class="mt-5">
                                         <i class="si si-book-open fa-3x text-white-op"></i>
                                     </p>
-                                    <p class="font-w600 text-white">Commandes</p>
+                                    <p class="font-w600 text-white">Ajouter</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/clients">
+                            <a class="block text-center" href="/">
                                 <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
-                                    <div class="ribbon-box">16</div>
+                                    <div class="ribbon-box">{{$nbr_factures}}</div>
                                     <p class="mt-5">
                                         <i class="si si-bubbles fa-3x text-white-op"></i>
                                     </p>
-                                    <p class="font-w600 text-white">Clients</p>
+                                    <p class="font-w600 text-white">Commandes</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-6 col-md-4 col-xl-2">
                             <a class="block text-center" href="/categories">
                                 <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
-                                    <div class="ribbon-box">{{10}}</div>
+                                    <div class="ribbon-box">{{$nbr_factures}}</div>
                                     <p class="mt-5">
                                         <i class="si si-book-open fa-3x text-white-op"></i>
-                                    </p>
-                                    <p class="font-w600 text-white">Commandes</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/services">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
-                                    <div class="ribbon-box">16</div>
-                                    <p class="mt-5">
-                                        <i class="si si-bubbles fa-3x text-white-op"></i>
                                     </p>
                                     <p class="font-w600 text-white">Clients</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-6 col-md-4 col-xl-2">
+                            <a class="block text-center" href="/services">
+                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
+                                    <div class="ribbon-box">{{$nbr_factures}}</div>
+                                    <p class="mt-5">
+                                        <i class="si si-bubbles fa-3x text-white-op"></i>
+                                    </p>
+                                    <p class="font-w600 text-white">Categories</p>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-6 col-md-4 col-xl-2">
                             <a class="block text-center" href="/factures">
                                 <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
-                                    <div class="ribbon-box">{{10}}</div>
+                                    <div class="ribbon-box">{{$nbr_factures}}</div>
                                     <p class="mt-5">
                                         <i class="si si-book-open fa-3x text-white-op"></i>
                                     </p>
-                                    <p class="font-w600 text-white">Commandes</p>
+                                    <p class="font-w600 text-white">Services</p>
                                 </div>
                             </a>
                         </div>
                         <div class="col-6 col-md-4 col-xl-2">
                             <a class="block text-center" href="/clients">
                                 <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
-                                    <div class="ribbon-box">16</div>
+                                    <div class="ribbon-box">{{$nbr_factures}}</div>
                                     <p class="mt-5">
                                         <i class="si si-bubbles fa-3x text-white-op"></i>
                                     </p>

@@ -11,32 +11,27 @@
 |
 */
 
-Auth::routes();
 
 
-Route::post('/admin/{id}','ProfileController@updateAdmin');
-Route::resource('/factures','FactureController');
-Route::resource('/categories','CategorieController');
-Route::resource('/services','ServiceController');
-Route::resource('/clients','ClientController');
+Route::resource('/startup','StartupController');
 
-Route::get('/pdf/{id}','ClientController@downloadPDF');
+Route::group(['middleware' => ['firstload']], function () {
+
+    Auth::routes();
+
+    Route::post('/admin/{id}','ProfileController@updateAdmin');
+    Route::resource('/commandes','CommandeController');
+    Route::resource('/factures','FactureController');
+    Route::resource('/categories','CategorieController');
+    Route::resource('/services','ServiceController');
+    Route::resource('/clients','ClientController');
 
 
-Route::get('/tst',  function () {
-    return view('Pages.template');
+    Route::get('/pdf/{id}','ClientController@downloadPDF');
+
+    Route::get('/home', 'HomeController@index')->name('home');
+
 });
-Route::post('/tst', 'FactureController@tst');
-
-
-//Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/home',  function () {
-    return view('Pages.Facture.create');
-})->name('home');
-
-Route::get('/count', 'HomeController@commandesCounter');
-
-
 
 
 

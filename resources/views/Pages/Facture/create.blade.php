@@ -77,7 +77,7 @@
                                                                                                 <select class="js-select2 form-control" id="categorie" name="categorie[]" style="width: 100%;" data-placeholder="Choose one..">
                                                                                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                                                                         @foreach( $categories as $categorie)
-                                                                                                                <option value="{{$categorie->id_categorie}}">{{$categorie->nom_categorie}}</option>
+                                                                                                            <option value="{{$categorie->id_categorie}}">{{$categorie->nom_categorie}}</option>
                                                                                                         @endforeach
                                                                                                 </select>
                                                                                         </div>
@@ -93,8 +93,8 @@
                                                                                         <div class="col-lg-12">
                                                                                                 <select class="js-select2 form-control" id="type" name="type[]" style="width: 100%;" data-placeholder="Choose one..">
                                                                                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
-                                                                                                       @foreach( $services as $service)
-                                                                                                        <option value="{{$service->id_service}}">{{$service->nom_service}}</option>
+                                                                                                        @foreach( $services as $service)
+                                                                                                            <option value="{{$service->id_service}}">{{$service->nom_service}}</option>
                                                                                                         @endforeach
                                                                                                 </select>
                                                                                         </div>
@@ -127,11 +127,11 @@
                                                                 <label class="col-lg-4 col-form-label" for="paye">Payés? <span class="text-danger">*</span></label>
                                                                 <div class="col-lg-8">
                                                                         <label class="css-control css-control-sm css-control-primary css-radio" >
-                                                                                <input class="css-control-input" name="paye" id="paye"  type="radio">
+                                                                                <input class="css-control-input" name="paye" id="paye"  type="radio" value="oui">
                                                                                 <span class="css-control-indicator"></span> Oui
                                                                         </label>
                                                                         <label class="css-control css-control-sm css-control-primary css-radio" >
-                                                                                <input class="css-control-input" name="paye" type="radio" id="paye">
+                                                                                <input class="css-control-input" name="paye" type="radio" id="paye" value="non">
                                                                                 <span class="css-control-indicator"></span> Non
                                                                         </label>
 

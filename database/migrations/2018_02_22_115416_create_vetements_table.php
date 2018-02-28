@@ -20,8 +20,8 @@ class CreateVetementsTable extends Migration
             $table->float("prix");
             $table->integer('id_service')->unsigned();
             $table->foreign('id_service')->references('id_service')->on('services');
-            $table->integer('id_facture')->unsigned();
-            $table->foreign('id_facture')->references('id_facture')->on('factures')->onDelete('cascade');
+            $table->integer('id_commande')->unsigned();
+            $table->foreign('id_commande')->references('id_commande')->on('commandes')->onDelete('cascade');
             $table->timestamps();
         });
     }

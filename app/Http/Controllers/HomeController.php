@@ -27,12 +27,4 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function commandesCounter()
-    {
-        $counter = DB::table('factures')
-            ->select(DB::raw('COUNT(*)'))
-            ->get();
-        return view('Pages.main', ['counter' => $counter]);
-
-    }
 }

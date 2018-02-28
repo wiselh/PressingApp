@@ -4,7 +4,7 @@
 
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.min.css">
     <style type="text/css">
         .btn-secondary{
             padding: 0px 8px;
@@ -17,18 +17,21 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Tous Les Clients</h3>
+            <h3 class="block-title">Tous Les Commandes</h3>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full mytable">
                 <thead>
                 <tr>
-                    <th class="text-center" style="width: 10%;">ID</th>
-                    <th class="d-none d-sm-table-cell">Nom</th>
-                    <th class="text-center">Adresse</th>
-                    <th class="d-none d-sm-table-cell" style="width: 20%;">Telephone</th>
-                    <th class="text-center" style="width: 15%;">Action</th>
+                    <th class="text-center" style="width: 10%;">Numero du Commande</th>
+                    <th class="d-none d-sm-table-cell">Nom Client</th>
+                    <th class="text-center">Telephone</th>
+                    <th class="text-center">Nombre de Pieces</th>
+                    <th class="text-center">Payer</th>
+                    <th class="text-center">Date de Facture</th>
+                    <th class="text-center">Date de Retrait</th>
+                    <th class="text-center" style="width: 15%;">Valider</th>
                 </tr>
                 </thead>
                 <tbody>
