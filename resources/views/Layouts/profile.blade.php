@@ -15,10 +15,11 @@
                 <!-- User Info -->
                 <div class="content-header-item">
                     <a class="img-link mr-5" href="">
-                        <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar15.jpg" alt="">
+
+                        <img class="img-avatar img-avatar32" src='{{asset("$logo")}}' alt="">
                     </a>
                     <a class="align-middle link-effect text-primary-dark font-w600" href=""></a>
-                    <b>{{ Auth::user()->name }}</b>
+                    <b>{{ Auth::user()->fullname }}</b>
                 </div>
                 <!-- END User Info -->
             </div>
@@ -39,21 +40,38 @@
                     </div>
                 </div>
                 <div class="block-content">
-                    <form action="/admin/{{Auth::user()->id}}" method="post">
+                    <form action="/profile/{{Auth::user()->id}}" method="post">
                         {{csrf_field()}}
+                        {{ method_field('PUT') }}
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Nom</label>
+                            <label for="side-overlay-profile-name">Nom de l'Utilisateur</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="side-overlay-profile-name"
-                                       name="name" placeholder="Votre Nom.." value="{{ Auth::user()->name }}">
+                                <input type="text" class="form-control" id="username"
+                                       name="username" placeholder="Nom de l'Utilisateur.." value="{{ Auth::user()->username }}">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Nom de l'Utilisateur</label>
+                            <label for="fullname">Nom Complete</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="side-overlay-profile-username"
-                                       name="username" placeholder="Nom de l'Utilisateur.." value="{{ Auth::user()->username }}">
+                                <input type="text" class="form-control" id="fullname"
+                                       name="fullname" placeholder="Votre Nom.." value="{{ Auth::user()->fullname }}">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-15">
+                            <label for="side-overlay-profile-name">Telephone</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="tele"
+                                       name="tele" placeholder="Telephone de l'Utilisateur.." value="{{ Auth::user()->tele }}">
+                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-15">
+                            <label for="side-overlay-profile-name">Adresse</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="adresse"
+                                       name="adresse" placeholder="Adresse de l'Utilisateur.." value="{{ Auth::user()->adresse }}">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
                         </div>
@@ -66,7 +84,7 @@
                             </div>
                         </div>
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-password">Nouveau Mot de pass</label>
+                            <label for="side-overlay-profile-password">Nouveau mot de pass</label>
                             <div class="input-group">
                                 <input type="password" class="form-control" id="side-overlay-profile-password"
                                        name="password" placeholder="Nouveau Mot de pass..">

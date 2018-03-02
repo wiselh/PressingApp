@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Validator;
 
 class ProfileController extends Controller
 {
@@ -13,8 +14,21 @@ class ProfileController extends Controller
     {
         $this->middleware('auth');
     }
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request,$id){
 
-    public function updateAdmin(Request $request,$id){
+        $this->validate($request, [
+            'name' => 'required|string|max:255',
+            'username' => "required|string|max:255|unique:users,$id",
+            'email' => "required|string|max:255|unique:users,email,$id",
+            'password' => 'string|min:6',
+        ]);
 
         $admin = User::findOrFail($id);
         $pass='';
@@ -24,14 +38,15 @@ class ProfileController extends Controller
         }else{
             $pass = bcrypt($request->password);
         }
-//        die(var_dump($pass));
-        $admin->name=$request->name;
+        $admin->fullname=$request->fullname;
         $admin->username=$request->username;
-        $admin->password=$request->email;
+        $admin->email=$request->email;
+        $admin->tele=$request->tele;
+        $admin->adresse=$request->adresse;
         $admin->password =$pass;
 
         $admin->save();
-        return redirect('/factures');
+        return redirect('/commandes');
     }
 
 }

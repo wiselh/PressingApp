@@ -13,23 +13,25 @@
 
 
 
-Route::resource('/startup','StartupController');
 
-Route::group(['middleware' => ['firstload']], function () {
+Route::get('/installation','InstallationController@index')->middleware('installation');
+
+Route::group(['middleware' => ['installation']], function () {
 
     Auth::routes();
 
-    Route::post('/admin/{id}','ProfileController@updateAdmin');
+    Route::post('/profile/{id}','ProfileController@updateAdmin');
     Route::resource('/commandes','CommandeController');
     Route::resource('/factures','FactureController');
     Route::resource('/categories','CategorieController');
     Route::resource('/services','ServiceController');
     Route::resource('/clients','ClientController');
 
-
     Route::get('/pdf/{id}','ClientController@downloadPDF');
 
     Route::get('/home', 'HomeController@index')->name('home');
+    Route::get('/', 'CommandeController@index');
+
 
 });
 

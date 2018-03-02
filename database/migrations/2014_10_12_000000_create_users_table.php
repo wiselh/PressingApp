@@ -15,10 +15,13 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('username');
-            $table->string('name');
-            $table->string('email');
+            $table->string('username')->unique();
+            $table->string('fullname');
+            $table->string('adresse')->nullable();
+            $table->string('email')->unique();
+            $table->string('tele');
             $table->string('password');
+            $table->string('admin');
             $table->rememberToken();
             $table->timestamps();
         });

@@ -51,61 +51,82 @@ var BeFormWizard = function() {
         });
 
         // Init form validation on classic wizard form
-        var validatorClassic = formClassic.validate({
-            errorClass: 'invalid-feedback animated fadeInDown',
-            errorElement: 'div',
-            errorPlacement: function(error, e) {
-                jQuery(e).parents('.form-group').append(error);
-            },
-            highlight: function(e) {
-                jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
-            },
-            success: function(e) {
-                jQuery(e).closest('.form-group').removeClass('is-invalid');
-                jQuery(e).remove();
-            },
-            rules: {
-                'wizard-validation-classic-firstname': {
-                    required: true,
-                    minlength: 2
-                },
-                'wizard-validation-classic-lastname': {
-                    required: true,
-                    minlength: 2
-                },
-                'wizard-validation-classic-email': {
-                    required: true,
-                    email: true
-                },
-                'wizard-validation-classic-bio': {
-                    required: true,
-                    minlength: 5
-                },
-                'wizard-validation-classic-location': {
-                    required: true
-                },
-                'wizard-validation-classic-skills': {
-                    required: true
-                },
-                'wizard-validation-classic-terms': {
-                    required: true
-                }
-            },
-            messages: {
-                'wizard-validation-classic-firstname': {
-                    required: 'Please enter a firstname',
-                    minlength: 'Your firtname must consist of at least 2 characters'
-                },
-                'wizard-validation-classic-lastname': {
-                    required: 'Please enter a lastname',
-                    minlength: 'Your lastname must consist of at least 2 characters'
-                },
-                'wizard-validation-classic-email': 'Please enter a valid email address',
-                'wizard-validation-classic-bio': 'Let us know a few thing about yourself',
-                'wizard-validation-classic-skills': 'Please select a skill!',
-                'wizard-validation-classic-terms': 'You must agree to the service terms!'
-            }
-        });
+        // var validatorClassic = formClassic.validate({
+        //     errorClass: 'invalid-feedback animated fadeInDown',
+        //     errorElement: 'div',
+        //     errorPlacement: function(error, e) {
+        //         jQuery(e).parents('.form-group').append(error);
+        //     },
+        //     highlight: function(e) {
+        //         jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
+        //     },
+        //     success: function(e) {
+        //         jQuery(e).closest('.form-group').removeClass('is-invalid');
+        //         jQuery(e).remove();
+        //     },
+        //     rules: {
+        //         //user
+        //         'user_name': {
+        //             required: true
+        //         },
+        //         'username': {
+        //             required: true,
+        //             minlength: 4
+        //         },
+        //         'user_adresse': {
+        //             required: true
+        //         },
+        //         'user_email': {
+        //             required: true,
+        //             email: true
+        //         },
+        //         'password': {
+        //             required: true,
+        //             minlength: 6
+        //         },
+        //         //society
+        //         'societe_nom': {
+        //             required: true
+        //         },
+        //         'societe_email': {
+        //             required: true,
+        //             email: true
+        //         },
+        //         'societe_adresse': {
+        //             required: true
+        //         },
+        //         'societe_tele': {
+        //             required: true
+        //         },
+        //         'ville': {
+        //             required: true
+        //         },
+        //         'logo': {
+        //             required: true
+        //         }
+        //
+        //     },
+        //     messages: {
+        //         'username': {
+        //             required: 'Please enter a hakimmmmm',
+        //             minlength: 'Your firtname must consist of at least 2 characters'
+        //         },
+        //         'password': {
+        //             required: 'svp entrer le mot de pass',
+        //             minlength: 'minimum 6 caracteres'
+        //         },
+        //         'user_name': 'Please enter a valid email address',
+        //         'user_adresse': 'S\'il vous plaît entrer le mot de pass',
+        //         'user_email': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_nom': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_email': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_adresse': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_tele': 'S\'il vous plaît entrer le mot de pass',
+        //         'ville': 'S\'il vous plaît entrer le mot de pass',
+        //         'logo': 'S\'il vous plaît entrer le mot de pass'
+        //
+        //     }
+        // });
 
         // Init form validation on material wizard form
         var validatorMaterial = formMaterial.validate({
@@ -122,45 +143,79 @@ var BeFormWizard = function() {
                 jQuery(e).remove();
             },
             rules: {
-                'wizard-validation-material-firstname': {
-                    required: true,
-                    minlength: 2
+                //user
+                'user_name': {
+                    required: true
                 },
-                'wizard-validation-material-lastname': {
+                'username': {
                     required: true,
-                    minlength: 2
+                    minlength: 4
                 },
-                'wizard-validation-material-email': {
+                'user_adresse': {
+                    required: true
+                },
+                'user_tele': {
+                    required: true
+                },
+                'user_email': {
                     required: true,
                     email: true
                 },
-                'wizard-validation-material-bio': {
+                'password': {
                     required: true,
-                    minlength: 5
+                    minlength: 6
                 },
-                'wizard-validation-material-location': {
+                'confirm_password': {
+                    required: true,
+                    minlength: 6,
+                    equalTo: '#password'
+                },
+                //society
+                'societe_name': {
                     required: true
                 },
-                'wizard-validation-material-skills': {
+                'societe_email': {
+                    required: true,
+                    email: true
+                },
+                'societe_adresse': {
                     required: true
                 },
-                'wizard-validation-material-terms': {
+                'societe_tele': {
+                    required: true
+                },
+                'ville': {
+                    required: true
+                },
+                'logo': {
                     required: true
                 }
+
             },
             messages: {
-                'wizard-validation-material-firstname': {
-                    required: 'Please enter a firstname',
-                    minlength: 'Your firtname must consist of at least 2 characters'
+                'username': {
+                    required: "S'il vous plaît entrer le nom d'utilisateur",
+                    minlength: 'Votre nom d\'utilisateur doit comporter au moins 4 caractères'
                 },
-                'wizard-validation-material-lastname': {
-                    required: 'Please enter a lastname',
-                    minlength: 'Your lastname must consist of at least 2 characters'
+                'password': {
+                    required: 'S\'il vous plaît entrer le mot de pass',
+                    minlength: 'Votre mot de pass doit comporter au moins 6 caractères'
                 },
-                'wizard-validation-material-email': 'Please enter a valid email address',
-                'wizard-validation-material-bio': 'Let us know a few thing about yourself',
-                'wizard-validation-material-skills': 'Please select a skill!',
-                'wizard-validation-material-terms': 'You must agree to the service terms!'
+                'confirm_password': {
+                    required: 'S\'il vous plaît confirmer le mot de passe',
+                    equalTo: 'Entrez le même mot de passe que ci-dessus'
+                },
+                'user_name': 'S\'il vous plaît entrer votre nom',
+                'user_adresse': 'S\'il vous plaît entrer votre adresse',
+                'user_email': 'S\'il vous plaît entrer votre email',
+                'user_tele': 'S\'il vous plaît entrer votre telephone',
+                'societe_name': 'S\'il vous plaît entrer le nom de la societe',
+                'societe_email': 'S\'il vous plaît entrer l\'email de la societe',
+                'societe_adresse': 'S\'il vous plaît entrer l\'adresse de la societe',
+                'societe_tele': 'S\'il vous plaît entrer le telephone de la societe',
+                'societe_ville': 'S\'il vous plaît entrer la ville de la societe',
+                'societe_logo': 'S\'il vous plaît entrer le logo de la societe'
+
             }
         });
 
@@ -223,7 +278,7 @@ var BeFormWizard = function() {
             initWizardDefaults();
 
             // Init Form Simple Wizard
-            initWizardSimple();
+            // initWizardSimple();
 
             // Init Form Validation Wizard
             initWizardValidation();

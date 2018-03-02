@@ -27,15 +27,6 @@ class CommandeController extends Controller
         $services = DB::table('services')->get();
         $categories = DB::table('categories')->get();
         return view('Pages.Facture.create', ['services' => $services,'categories' => $categories]);
-
-
-        //        $items = DB::table('vetement_facture_client')
-    //            ->select('*')
-    ////            ->groupBy('status_id')
-    //            ->orderBy('date_commande' , 'desc')
-    ////            ->whereIn('user_id', Auth::user()->id())
-    //            ->get();
-//        die($items);
     }
 
     /**
@@ -146,6 +137,7 @@ class CommandeController extends Controller
      */
     public function destroy($id)
     {
-        //
+//        DB::table('c')->where('id_client', '=', $id)->delete();
+//        return redirect('/clients');
     }
 }
