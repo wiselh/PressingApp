@@ -15,8 +15,11 @@ class CreateVetementsTable extends Migration
     {
         Schema::create('vetements', function (Blueprint $table) {
             $table->increments('id_vetement');
-            $table->string("couleur")->nullable();
-            $table->float("prix");
+            $table->string("vetement_color")->nullable();
+            $table->float("vetement_price");
+            $table->integer("vetement_quantity");
+            $table->float("vetement_total");
+            $table->integer('vetement_description')->nullable();
             $table->integer('id_service')->unsigned();
             $table->integer('id_commande')->unsigned();
             $table->integer('id_categorie')->unsigned();
