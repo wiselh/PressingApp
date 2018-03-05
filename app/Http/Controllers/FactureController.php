@@ -25,7 +25,27 @@ class FactureController extends Controller
      */
     public function index()
     {
-//        return view('Pages.Facture.create', ['services' => $services,'categories' => $categories]);
+
+        $factures = DB::table('commandes')
+            ->join('clients', 'clients.id_client', '=', 'commandes.id_client')
+            ->join('vetements', 'vetements.id_commande', '=', 'commandes.id_commande')
+            ->distinct('DISTINCT id_vetement,*')
+//            ->where('clients.id_client = commandes.id_client AND vetements.id_commande = commandes.id_commande')
+            ->get();
+//        $clients = DB::table('clients')->get();
+//        $vetements = DB::table('vetements')->get();
+//        $commandes = DB::table('commandes')->get();
+//        $services = DB::table('services')->get();
+//        $categories = DB::table('categories')->get();
+
+        return view('Pages.Factures.show', [
+            'factures' => $factures,
+//            'clients' => $clients,
+//            'vetements' => $vetements,
+//            'commandes' => $commandes,
+//            'services' => $services,
+//            'categories' => $categories,
+        ]);
     }
 
     /**

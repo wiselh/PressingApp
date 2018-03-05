@@ -109,8 +109,6 @@ class ServiceController extends Controller
      */
     public function destroy($id)
     {
-//        $categorie = Service::findOrFail($id);
-//        $categorie = DB::table('services')->where('id_service', $id)->first();
         DB::table('services')->where('id_service', '=', $id)->delete();
         return redirect('/services');
     }

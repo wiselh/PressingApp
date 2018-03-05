@@ -44,10 +44,10 @@
                         @endif
                     </td>
                     <td class="d-none d-sm-table-cell text-center">
-                        @if($client->tel=='')
+                        @if($client->tele=='')
                             -
                         @else
-                            {{$client->tel}}
+                            {{$client->tele}}
                         @endif
                     </td>
                     <td class="text-center">

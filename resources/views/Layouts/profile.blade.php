@@ -1,3 +1,4 @@
+
 <!-- Side Overlay-->
 <aside id="side-overlay">
     <!-- Side Overlay Scroll Container -->
@@ -15,10 +16,11 @@
                 <!-- User Info -->
                 <div class="content-header-item">
                     <a class="img-link mr-5" href="">
-                        <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar15.jpg" alt="">
+
+                        <img class="img-avatar img-avatar32" src='{{asset(Auth::user()->picture)}}' alt="">
                     </a>
                     <a class="align-middle link-effect text-primary-dark font-w600" href=""></a>
-                    <b>{{ Auth::user()->name }}</b>
+                    <b>{{ Auth::user()->fullname }}</b>
                 </div>
                 <!-- END User Info -->
             </div>
@@ -39,45 +41,108 @@
                     </div>
                 </div>
                 <div class="block-content">
-                    <form action="/admin/{{Auth::user()->id}}" method="post">
+                    <form action="/profile/{{Auth::user()->id}}" method="post" enctype="multipart/form-data" class="profile-form">
+                        {{ method_field('PUT') }}
                         {{csrf_field()}}
+
+                        {{--@if (count($errors) > 0)--}}
+                            {{--<div class="form-group mb-15">--}}
+                            {{--<div class="alert alert-danger">--}}
+                                {{--<ul>--}}
+                                    {{--@foreach ($errors->all() as $error)--}}
+                                        {{--<li>{{ $error }}</li>--}}
+                                    {{--@endforeach--}}
+                                {{--</ul>--}}
+                            {{--</div>--}}
+                            {{--</div>--}}
+
+                        {{--@endif--}}
+
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Nom</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="side-overlay-profile-name"
-                                       name="name" placeholder="Votre Nom.." value="{{ Auth::user()->name }}">
+                            <label for="profile_pictures">Photo de Profile <span style="font-size: 11px;color: #00dd00">(optionnel)</span></label>
+                            <div class="input-group floating">
+                                <input type="file" id="profile_picture" name="profile_picture">
+                            </div>
+                        </div>
+                        <div class="form-group mb-15">
+                            <label for="profile_username">Nom de l'Utilisateur</label>
+                            <div class="input-group floating">
+                                <input type="text" class="form-control" id="profile_username"
+                                       name="profile_username" placeholder="Nom de l'Utilisateur.." value="{{ Auth::user()->username }}">
+                                <span class="input-group-addon"><i class="fa fa-sign-in"></i></span>
+
+                            </div>
+                        </div>
+                        <div class="form-group mb-15">
+                            <label for="profile_fullname">Nom Complete</label>
+                            <div class="input-group floating">
+                                <input type="text" class="form-control" id="profile_fullname"
+                                       name="profile_fullname" placeholder="Votre Nom.." value="{{ Auth::user()->fullname }}">
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Nom de l'Utilisateur</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="side-overlay-profile-username"
-                                       name="username" placeholder="Nom de l'Utilisateur.." value="{{ Auth::user()->username }}">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            <label for="profile_tele">Telephone</label>
+                            <div class="input-group floating">
+                                <input type="text" class="form-control" id="profile_tele"
+                                       name="profile_tele" placeholder="Telephone de l'Utilisateur.." value="{{ Auth::user()->tele }}">
+                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-email">Adresse Email</label>
-                            <div class="input-group">
-                                <input type="email" class="form-control" id="side-overlay-profile-email"
-                                       name="email" placeholder="Votre Email..." value="{{ Auth::user()->email }}">
+                            <label for="profile_adresse">Adresse</label>
+                            <div class="input-group floating">
+                                <input type="text" class="form-control" id="profile_adresse"
+                                       name="profile_adresse" placeholder="Adresse de l'Utilisateur.." value="{{ Auth::user()->adresse }}">
+                                <span class="input-group-addon"><i class="fa fa-address-book"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group mb-15">
+                            <label for="profile_email">Adresse Email</label>
+                            <div class="input-group floating">
+                                <input type="email" class="form-control" id="profile_email"
+                                       name="profile_email" placeholder="Votre Email..." value="{{ Auth::user()->email }}">
                                 <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                             </div>
                         </div>
+                        <div class="form-group row">
+                            <div class="col-6">
+                                <button type="submit" class="btn btn-block btn-alt-primary">
+                                    <i class="fa fa-refresh mr-5"></i> Mise A Jour
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- END Profile -->
+
+            <!-- Profile -->
+            <div class="block pull-r-l">
+                <div class="block-header bg-body-light">
+                    <h3 class="block-title">
+                        <i class="fa fa-fw fa-pencil font-size-default mr-5"></i>Changer le mot de pass
+                    </h3>
+                    <div class="block-options">
+                        <button type="button" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                    </div>
+                </div>
+                <div class="block-content">
+                    <form action="/profile/password/{{Auth::user()->id}}" method="post" class="password-form">
+                        {{csrf_field()}}
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-password">Nouveau Mot de pass</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="side-overlay-profile-password"
-                                       name="password" placeholder="Nouveau Mot de pass..">
+                            <label for="profile_password">Nouveau mot de pass</label>
+                            <div class="input-group floating">
+                                <input type="password" class="form-control" id="profile_password"
+                                       name="profile_password" placeholder="Nouveau Mot de pass..">
                                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                             </div>
                         </div>
                         <div class="form-group mb-15">
-                            <label for="side-overlay-profile-password-confirm">Confirme le Mot de pass</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="side-overlay-profile-password-confirm"
-                                       name="side-overlay-profile-password-confirm" placeholder="Confirmer le mot de pass..">
+                            <label for="profile_confirm_password">Confirme le Mot de pass</label>
+                            <div class="input-group floating">
+                                <input type="password" class="form-control" id="profile_confirm_password"
+                                       name="profile_confirm_password" placeholder="Confirmer le mot de pass..">
                                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                             </div>
                         </div>

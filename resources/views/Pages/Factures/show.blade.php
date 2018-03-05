@@ -4,7 +4,7 @@
 
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
-    <link rel="stylesheet" href="assets/js/plugins/datatables/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
     <style type="text/css">
         .btn-secondary{
             padding: 0px 8px;
@@ -24,50 +24,45 @@
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full mytable">
                 <thead>
                 <tr>
+                    {{--<th class="text-center" style="width: 10%;">ID</th>--}}
                     <th class="text-center" style="width: 10%;">Numero du Commande</th>
-                    <th class="d-none d-sm-table-cell">Nom Client</th>
-                    <th class="text-center">Telephone</th>
-                    <th class="text-center">Nombre de Pieces</th>
-                    <th class="text-center">Payer</th>
+                    <th class="d-none d-sm-table-cell">Nom du Client</th>
+                    <th class="text-center">Telephone du Client</th>
                     <th class="text-center">Date de Facture</th>
                     <th class="text-center">Date de Retrait</th>
-                    <th class="text-center" style="width: 15%;">Valider</th>
+                    <th class="text-center">Nombre de Pieces</th>
+                    <th class="text-center">Montant Total</th>
+                    <th class="text-center">Payer</th>
+                    <th class="text-center" style="width: 15%;">Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($clients as $client)
+                @foreach($factures as $facture)
                 <tr>
-                    <td class="text-center">{{$client->id_client}}</td>
-                    <td class="font-w600">{{$client->nom}}</td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        @if($client->adresse=='')
-                            -
-                            @else
-                            {{$client->adresse}}
-                        @endif
-                    </td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        @if($client->tel=='')
-                            -
-                        @else
-                            {{$client->tel}}
-                        @endif
-                    </td>
+{{--                    <td class="text-center">{{$facture->id_commande}}</td>--}}
+                    <td class="text-center">{{$facture->num_commande}}</td>
+                    <td class="font-w600">{{$facture->nom}}</td>
+                    <td class="font-w600">{{$facture->tele}}</td>
+                    <td class="font-w600">{{$facture->date_commande}}</td>
+                    <td class="font-w600">{{$facture->date_retrait}}</td>
+                    <td class="font-w600">{{$facture->quantity}}</td>
+                    <td class="font-w600">{{$facture->montant_commande}}</td>
+                    <td class="font-w600">{{$facture->paye_commande}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <a href="/clients/{{$client->id_client}}">
+                            <a href="/clients/{{$facture->id_client}}">
                                 <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
                                     <i class="fa fa-pencil"></i>
                                 </button>
                             </a>
-                            <form action="/clients/{{$client->id_client}}" method="post">
+                            <form action="/clients/{{$facture->id_client}}" method="post">
                                 {{ method_field('DELETE') }}
                                 {{csrf_field()}}
                                 <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
                                     <i class="fa fa-times"></i>
                                 </button>
                             </form>
-                            <a href="/pdf/{{$client->id_client}}" class="btn btn-default btn-sm">PDF</a>
+                            <a href="/pdf/{{$facture->id_client}}" class="btn btn-default btn-sm">PDF</a>
 
                         </div>
                     </td>

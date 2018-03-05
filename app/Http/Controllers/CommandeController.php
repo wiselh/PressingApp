@@ -26,16 +26,7 @@ class CommandeController extends Controller
     {
         $services = DB::table('services')->get();
         $categories = DB::table('categories')->get();
-        return view('Pages.Facture.create', ['services' => $services,'categories' => $categories]);
-
-
-        //        $items = DB::table('vetement_facture_client')
-    //            ->select('*')
-    ////            ->groupBy('status_id')
-    //            ->orderBy('date_commande' , 'desc')
-    ////            ->whereIn('user_id', Auth::user()->id())
-    //            ->get();
-//        die($items);
+        return view('Pages.Commande.create', ['services' => $services,'categories' => $categories]);
     }
 
     /**
@@ -45,7 +36,7 @@ class CommandeController extends Controller
      */
     public function create()
     {
-        return view('Pages.Facture.create');
+        return view('Pages.Commande.create');
     }
 
     /**
@@ -58,14 +49,14 @@ class CommandeController extends Controller
     {
         $client = new Client();
         $commande = new Commande();
-        $vetement = new Vetement();
+
 
         $client->nom=$request->nom;
-        $client->tel=$request->tele;
+        $client->tele=$request->tele;
         $client->adresse=$request->adresse;
         $client->save();
 
-        $num_fac = "N°-".date('YmdHis');
+        $num_fac = "N° ".date('ymdHi');
         $commande->num_commande=$num_fac;
         $commande->date_commande=date('Y-m-d');
         $commande->date_retrait=$request->date_retrait;
@@ -92,16 +83,16 @@ class CommandeController extends Controller
         for($i = 0;$i<count($categorie);$i++)
         {
             $vetement = new Vetement();
-            $vetement->categorie=$categorie[$i];
+            $vetement->id_categorie=$categorie[$i];
             $vetement->couleur=$couleur[$i];
-            $vetement->service=$service[$i];
+            $vetement->id_service=$service[$i];
             $vetement->prix=$prix[$i];
             $vetement->id_commande=$commande->id;
             $montant += $prix[$i];
             $vetement->save();
         }
 
-        return view('Pages.Facture.create');
+        return redirect('/commandes');
     }
 
     /**
@@ -146,6 +137,7 @@ class CommandeController extends Controller
      */
     public function destroy($id)
     {
-        //
+//        DB::table('c')->where('id_client', '=', $id)->delete();
+//        return redirect('/clients');
     }
 }

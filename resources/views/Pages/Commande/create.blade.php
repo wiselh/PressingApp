@@ -2,22 +2,15 @@
 
 @section('page_style')
         <style type="text/css">
-        #paye-error{
-                background-color: rgba(255, 11, 0, 0.67);
-                color: white;
-                padding: 5px;
-                border-radius: 4px;
-                width: 50%;
-        }
-        .header-block{
-                background-color: #a8dad9;
+        .sous-block-header-default{
+                background-color: #f4f5f6 !important;
                 border-radius: 5px;
-                margin: 4px 0px;
+                margin: 4px 0;
         }
         </style>
 
-        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>
-        <script type="text/javascript" src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        {{--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js "></script>--}}
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 
 
@@ -36,12 +29,12 @@
                         <div class="col-xl-12 col-md-12">
                                 <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/be_forms_validation.js) -->
                                 <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                                <form class="js-validation-bootstrap" action="/factures" method="post">
+                                <form class="js-validation-bootstrap" action="/commandes" method="post">
                                         {{csrf_field()}}
 
                                         <div class="col-md-12 col-md-offset-6">
                                                 <div class="row">
-                                                        <div class="block-header block-header-default header-block col-md-12">
+                                                        <div class="block-header sous-block-header-default header-block col-md-12">
                                                                 <h3 class="block-title">Client</h3>
                                                         </div>
                                                         <div class="form-group col-md-6 ">
@@ -65,7 +58,7 @@
                                                 </div>
 
                                                 <div class="row" id="vetements">
-                                                        <div class="block-header block-header-default header-block col-md-12">
+                                                        <div class="block-header sous-block-header-default header-block col-md-12">
                                                                 <h3 class="block-title">Vetement</h3>
                                                         </div>
                                                         <div class="container" id="myvet" >
@@ -91,7 +84,7 @@
                                                                                 <div class="form-group col-md-3 col-lg-3">
                                                                                         <label class="col-lg-12 col-form-label" for="type">Type de Service<span class="text-danger">*</span></label>
                                                                                         <div class="col-lg-12">
-                                                                                                <select class="js-select2 form-control" id="type" name="type[]" style="width: 100%;" data-placeholder="Choose one..">
+                                                                                                <select class="js-select2 form-control" id="service" name="service[]" style="width: 100%;" data-placeholder="Choose one..">
                                                                                                         <option></option><!-- Required for data-placeholder attribute to work with Select2 plugin -->
                                                                                                         @foreach( $services as $service)
                                                                                                             <option value="{{$service->id_service}}">{{$service->nom_service}}</option>
@@ -114,13 +107,12 @@
                                                                         <div class="pull-left" >
                                                                                 <button id="add" type="button" class="btn btn-alt-secondary btn-sm" >Ajouter une Piece</button>
                                                                         </div>
-
                                                                 </div>
                                                         </div>
                                                 </div>
 
                                                 <div class="row">
-                                                        <div class="block-header block-header-default header-block col-md-12">
+                                                        <div class="block-header sous-block-header-default header-block col-md-12">
                                                                 <h3 class="block-title">Service</h3>
                                                         </div>
                                                         <div class="form-group col-md-6">
@@ -170,7 +162,7 @@
         <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
         <!-- Page JS Code -->
-        <script src="{{asset('assets/js/pages/be_forms_validation.js')}}"></script>
+        <script src="{{asset('assets/js/pages/add_commande_validation.js')}}"></script>
 
 
         <script type="text/javascript">
@@ -181,23 +173,15 @@
                     return false;
                 });
 
-            });
-//            $(document).ready(function() {
-//
-//
-//                });
 
-
-
-
-            $(document).ready(function() {
                 $('.prix').keyup(function () {
                     var sum = 0;
                     $('.prix').each(function() {
                         sum += Number($(this).val());
                     });
                     $('#montant').html("Montant Total: "+sum+"DH");
-                })});
+                });
+            });
         </script>
 @endsection
 

@@ -45,6 +45,8 @@ class ClientController extends Controller
     {
         $client = new Client();
         $client->nom=$request->nom;
+        $client->tele=$request->tele;
+        $client->adresse=$request->adresse;
         $client->save();
     }
 

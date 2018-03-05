@@ -26,11 +26,14 @@ class AppServiceProvider extends ServiceProvider
             $nbr_clients = DB::table('clients')->count();
             $nbr_categories = DB::table('categories')->count();
             $nbr_services = DB::table('services')->count();
+            $logo = DB::table('societes')->get()->first();
+//            die($logo->societe_logo);
             $view->with([
                 'nbr_factures'=>$nbr_factures,
                 'nbr_clients'=>$nbr_clients,
                 'nbr_categories'=>$nbr_categories,
-                'nbr_services'=>$nbr_services
+                'nbr_services'=>$nbr_services,
+                'logo'=>$logo->societe_logo
             ]);
         });
 

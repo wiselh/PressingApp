@@ -38,7 +38,7 @@
                                     {{$client->adresse}}
                             </textarea>
                         </td>
-                        <td class="text-center"><input type="text" class="form-control" id="tel" name="tel" placeholder="Enter le numero de telephone"  value="{{$client->tel}}"></td></td>
+                        <td class="text-center"><input type="text" class="form-control" id="tele" name="tele" placeholder="Enter le numero de telephone"  value="{{$client->tele}}"></td></td>
                         <td class="text-center">
                             <input type="submit" class="btn btn-success" value="Modifier">
                         </td>

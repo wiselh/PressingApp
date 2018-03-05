@@ -26,44 +26,32 @@ var BeFormValidation = function() {
                     required: true,
                     minlength: 3
                 },
-                // 'adresse': {
-                //     required: true
-                // },
-                // 'tele': {
-                //     required: true
-                // },
-                'categorie': {
-                    required: true
-                },
-                'type': {
+                'date_retrait': {
                     required: true
                 },
                 'paye': {
                     required: true
                 },
-                'couleur': {
+                'categorie[]': {
                     required: true
                 },
-                'date_retrait': {
+                'prix[]': {
                     required: true
                 },
-                'prix': {
+                'service[]': {
                     required: true
                 }
             },
             messages: {
                 'nom': {
-                    required: 'Please enter a username',
+                    required: 'Le champ Nom est obligatoire.',
                     minlength:'minimum 4 characters '
                 },
-                'adresse': 'Please enter a valid email address',
-                'type': 'Please select a value!',
-                'categorie': 'categorie',
-                'couleur': 'couleur!',
-                'tele': 'tele',
-                'prix': 'prix',
+                'service[]': 'Le champ Type de service est obligatoire.',
+                'categorie[]': 'Le champ Categorie est obligatoire.',
+                'prix[]': 'Le champ Prix est obligatoire.',
                 'paye': '! Choisez Oui ou Non',
-                'date_retrait': 'date'
+                'date_retrait': 'Le champ Date de Retrait est obligatoire.'
             }
         });
     };
