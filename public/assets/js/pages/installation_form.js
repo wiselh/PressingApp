@@ -16,17 +16,32 @@ var BeFormWizard = function() {
         jQuery.fn.bootstrapWizard.defaults.backSelector     = '[data-wizard="back"]';
     };
 
+    // Init simple wizard, for more examples you can check out https://github.com/VinceG/twitter-bootstrap-wizard
+    var initWizardSimple = function(){
+        jQuery('.js-wizard-simple').bootstrapWizard({
+            onTabShow: function(tab, navigation, index) {
+                var percent = ((index + 1) / navigation.find('li').length) * 100;
 
+                // Get progress bar
+                var progress = navigation.parents('.block').find('[data-wizard="progress"] > .progress-bar');
+
+                // Update progress bar if there is one
+                if (progress.length) {
+                    progress.css({ width: percent + 1 + '%' });
+                }
+            }
+        });
+    };
 
     // Init wizards with validation, for more examples you can check out https://github.com/VinceG/twitter-bootstrap-wizard
     // and https://github.com/jzaefferer/jquery-validation
     var initWizardValidation = function(){
         // Get forms
-
+        var formClassic     = jQuery('.js-wizard-validation-classic-form');
         var formMaterial    = jQuery('.js-wizard-validation-material-form');
 
         // Prevent forms from submitting on enter key press
-        formMaterial.add(formMaterial).on('keyup keypress', function (e) {
+        formClassic.add(formMaterial).on('keyup keypress', function (e) {
             var code = e.keyCode || e.which;
 
             if (code === 13) {
@@ -34,6 +49,84 @@ var BeFormWizard = function() {
                 return false;
             }
         });
+
+        // Init form validation on classic wizard form
+        // var validatorClassic = formClassic.validate({
+        //     errorClass: 'invalid-feedback animated fadeInDown',
+        //     errorElement: 'div',
+        //     errorPlacement: function(error, e) {
+        //         jQuery(e).parents('.form-group').append(error);
+        //     },
+        //     highlight: function(e) {
+        //         jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
+        //     },
+        //     success: function(e) {
+        //         jQuery(e).closest('.form-group').removeClass('is-invalid');
+        //         jQuery(e).remove();
+        //     },
+        //     rules: {
+        //         //user
+        //         'user_name': {
+        //             required: true
+        //         },
+        //         'username': {
+        //             required: true,
+        //             minlength: 4
+        //         },
+        //         'user_adresse': {
+        //             required: true
+        //         },
+        //         'user_email': {
+        //             required: true,
+        //             email: true
+        //         },
+        //         'password': {
+        //             required: true,
+        //             minlength: 6
+        //         },
+        //         //society
+        //         'societe_nom': {
+        //             required: true
+        //         },
+        //         'societe_email': {
+        //             required: true,
+        //             email: true
+        //         },
+        //         'societe_adresse': {
+        //             required: true
+        //         },
+        //         'societe_tele': {
+        //             required: true
+        //         },
+        //         'ville': {
+        //             required: true
+        //         },
+        //         'logo': {
+        //             required: true
+        //         }
+        //
+        //     },
+        //     messages: {
+        //         'username': {
+        //             required: 'Please enter a hakimmmmm',
+        //             minlength: 'Your firtname must consist of at least 2 characters'
+        //         },
+        //         'password': {
+        //             required: 'svp entrer le mot de pass',
+        //             minlength: 'minimum 6 caracteres'
+        //         },
+        //         'user_name': 'Please enter a valid email address',
+        //         'user_adresse': 'S\'il vous plaît entrer le mot de pass',
+        //         'user_email': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_nom': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_email': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_adresse': 'S\'il vous plaît entrer le mot de pass',
+        //         'societe_tele': 'S\'il vous plaît entrer le mot de pass',
+        //         'ville': 'S\'il vous plaît entrer le mot de pass',
+        //         'logo': 'S\'il vous plaît entrer le mot de pass'
+        //
+        //     }
+        // });
 
         // Init form validation on material wizard form
         var validatorMaterial = formMaterial.validate({
@@ -91,10 +184,10 @@ var BeFormWizard = function() {
                 'societe_tele': {
                     required: true
                 },
-                'societe_ville': {
+                'ville': {
                     required: true
                 },
-                'societe_logo': {
+                'logo': {
                     required: true
                 }
 
@@ -126,10 +219,46 @@ var BeFormWizard = function() {
             }
         });
 
+        // Init classic wizard with validation
+        jQuery('.js-wizard-validation-classic').bootstrapWizard({
+            tabClass: '',
+            onTabShow: function(tab, navigation, index) {
+                var percent = ((index + 1) / navigation.find('li').length) * 100;
+
+                // Get progress bar
+                var progress = navigation.parents('.block').find('[data-wizard="progress"] > .progress-bar');
+
+                // Update progress bar if there is one
+                if (progress.length) {
+                    progress.css({ width: percent + 1 + '%' });
+                }
+            },
+            onNext: function(tab, navigation, index) {
+                if( !formClassic.valid() ) {
+                    validatorClassic.focusInvalid();
+                    return false;
+                }
+            },
+            onTabClick: function(tab, navigation, index) {
+                jQuery('a', navigation).blur();
+		return false;
+            }
+        });
+
         // Init wizard with validation
         jQuery('.js-wizard-validation-material').bootstrapWizard({
             tabClass: '',
+            onTabShow: function(tab, navigation, index) {
+                var percent = ((index + 1) / navigation.find('li').length) * 100;
 
+                // Get progress bar
+                var progress = navigation.parents('.block').find('[data-wizard="progress"] > .progress-bar');
+
+                // Update progress bar if there is one
+                if (progress.length) {
+                    progress.css({ width: percent + 1 + '%' });
+                }
+            },
             onNext: function(tab, navigation, index) {
                 if( !formMaterial.valid() ) {
                     validatorMaterial.focusInvalid();
@@ -147,6 +276,9 @@ var BeFormWizard = function() {
         init: function () {
             // Init Wizard Defaults
             initWizardDefaults();
+
+            // Init Form Simple Wizard
+            // initWizardSimple();
 
             // Init Form Validation Wizard
             initWizardValidation();

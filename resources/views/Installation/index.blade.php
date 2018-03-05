@@ -83,6 +83,7 @@
                                                 <!-- Step 1 -->
                                                 <div class="tab-pane active" id="wizard-validation-material-step1" role="tabpanel">
                                                     <div class="form-group">
+<<<<<<< HEAD
                                                         <span style="font-size: 11px;color: red">*</span> : Champ obligatoire
                                                     </div>
                                                     <div class="form-group">
@@ -96,42 +97,71 @@
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="user_name" name="user_name">
                                                             <label for="user_name">Nom Complete <span style="color: red">*</span></label>
+=======
+                                                        <div class="form-material floating">
+                                                            <input class="form-control" type="text" id="user_name" name="user_name">
+                                                            <label for="user_name">Nom Complete</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="user_adresse" name="user_adresse">
+<<<<<<< HEAD
                                                             <label for="user_adresse">Adresse <span style="color: red">*</span></label>
+=======
+                                                            <label for="user_adresse">Adresse</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="user_tele" name="user_tele">
+<<<<<<< HEAD
                                                             <label for="user_tele">Telephone <span style="color: red">*</span></label>
+=======
+                                                            <label for="user_tele">Telephone</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="username" name="username">
+<<<<<<< HEAD
                                                             <label for="username">Nom d'utilisateur <span style="color: red">*</span></label>
+=======
+                                                            <label for="username">Nom d'utilisateur</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="email" id="user_email" name="user_email">
+<<<<<<< HEAD
                                                             <label for="user_email">Email <span style="color: red">*</span></label>
+=======
+                                                            <label for="user_email">Email</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="password" name="password">
+<<<<<<< HEAD
                                                             <label for="password">Mot de pass <span style="color: red">*</span></label>
+=======
+                                                            <label for="password">Mot de pass</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="confirm_password" name="confirm_password">
+<<<<<<< HEAD
                                                             <label for="confirm_password">Confirmer le Mot de pass <span style="color: red">*</span></label>
+=======
+                                                            <label for="confirm_password">Confirmer le Mot de pass</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                 </div>
@@ -142,43 +172,72 @@
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_name" name="societe_name">
+<<<<<<< HEAD
                                                             <label for="societe_name">Nom de Societe <span style="color: red">*</span></label>
+=======
+                                                            <label for="societe_name">Nom de Societe</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_adresse" name="societe_adresse">
+<<<<<<< HEAD
                                                             <label for="societe_adresse">Adresse de la Societe <span style="color: red">*</span></label>
+=======
+                                                            <label for="societe_adresse">Adresse</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_ville" name="societe_ville">
+<<<<<<< HEAD
                                                             <label for="societe_ville">Ville <span style="color: red">*</span></label>
+=======
+                                                            <label for="societe_ville">Ville</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_tele" name="societe_tele">
+<<<<<<< HEAD
                                                             <label for="societe_tele">Telephone-Fax de la Societe <span style="color: red">*</span></label>
+=======
+                                                            <label for="societe_tele">Telephone-Fax</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_email" name="societe_email">
+<<<<<<< HEAD
                                                             <label for="societe_email">Email de la Societe <span style="color: red">*</span></label>
+=======
+                                                            <label for="societe_email">Email</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_website" name="societe_website">
+<<<<<<< HEAD
                                                             <label for="societe_website">Site de la Societe<span style="color: red">*</span></label>
+=======
+                                                            <label for="societe_website">Site</label>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
+<<<<<<< HEAD
                                                             <h6 style="line-height: 1.5;color: #575757;">Logo de la Societe<span style="color: red">*</span></h6>
                                                             <input  type="file" id="societe_logo" name="societe_logo">
+=======
+                                                            <h6 style="line-height: 1.5;color: #575757;">Logo</h6>
+                                                            <input  type="file" id="logo" name="societe_logo">
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                                             <span style="background-color: #f3a8a0;padding: 4px 10px;">Maximum 2Mb</span>
                                                         </div>
                                                     </div>
@@ -261,6 +320,7 @@
 
 <!-- Page JS Code -->
 <script src="{{asset('assets/js/pages/installation_form.js')}}"></script>
+<<<<<<< HEAD
 {{--<script type="text/javascript">--}}
    {{--var  city = ["Rabat","Ad Dakhla (Oued Eddahab)","Agadir","Al Hoceima","Azilal","Beni Mellal","Ben Slimane","Boujdour","Boulemane","Casablanca","Chaouen","El Jadida","El Kelaa des Sraghna","Er Rachidia","Essaouira","Es Smara","Fes","Figuig","Guelmim","Ifrane","Kenitra","Khemisset","Khenifra","Khouribga","Laayoune","Larache","Marrakech","Meknes","Nador","Ouarzazate","Oujda","Safi","Settat","Sidi Kacem","Tanger","Tan-Tan","Taounate","Taroudannt","Tata","Taza","Tetouan","Tiznit"];--}}
    {{--var sel = document.getElementById('city_states');--}}
@@ -271,5 +331,17 @@
        {{--sel.appendChild(opt);--}}
    {{--}--}}
 {{--</script>--}}
+=======
+<script type="text/javascript">
+   var  city = ["Rabat","Ad Dakhla (Oued Eddahab)","Agadir","Al Hoceima","Azilal","Beni Mellal","Ben Slimane","Boujdour","Boulemane","Casablanca","Chaouen","El Jadida","El Kelaa des Sraghna","Er Rachidia","Essaouira","Es Smara","Fes","Figuig","Guelmim","Ifrane","Kenitra","Khemisset","Khenifra","Khouribga","Laayoune","Larache","Marrakech","Meknes","Nador","Ouarzazate","Oujda","Safi","Settat","Sidi Kacem","Tanger","Tan-Tan","Taounate","Taroudannt","Tata","Taza","Tetouan","Tiznit"];
+   var sel = document.getElementById('city_states');
+   for(var i = 0; i < cuisines.length; i++) {
+       var opt = document.createElement('option');
+       opt.innerHTML = city[i];
+       opt.value = city[i];
+       sel.appendChild(opt);
+   }
+</script>
+>>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
 </body>
 </html>
