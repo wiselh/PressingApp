@@ -22,16 +22,7 @@ class CheckConfiguration
         {
             return redirect('/installation');
         }
-<<<<<<< HEAD
         return $next($request);
 
-=======
-        if (Auth::guard(null)->check()) {
-//            return redirect('/');
-//            die($request);
-            return $next($request);
-
-        }
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
     }
 }

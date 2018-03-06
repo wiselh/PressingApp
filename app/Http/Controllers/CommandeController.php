@@ -26,7 +26,7 @@ class CommandeController extends Controller
     {
         $services = DB::table('services')->get();
         $categories = DB::table('categories')->get();
-
+        
         return view('Pages.Commande.create', ['services' => $services,'categories' => $categories]);
     }
 

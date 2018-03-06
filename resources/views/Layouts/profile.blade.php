@@ -17,11 +17,7 @@
                 <div class="content-header-item">
                     <a class="img-link mr-5" href="">
 
-<<<<<<< HEAD
                         <img class="img-avatar img-avatar32" src='{{asset(Auth::user()->picture)}}' alt="">
-=======
-                        <img class="img-avatar img-avatar32" src='{{asset("$logo")}}' alt="">
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                     </a>
                     <a class="align-middle link-effect text-primary-dark font-w600" href=""></a>
                     <b>{{ Auth::user()->fullname }}</b>
@@ -45,7 +41,6 @@
                     </div>
                 </div>
                 <div class="block-content">
-<<<<<<< HEAD
                     <form action="/profile/{{Auth::user()->id}}" method="post" enctype="multipart/form-data" class="profile-form">
                         {{ method_field('PUT') }}
                         {{csrf_field()}}
@@ -83,40 +78,6 @@
                             <div class="input-group floating">
                                 <input type="text" class="form-control" id="profile_fullname"
                                        name="profile_fullname" placeholder="Votre Nom.." value="{{ Auth::user()->fullname }}">
-=======
-                    <form action="/profile/{{Auth::user()->id}}" method="post">
-                        {{csrf_field()}}
-                        {{ method_field('PUT') }}
-                        <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Nom de l'Utilisateur</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="username"
-                                       name="username" placeholder="Nom de l'Utilisateur.." value="{{ Auth::user()->username }}">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group mb-15">
-                            <label for="fullname">Nom Complete</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="fullname"
-                                       name="fullname" placeholder="Votre Nom.." value="{{ Auth::user()->fullname }}">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Telephone</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="tele"
-                                       name="tele" placeholder="Telephone de l'Utilisateur.." value="{{ Auth::user()->tele }}">
-                                <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                            </div>
-                        </div>
-                        <div class="form-group mb-15">
-                            <label for="side-overlay-profile-name">Adresse</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="adresse"
-                                       name="adresse" placeholder="Adresse de l'Utilisateur.." value="{{ Auth::user()->adresse }}">
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             </div>
                         </div>
@@ -170,17 +131,10 @@
                     <form action="/profile/password/{{Auth::user()->id}}" method="post" class="password-form">
                         {{csrf_field()}}
                         <div class="form-group mb-15">
-<<<<<<< HEAD
                             <label for="profile_password">Nouveau mot de pass</label>
                             <div class="input-group floating">
                                 <input type="password" class="form-control" id="profile_password"
                                        name="profile_password" placeholder="Nouveau Mot de pass..">
-=======
-                            <label for="side-overlay-profile-password">Nouveau mot de pass</label>
-                            <div class="input-group">
-                                <input type="password" class="form-control" id="side-overlay-profile-password"
-                                       name="password" placeholder="Nouveau Mot de pass..">
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
                                 <span class="input-group-addon"><i class="fa fa-asterisk"></i></span>
                             </div>
                         </div>

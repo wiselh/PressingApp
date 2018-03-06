@@ -11,15 +11,8 @@
 |
 */
 
-
-
-
-
 Route::get('/installation','InstallationController@index')->middleware('redirect_installation');
 Route::post('/installation','InstallationController@store');
-
-
-
 Route::get('/installation','InstallationController@index')->middleware('installation');
 
 

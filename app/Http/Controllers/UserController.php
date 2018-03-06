@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-<<<<<<< HEAD
 use App\User;
 use Illuminate\Http\Request;
 use Response;
@@ -19,12 +18,6 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
-=======
-use Illuminate\Http\Request;
-
-class UserController extends Controller
-{
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
     /**
      * Display a listing of the resource.
      *
@@ -32,12 +25,8 @@ class UserController extends Controller
      */
     public function index()
     {
-<<<<<<< HEAD
         $users = DB::table('users')->get();
         return view('Pages.User.show', ['users' => $users]);
-=======
-        //
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
     }
 
     /**
@@ -58,7 +47,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-<<<<<<< HEAD
 
         $rules = [
             'username' => "unique:users",
@@ -91,9 +79,6 @@ class UserController extends Controller
 
 
         return redirect('/users');
-=======
-        //
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
     }
 
     /**
@@ -127,16 +112,12 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-<<<<<<< HEAD
 //        DB::table('users')
 //            ->where('id', $id)
 //            ->update(['' =>$request->fullname ]);
 //
 //
 //        return redirect('/services');
-=======
-        //
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
     }
 
     /**
@@ -147,7 +128,6 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-<<<<<<< HEAD
         DB::table('users')->where('id', '=', $id)->delete();
         return redirect('/users');
     }
@@ -226,8 +206,5 @@ class UserController extends Controller
 
         return response()->json(['error'=>$validator->errors()->all()]);
 
-=======
-        //
->>>>>>> 0d4279e290f7da84f242b09682b016d9f6f70347
     }
 }
