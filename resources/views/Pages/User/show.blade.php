@@ -70,17 +70,21 @@
 
 @section('content')
     <!-- All Users -->
-@if ($errors->any())
+
+
+    <h2 class="content-heading">Gestion d'Utilisateur</h2>
+
+    @if ($errors->any())
     <div class="block pull-r-l" style="margin: 10px 0;">
 @else
     <div class="block pull-r-l block-mode-hidden" style="margin: 10px 0;">
 @endif
-        <div class="block-header block-header-default bg-body-light">
+        <div class="block-header block-header-default ">
             <h3 class="block-title" data-toggle="block-option" >
                 <i class="fa fa-fw fa-user font-size-default mr-5"></i>Ajouter un nouveau utilisateur
             </h3>
             <div class="block-options">
-                <button type="button" style="color: white" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                <button type="button" style="color: black" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
             </div>
         </div>
         <div class="block-content">
@@ -203,7 +207,7 @@
     <!-- All Users -->
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Tous Les Clients</h3>
+            <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i> Tous Les Clients</h3>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
@@ -267,7 +271,6 @@
         </div>
     </div>
     <!-- END Dynamic Table Full -->
-
 @endsection
 
 @section('page_script')

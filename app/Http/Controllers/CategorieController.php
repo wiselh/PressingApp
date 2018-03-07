@@ -46,7 +46,7 @@ class CategorieController extends Controller
     public function store(Request $request)
     {
         $categorie = new Categorie();
-        $categorie->nom_categorie=$request->nom;
+        $categorie->categorie_name=$request->categorie_name;
         $categorie->save();
         return redirect('/categories');
     }
@@ -93,7 +93,7 @@ class CategorieController extends Controller
 
         DB::table('categories')
             ->where('id_categorie', $id)
-            ->update(['nom_categorie' =>$request->nom ]);
+            ->update(['categorie_name' =>$request->categorie_name]);
 
 
         return redirect('/categories');

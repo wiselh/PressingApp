@@ -45,19 +45,6 @@
                         {{ method_field('PUT') }}
                         {{csrf_field()}}
 
-                        {{--@if (count($errors) > 0)--}}
-                            {{--<div class="form-group mb-15">--}}
-                            {{--<div class="alert alert-danger">--}}
-                                {{--<ul>--}}
-                                    {{--@foreach ($errors->all() as $error)--}}
-                                        {{--<li>{{ $error }}</li>--}}
-                                    {{--@endforeach--}}
-                                {{--</ul>--}}
-                            {{--</div>--}}
-                            {{--</div>--}}
-
-                        {{--@endif--}}
-
                         <div class="form-group mb-15">
                             <label for="profile_pictures">Photo de Profile <span style="font-size: 11px;color: #00dd00">(optionnel)</span></label>
                             <div class="input-group floating">
@@ -106,7 +93,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-6">
+                            <div class="col-md-6 col-sm-12">
                                 <button type="submit" class="btn btn-block btn-alt-primary">
                                     <i class="fa fa-refresh mr-5"></i> Mise A Jour
                                 </button>
@@ -147,7 +134,7 @@
                             </div>
                         </div>
                         <div class="form-group row">
-                            <div class="col-6">
+                            <div class="col-md-6 col-sm-12">
                                 <button type="submit" class="btn btn-block btn-alt-primary">
                                     <i class="fa fa-refresh mr-5"></i> Mise A Jour
                                 </button>

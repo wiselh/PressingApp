@@ -39,7 +39,10 @@ class CommandeController extends Controller
     {
         return view('Pages.Commande.create');
     }
+    public function test(){
+        return view('Pages.Commande.test');
 
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -52,44 +55,51 @@ class CommandeController extends Controller
         $commande = new Commande();
 
 
-        $client->nom=$request->nom;
-        $client->tele=$request->tele;
-        $client->adresse=$request->adresse;
+        $client->client_name=$request->client_name;
+        $client->client_tele=$request->client_tele;
+        $client->client_adresse=$request->client_adresse;
         $client->save();
 
-        $num_fac = "N° ".date('ymdHi');
-        $commande->num_commande=$num_fac;
-        $commande->date_commande=date('Y-m-d');
-        $commande->date_retrait=$request->date_retrait;
-        $commande->paye_commande=$request->paye;
+        $num_fac = "N°".date('ymdHi');
+        $commande->commande_num=$num_fac;
+        $commande->commande_date=date('Y-m-d');
+        $commande->commande_date_retrait=$request->commande_date_retrait;
+        $commande->commande_paid=$request->commande_paid;
         $commande->id_client=$client->id;
 
         // vetements
         $categorie = Input::get('categorie');
-        $couleur = Input::get('couleur');
         $service = Input::get('service');
-        $prix = Input::get('prix');
+        $color = Input::get('vetement_color');
+        $price = Input::get('vetement_price');
+        $quantity = Input::get('vetement_quantity');
+        $total = Input::get('vetement_total');
+        $description = Input::get('vetement_description');
         $montant =0;
         $piece =0;
 
         for($i = 0;$i<count($categorie);$i++)
         {
-            $montant += $prix[$i];
-            $piece++;
+            $montant += $total[$i];
+            $piece+=$quantity[$i];
         }
-        $commande->montant_commande=$montant;
-        $commande->quantity=$piece;
+        $commande->commande_montant=$montant;
+        $commande->commande_quantity=$piece;
         $commande->save();
 
         for($i = 0;$i<count($categorie);$i++)
         {
             $vetement = new Vetement();
+
             $vetement->id_categorie=$categorie[$i];
-            $vetement->couleur=$couleur[$i];
             $vetement->id_service=$service[$i];
-            $vetement->prix=$prix[$i];
             $vetement->id_commande=$commande->id;
-            $montant += $prix[$i];
+
+            $vetement->vetement_color=$color[$i];
+            $vetement->vetement_price=$price[$i];
+            $vetement->vetement_quantity=$quantity[$i];
+            $vetement->vetement_total=$total[$i];
+            $vetement->vetement_description=$description[$i];
             $vetement->save();
         }
 

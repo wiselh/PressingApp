@@ -19,6 +19,9 @@
             .ribbon-crystal{
                 border-radius: 10px;
             }
+            .block{
+                border-radius: 8px;
+            }
             a.block{
                 background-color: transparent;
             }

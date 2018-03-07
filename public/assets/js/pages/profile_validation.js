@@ -1,8 +1,3 @@
-/*
- *  Document   : be_forms_wizard.js
- *  Author     : pixelcave
- *  Description: Custom JS code used in Form Wizard Page
- */
 // Init form validation on material wizard form
 $(function() {
 

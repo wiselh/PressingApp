@@ -58,12 +58,6 @@ var BeFormWizard = function() {
                     required: true,
                     minlength: 4
                 },
-                'user_adresse': {
-                    required: true
-                },
-                'user_tele': {
-                    required: true
-                },
                 'user_email': {
                     required: true,
                     email: true
@@ -81,10 +75,10 @@ var BeFormWizard = function() {
                 'societe_name': {
                     required: true
                 },
-                'societe_email': {
-                    required: true,
-                    email: true
-                },
+                // 'societe_email': {
+                //     required: true,
+                //     email: true
+                // },
                 'societe_adresse': {
                     required: true
                 },
@@ -93,10 +87,10 @@ var BeFormWizard = function() {
                 },
                 'societe_ville': {
                     required: true
-                },
-                'societe_logo': {
-                    required: true
                 }
+                // 'societe_logo': {
+                //     required: true
+                // }
 
             },
             messages: {
@@ -113,15 +107,13 @@ var BeFormWizard = function() {
                     equalTo: 'Entrez le même mot de passe que ci-dessus'
                 },
                 'user_name': 'S\'il vous plaît entrer votre nom',
-                'user_adresse': 'S\'il vous plaît entrer votre adresse',
                 'user_email': 'S\'il vous plaît entrer votre email',
-                'user_tele': 'S\'il vous plaît entrer votre telephone',
                 'societe_name': 'S\'il vous plaît entrer le nom de la societe',
-                'societe_email': 'S\'il vous plaît entrer l\'email de la societe',
+                // 'societe_email': 'S\'il vous plaît entrer l\'email de la societe',
                 'societe_adresse': 'S\'il vous plaît entrer l\'adresse de la societe',
                 'societe_tele': 'S\'il vous plaît entrer le telephone de la societe',
-                'societe_ville': 'S\'il vous plaît entrer la ville de la societe',
-                'societe_logo': 'S\'il vous plaît entrer le logo de la societe'
+                'societe_ville': 'S\'il vous plaît entrer la ville de la societe'
+                // 'societe_logo': 'S\'il vous plaît entrer le logo de la societe'
 
             }
         });

@@ -13,7 +13,7 @@ class Client extends Model
      *
      * @var array
      */
-    protected $fillable = ['nom','tel','adresse'];
+    protected $fillable = ['client_name','client_tele','client_adresse'];
 
     public function factures(){
     	return $this->hasMany(Facture::class);

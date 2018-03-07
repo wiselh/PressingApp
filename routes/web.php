@@ -13,13 +13,14 @@
 
 Route::get('/installation','InstallationController@index')->middleware('redirect_installation');
 Route::post('/installation','InstallationController@store');
-Route::get('/installation','InstallationController@index')->middleware('installation');
+//Route::get('/installation','InstallationController@index')->middleware();
 
 
 Route::group(['middleware' => ['installation']], function () {
 
     Auth::routes();
 
+    Route::resource('/societe','SocieteController');
     Route::resource('/profile','ProfileController');
     Route::resource('/users','UserController');
     Route::post('/profile/password/{id}','ProfileController@updatePassword');
@@ -34,6 +35,9 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'CommandeController@index');
+
+    Route::get('/test', 'CommandeController@test');
+
 
 });
 

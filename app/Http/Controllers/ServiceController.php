@@ -46,7 +46,7 @@ class ServiceController extends Controller
     public function store(Request $request)
     {
         $categorie = new Service();
-        $categorie->nom_service=$request->nom;
+        $categorie->service_name=$request->service_name;
         $categorie->save();
         return redirect('/services');
     }
@@ -93,7 +93,7 @@ class ServiceController extends Controller
 
         DB::table('services')
             ->where('id_service', $id)
-            ->update(['nom_service' =>$request->nom ]);
+            ->update(['service_name' =>$request->service_name ]);
 
 
         return redirect('/services');

@@ -54,7 +54,7 @@
 
                 <!-- Sign In Form -->
                 <div class="row justify-content-center px-5">
-                    <div class="col-sm-6 col-md-6 col-xl-6">
+                    <div class="col-sm-7 col-md-7 col-xl-7">
                         <!-- Page Content -->
                         <div class="content">
                             <div class="row">
@@ -64,13 +64,13 @@
                                         <!-- Step Tabs -->
                                         <ul class="nav nav-tabs nav-tabs-alt nav-fill" role="tablist">
                                             <li class="nav-item">
-                                                <a class="nav-link active" href="#wizard-validation-material-step1" data-toggle="tab">1. Admin</a>
+                                                <a class="nav-link active" href="#wizard-validation-material-step1" data-toggle="tab">1. Utilisateur Informations</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#wizard-validation-material-step2" data-toggle="tab">2. Societe</a>
+                                                <a class="nav-link" href="#wizard-validation-material-step2" data-toggle="tab">2. Societe Informations</a>
                                             </li>
                                             <li class="nav-item">
-                                                <a class="nav-link" href="#wizard-validation-material-step3" data-toggle="tab">3. Description</a>
+                                                <a class="nav-link" href="#wizard-validation-material-step3" data-toggle="tab">3. Autre Informations</a>
                                             </li>
                                         </ul>
                                         <!-- END Step Tabs -->
@@ -87,7 +87,7 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
-                                                            <h6 style="line-height: 1.5;color: #575757;">Photo de Profile <span style="font-size: 11px;color: #00dd00">(optionnel) </span></h6>
+                                                            <h6 style="line-height: 1.5;color: #575757;">Photo de Profile <span style="font-size: 11px;">(optionnel)</span></h6>
                                                             <input  type="file" id="user_picture" name="user_picture">
                                                             <span class="pull-right" style="background-color: #ff6666;padding: 4px 10px;color:white;border-radius: 8px">Maximum 2Mb</span>
                                                         </div>
@@ -101,13 +101,13 @@
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="user_adresse" name="user_adresse">
-                                                            <label for="user_adresse">Adresse <span style="color: red">*</span></label>
+                                                            <label for="user_adresse">Adresse <span style="font-size: 11px;">(optionnel)</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="user_tele" name="user_tele">
-                                                            <label for="user_tele">Telephone <span style="color: red">*</span></label>
+                                                            <label for="user_tele">Telephone <span style="font-size: 11px;">(optionnel)</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -153,8 +153,8 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
-                                                            <input class="form-control" type="text" id="societe_ville" name="societe_ville">
-                                                            <label for="societe_ville">Ville <span style="color: red">*</span></label>
+                                                            <input class="form-control" type="text" id="societe_city" name="societe_city">
+                                                            <label for="societe_city">Ville <span style="color: red">*</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
@@ -189,8 +189,38 @@
                                                 <div class="tab-pane" id="wizard-validation-material-step3" role="tabpanel">
                                                     <div class="form-group">
                                                         <div class="form-material floating">
-                                                            <textarea class="form-control" id="societe_description" name="societe_description" rows="9"></textarea>
-                                                            <label for="societe_description">Description</label>
+                                                            <textarea class="form-control" id="societe_description" name="societe_description" rows="4"></textarea>
+                                                            <label for="societe_description">Description <span style="font-size: 11px;">(optionnel)</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-material floating">
+                                                            <input class="form-control" type="text" id="societe_cnss" name="societe_cnss">
+                                                            <label for="societe_cnss">CNSS <span style="font-size: 11px;">(optionnel)</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-material floating">
+                                                            <input class="form-control" type="text" id="societe_rc" name="societe_rc">
+                                                            <label for="societe_rc">RC <span style="font-size: 11px;">(optionnel)</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-material floating">
+                                                            <input class="form-control" type="text" id="societe_pattent" name="societe_pattent">
+                                                            <label for="societe_pattent">Pattent <span style="font-size: 11px;">(optionnel)</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-material floating">
+                                                            <input class="form-control" type="text" id="societe_if" name="societe_if">
+                                                            <label for="societe_if">IF <span style="font-size: 11px;">(optionnel)</span></label>
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <div class="form-material floating">
+                                                            <input class="form-control" type="text" id="societe_ice" name="societe_ice">
+                                                            <label for="societe_ice">ICE <span style="font-size: 11px;">(optionnel)</span></label>
                                                         </div>
                                                     </div>
                                                 </div>

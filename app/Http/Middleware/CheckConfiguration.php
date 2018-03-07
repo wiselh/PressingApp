@@ -22,6 +22,14 @@ class CheckConfiguration
         {
             return redirect('/installation');
         }
+//        if($nbr > 0)
+//        {
+//            if (Auth::guard(null)->check()) {
+//                return redirect('/login');
+//            }
+//            return $next($request);
+//
+//        }
         return $next($request);
 
     }

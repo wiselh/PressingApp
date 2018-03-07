@@ -17,18 +17,17 @@ class RedirectifInstallation
      */
     public function handle($request, Closure $next)
     {
-            $nbr = DB::table('users')->count();
-            if($nbr > 0)
-            {
-                if (Auth::guard(null)->check()) {
-                    return redirect('/login');
-                }
-                else{
-                    return redirect('/');
-
-                }
+        $nbr = DB::table('users')->count();
+        if($nbr > 0)
+        {
+            if (Auth::guard(null)->check()) {
+                return redirect('/login');
             }
-            return $next($request);
+            else{
+                return redirect('/');
+            }
+        }
+        return $next($request);
 
 
     }

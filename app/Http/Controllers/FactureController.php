@@ -38,7 +38,7 @@ class FactureController extends Controller
 //        $services = DB::table('services')->get();
 //        $categories = DB::table('categories')->get();
 
-        return view('Pages.Factures.show', [
+        return view('Pages.Facture.show', [
             'factures' => $factures,
 //            'clients' => $clients,
 //            'vetements' => $vetements,

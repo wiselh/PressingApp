@@ -17,6 +17,10 @@ use Illuminate\Http\UploadedFile;
 class InstallationController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -59,25 +63,29 @@ class InstallationController extends Controller
         $user->password=bcrypt($request->password);
         $user->admin='oui';
 
-       $societe->societe_name=$request->societe_name;
-       $societe->societe_adresse=$request->societe_adresse;
-       $societe->societe_ville=$request->societe_ville;
-       $societe->societe_tele=$request->societe_tele;
-       $societe->societe_website=$request->societe_website;
-
+        $societe->societe_name=$request->societe_name;
+        $societe->societe_adresse=$request->societe_adresse;
+        $societe->societe_city=$request->societe_city;
+        $societe->societe_tele=$request->societe_tele;
+        $societe->societe_website=$request->societe_website;
 
         //upload logo
         $file = Input::file('societe_logo');
-        $logo_name = $request->societe_name.'.'.$request->societe_logo->extension();
+        $logo_name = 'logo.'.$request->societe_logo->extension();
         $logo_local='assets/img/favicons/'.$logo_name;
         $file->move('assets/img/favicons', $logo_name);
         $societe->societe_logo=$logo_local;
 
-       $societe->societe_email=$request->societe_email;
-       $societe->societe_description=$request->societe_description;
+        $societe->societe_email=$request->societe_email;
+        $societe->societe_description=$request->societe_description;
+        $societe->societe_cnss=$request->societe_cnss;
+        $societe->societe_rc=$request->societe_rc;
+        $societe->societe_if=$request->societe_if;
+        $societe->societe_ice=$request->societe_ice;
+        $societe->societe_pattent=$request->societe_pattent;
 
-        $user->save();
         $societe->save();
+        $user->save();
 
         return redirect('/login');
 
