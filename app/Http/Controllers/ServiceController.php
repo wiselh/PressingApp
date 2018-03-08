@@ -63,8 +63,8 @@ class ServiceController extends Controller
 //        return view('Pages.Service.edit',compact('categorie'));
 
 
-        $categorie = DB::table('services')->where('id_service', $id)->first();
-        return view('Pages.Service.edit', ['categorie' => $categorie]);
+        $service = DB::table('services')->where('id_service', $id)->first();
+        return view('Pages.Service.edit', ['service' => $service]);
     }
 
     /**

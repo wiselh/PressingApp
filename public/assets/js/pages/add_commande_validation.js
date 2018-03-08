@@ -22,20 +22,20 @@ var BeFormValidation = function() {
                 jQuery(e).remove();
             },
             rules: {
-                'nom': {
+                'client_name': {
                     required: true,
                     minlength: 3
                 },
-                'date_retrait': {
+                'vetement_date_retrait': {
                     required: true
                 },
-                'paye': {
+                'vetement_paid': {
                     required: true
                 },
                 'categorie[]': {
                     required: true
                 },
-                'prix[]': {
+                'vetement_price[]': {
                     required: true
                 },
                 'service[]': {
@@ -43,15 +43,15 @@ var BeFormValidation = function() {
                 }
             },
             messages: {
-                'nom': {
+                'client_name': {
                     required: 'Le champ Nom est obligatoire.',
                     minlength:'minimum 4 characters '
                 },
                 'service[]': 'Le champ Type de service est obligatoire.',
                 'categorie[]': 'Le champ Categorie est obligatoire.',
-                'prix[]': 'Le champ Prix est obligatoire.',
-                'paye': '! Choisez Oui ou Non',
-                'date_retrait': 'Le champ Date de Retrait est obligatoire.'
+                'vetement_price[]': 'Le champ Prix est obligatoire.',
+                'vetement_paid': 'Choisez Oui ou Non.',
+                'vetement_date_retrait': 'Le champ Date de Retrait est obligatoire.'
             }
         });
     };

@@ -35,19 +35,19 @@
                 @foreach($clients as $client)
                 <tr>
                     <td class="text-center">{{$client->id_client}}</td>
-                    <td class="font-w600">{{$client->nom}}</td>
+                    <td class="font-w600">{{$client->client_name}}</td>
                     <td class="d-none d-sm-table-cell text-center">
-                        @if($client->adresse=='')
+                        @if($client->client_adresse=='')
                             -
                             @else
-                            {{$client->adresse}}
+                            {{$client->client_adresse}}
                         @endif
                     </td>
                     <td class="d-none d-sm-table-cell text-center">
-                        @if($client->tele=='')
+                        @if($client->client_tele=='')
                             -
                         @else
-                            {{$client->tele}}
+                            {{$client->client_tele}}
                         @endif
                     </td>
                     <td class="text-center">
@@ -64,8 +64,6 @@
                                     <i class="fa fa-times"></i>
                                 </button>
                             </form>
-                            <a href="/pdf/{{$client->id_client}}" class="btn btn-default btn-sm">PDF</a>
-
                         </div>
                     </td>
                 </tr>

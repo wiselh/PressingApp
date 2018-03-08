@@ -6,14 +6,20 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
     <style type="text/css">
-        .btn-secondary{
+        .btn{
             padding: 0px 8px;
+        }
+        th{
+            text-transform: none !important;
+            font-size: 13px;
+        }
+        .badge{
+            padding: 5px 10px 5px 10px;
         }
     </style>
 @endsection
 
 @section('content')
-
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header block-header-default">
@@ -21,7 +27,7 @@
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-striped table-vcenter js-dataTable-full mytable">
+            <table class="table table-bordered table-responsive table-striped table-vcenter js-dataTable-full mytable">
                 <thead>
                 <tr>
                     {{--<th class="text-center" style="width: 10%;">ID</th>--}}
@@ -39,30 +45,37 @@
                 <tbody>
                 @foreach($factures as $facture)
                 <tr>
-{{--                    <td class="text-center">{{$facture->id_commande}}</td>--}}
-                    <td class="text-center">{{$facture->num_commande}}</td>
-                    <td class="font-w600">{{$facture->nom}}</td>
-                    <td class="font-w600">{{$facture->tele}}</td>
-                    <td class="font-w600">{{$facture->date_commande}}</td>
-                    <td class="font-w600">{{$facture->date_retrait}}</td>
-                    <td class="font-w600">{{$facture->quantity}}</td>
-                    <td class="font-w600">{{$facture->montant_commande}}</td>
-                    <td class="font-w600">{{$facture->paye_commande}}</td>
+                    <td class="font-w600 text-center ">{{$facture->commande_num}}</td>
+                    <td class="font-w600 text-center">{{$facture->client_name}}</td>
+                    <td class="font-w600 text-center">{{$facture->client_tele}}</td>
+                    <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date))}}</td>
+                    <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date_retrait))}}</td>
+                    <td class="font-w600 text-center">{{$facture->commande_quantity}}</td>
+                    <td class="font-w600 text-center">{{$facture->commande_montant}}DH (TTC)</td>
+                    <td class="font-w600 text-center">
+                        @if($facture->commande_paid=='oui')
+                            <span class="badge badge-success">Oui</span>
+                        @else
+                            <span class="badge badge-danger">No</span>
+                        @endif
+
+                    </td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <a href="/clients/{{$facture->id_client}}">
-                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </a>
-                            <form action="/clients/{{$facture->id_client}}" method="post">
+                            <form action="/generatePdf/{{$facture->id_commande}}" method="post">
                                 {{ method_field('DELETE') }}
                                 {{csrf_field()}}
-                                <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                    <i class="fa fa-times"></i>
+                                <button type="button" class="btn btn-alt-danger mr-5 mb-5">
+                                    <i class="fa fa-times mr-5"></i>Delete
                                 </button>
                             </form>
-                            <a href="/pdf/{{$facture->id_client}}" class="btn btn-default btn-sm">PDF</a>
+                            <a href="/impression/{{$facture->id_commande}}">
+
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    <i class="fa fa-upload mr-5"></i>Impression
+                                </button>
+                            </a>
+
 
                         </div>
                     </td>

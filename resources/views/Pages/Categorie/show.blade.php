@@ -32,7 +32,7 @@
                                             <div class="row">
                                                 <label class="col-md-4 col-sm-12 col-form-label" for="nom">Nom du Categorie <span class="text-danger">*</span></label>
                                                 <div class="col-md-6 col-sm-12 ">
-                                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Entez le nom du categorie" required>
+                                                    <input type="text" class="form-control" id="categorie_name" name="categorie_name" placeholder="Entez le nom du categorie" required>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 ">
                                                     <button type="submit" class="btn btn-alt-primary">Ajouter</button>
@@ -69,7 +69,7 @@
                             <td class="text-center">
                                 {{$categorie->id_categorie}}
                             </td>
-                            <td class="font-w600">{{$categorie->nom_categorie}}</td>
+                            <td class="font-w600">{{$categorie->categorie_name}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="/categories/{{$categorie->id_categorie}}">

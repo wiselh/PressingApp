@@ -14,23 +14,23 @@
     <div class="row">
         <div class="col-md-12">
             <div class="block-header block-header-default col-md-12">
-                <h3 class="block-title">Modifie La Categorie</h3>
+                <h3 class="block-title">Modifier Le Service</h3>
             </div>
             <div class="block-content">
                 <div class="row justify-content-center py-20">
                     <div class="col-xl-12 col-md-6">
                         <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/be_forms_validation.js) -->
                         <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                        <form class="js-validation-bootstrap" action="/categories/{{$service->id_service}}" method="post">
+                        <form class="js-validation-bootstrap" action="/services/{{$service->id_service}}" method="post">
                             {{ method_field('PUT') }}
                             {{csrf_field()}}
                             <div class="col-md-6 col-md-offset-3">
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <div class="row">
-                                            <label class="col-md-4 col-sm-12 col-form-label" for="nom">Nom du Categorie <span class="text-danger">*</span></label>
+                                            <label class="col-md-4 col-sm-12 col-form-label" for="service_name">Nom du Service <span class="text-danger">*</span></label>
                                             <div class="col-md-6 col-sm-12 ">
-                                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Enter le de categorie.." value="{{$service->nom_categorie}}">
+                                                <input type="text" class="form-control" id="service_name" name="service_name" required placeholder="Enter le de service.." value="{{$service->service_name}}">
                                             </div>
                                             <div class="col-md-2 col-sm-12 ">
                                                 <button type="submit" class="btn btn-alt-primary">Modifier</button>

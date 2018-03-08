@@ -9,7 +9,8 @@
 
     <!-- Bootstrap Forms Validation -->
     {{--<h2 class="content-heading">Bootstrap Forms</h2>--}}
-    <div class="block">
+
+    <div class="block" style="padding: 10px">
         <div class="row">
             <div class="col-md-6">
                 <div class="block-header block-header-default col-md-12">
@@ -30,9 +31,9 @@
                                         {{--</div>--}}
                                         <div class="form-group col-md-12">
                                             <div class="row">
-                                                <label class="col-md-4 col-sm-12 col-form-label" for="nom">Nom du Categorie <span class="text-danger">*</span></label>
+                                                <label class="col-md-4 col-sm-12 col-form-label" for="service_name">Nom du Service <span class="text-danger">*</span></label>
                                                 <div class="col-md-6 col-sm-12 ">
-                                                    <input type="text" class="form-control" id="nom" name="nom" placeholder="Entez le nom du categorie" required>
+                                                    <input type="text" class="form-control" id="service_name" name="service_name" placeholder="Entez le nom du categorie" required>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 ">
                                                     <button type="submit" class="btn btn-alt-primary">Ajouter</button>
@@ -52,14 +53,14 @@
             </div>
             <div class="col-md-6">
                 <div class="block-header block-header-default">
-                    <h3 class="block-title">Tous Les Categories</h3>
+                    <h3 class="block-title">Tous Les Services</h3>
                 </div>
                 <div class="block-content">
                     <table class="table table-striped table-vcenter">
                         <thead>
                         <tr>
                             <th class="text-center" style="width: 10%;">ID</th>
-                            <th>Nom Categorie</th>
+                            <th>Nom du Service</th>
                             <th class="text-center" style="width: 20%">Actions</th>
                         </tr>
                         </thead>
@@ -69,15 +70,15 @@
                             <td class="text-center">
                                 {{$service->id_service}}
                             </td>
-                            <td class="font-w600">{{$service->nom_service}}</td>
+                            <td class="font-w600">{{$service->service_name}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="/categories/{{$service->id_service}}">
+                                    <a href="/services/{{$service->id_service}}">
                                         <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                     </a>
-                                    <form action="/categories/{{$service->id_service}}" method="post">
+                                    <form action="/services/{{$service->id_service}}" method="post">
                                         {{ method_field('DELETE') }}
                                         {{csrf_field()}}
                                         <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">

@@ -16,6 +16,7 @@
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
+            <form class="js-validation-bootstrap" action="/clients/{{$client->id_client}}" method="post">
             <table class="table table-bordered table-striped table-vcenter js-dataTable-full mytable">
                 <thead>
                 <tr>
@@ -27,25 +28,25 @@
                 </tr>
                 </thead>
                 <tbody>
-                <form class="js-validation-bootstrap" action="/clients/{{$client->id_client}}" method="post">
-                    {{ method_field('PUT') }}
-                    {{csrf_field()}}
-                    <tr>
-                        <td class="text-center">{{$client->id_client}}</td>
-                        <td class="text-center"><input type="text" class="form-control" id="nom" name="nom" placeholder="Enter le nom.." required  value="{{$client->nom}}"></td>
-                        <td class="d-none d-sm-table-cell text-center">
-                            <textarea name="adresse" class="form-control">
-                                    {{$client->adresse}}
-                            </textarea>
-                        </td>
-                        <td class="text-center"><input type="text" class="form-control" id="tele" name="tele" placeholder="Enter le numero de telephone"  value="{{$client->tele}}"></td></td>
-                        <td class="text-center">
-                            <input type="submit" class="btn btn-success" value="Modifier">
-                        </td>
-                    </tr>
-                </form>
+                        {{ method_field('PUT') }}
+                        {{csrf_field()}}
+                        <tr>
+                            <td class="text-center">{{$client->id_client}}</td>
+                            <td class="text-center"><input type="text" class="form-control" id="nom" name="nom" placeholder="Enter le nom.." required  value="{{$client->client_name}}"></td>
+                            <td class="d-none d-sm-table-cell text-center">
+                                <textarea name="adresse" class="form-control">
+                                        {{$client->client_adresse}}
+                                </textarea>
+                            </td>
+                            <td class="text-center"><input type="text" class="form-control" id="tele" name="tele" placeholder="Enter le numero de telephone"  value="{{$client->client_tele}}"></td></td>
+                            <td class="text-center">
+                                <input type="submit" class="btn btn-success" value="Modifier">
+                            </td>
+                        </tr>
+
                 </tbody>
             </table>
+            </form>
         </div>
     </div>
     <!-- END Dynamic Table Full -->

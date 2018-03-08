@@ -31,12 +31,15 @@ Route::group(['middleware' => ['installation']], function () {
     Route::resource('/services','ServiceController');
     Route::resource('/clients','ClientController');
 
-    Route::get('/pdf/{id}','ClientController@downloadPDF');
+    Route::get('/impression/{id}','ImpressionController@index');
+    Route::get('/impression/ticket/{id}','ImpressionController@ticket');
+    Route::get('/impression/facture/{id}','ImpressionController@facture');
+    Route::get('/impression/codebar/{id}','ImpressionController@codebar');
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'CommandeController@index');
 
-    Route::get('/test', 'CommandeController@test');
+//    Route::get('/test', 'CommandeController@test');
 
 
 });

@@ -28,9 +28,9 @@
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <div class="row">
-                                            <label class="col-md-4 col-sm-12 col-form-label" for="nom">Nom du Categorie <span class="text-danger">*</span></label>
+                                            <label class="col-md-4 col-sm-12 col-form-label" for="categorie_name">Nom du Categorie <span class="text-danger">*</span></label>
                                             <div class="col-md-6 col-sm-12 ">
-                                                <input type="text" class="form-control" id="nom" name="nom" placeholder="Enter le de categorie.." value="{{$categorie->nom_categorie}}">
+                                                <input type="text" class="form-control" id="categorie_name" name="categorie_name" required placeholder="Enter le de categorie.." value="{{$categorie->categorie_name}}">
                                             </div>
                                             <div class="col-md-2 col-sm-12 ">
                                                 <button type="submit" class="btn btn-alt-primary">Modifier</button>
