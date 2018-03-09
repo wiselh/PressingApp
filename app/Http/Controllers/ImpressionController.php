@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Facture;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ImpressionController extends Controller
 {
@@ -16,6 +18,11 @@ class ImpressionController extends Controller
         return view('Pages.Impression.generate', [
             'id' => $id,
         ]);
+    }
+    public function destroy($id)
+    {
+        DB::table('commandes')->where('id_commande', '=', $id)->delete();
+        return redirect('/factures');
     }
 
 }

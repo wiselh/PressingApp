@@ -18,16 +18,27 @@
                     <div class="block-header block-header-default">
                         <h3 class="block-title">Default Style</h3>
                     </div>
-                    <div class="block-content text-center">
-                        <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                            <i class="fa fa-download mr-5"></i>Imprimer le Ticket
-                        </button>
-                        <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                            <i class="fa fa-download mr-5"></i>Imprimer le Code Bar
-                        </button>
-                        <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                            <i class="fa fa-download mr-5"></i>Imprimer la Facture
-                        </button>
+                    <div class="block-content ">
+                        <div class="container">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    <i class="fa fa-download mr-5"></i>Imprimer le Ticket
+                                </button>
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    <i class="fa fa-download mr-5"></i>Imprimer le Code Bar
+                                </button>
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    <i class="fa fa-download mr-5"></i>Imprimer la Facture
+                                </button>
+                            </div>
+                        </div>
+                        <div class="container">
+                            <div class="text-center">
+                                <button type="button" class="btn btn-alt-secondary min-width-125">
+                                    <i class="fa fa-chevron-left fa-1x"></i> Retour
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- END Default Pills -->

@@ -62,10 +62,10 @@
                     </td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <form action="/generatePdf/{{$facture->id_commande}}" method="post">
+                            <form action="/impression/{{$facture->id_commande}}" method="post">
                                 {{ method_field('DELETE') }}
                                 {{csrf_field()}}
-                                <button type="button" class="btn btn-alt-danger mr-5 mb-5">
+                                <button type="submit" class="btn btn-alt-danger mr-5 mb-5">
                                     <i class="fa fa-times mr-5"></i>Delete
                                 </button>
                             </form>

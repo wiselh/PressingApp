@@ -16,15 +16,18 @@ class Vetement extends Model
      */
     protected $dates = ['deleted_at'];
 
-    public function categories()
+    public function commande()
     {
-     return $this->belongsTo(Categorie::class);
+        return $this->belongsTo(Commande::class);
     }
-    /**
-     * Get the service record associated with the vetement.
-     */
+
     public function service()
     {
-        return $this->hasOne(Service::class);
+        return $this->belongsTo(Service::class);
+    }
+
+    public function categorie()
+    {
+        return $this->belongsTo(Categorie::class);
     }
 }

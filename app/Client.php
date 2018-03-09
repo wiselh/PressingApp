@@ -15,7 +15,7 @@ class Client extends Model
      */
     protected $fillable = ['client_name','client_tele','client_adresse'];
 
-    public function factures(){
-    	return $this->hasMany(Facture::class);
+    public function commandes(){
+    	return $this->hasMany(Commande::class);
     }
 }

@@ -14,6 +14,8 @@ class CreateSocietesTable extends Migration
     public function up()
     {
         Schema::create('societes', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
+
             $table->increments('id_societe');
             $table->string('societe_name');
             $table->string('societe_adresse');
