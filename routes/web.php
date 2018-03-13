@@ -27,9 +27,13 @@ Route::group(['middleware' => ['installation']], function () {
     Route::post('/profile/{id}','ProfileController@updateAdmin');
     Route::resource('/commandes','CommandeController');
     Route::resource('/factures','FactureController');
+    Route::resource('/vetements','VetementController');
+
     Route::resource('/categories','CategorieController');
     Route::resource('/services','ServiceController');
     Route::resource('/clients','ClientController');
+
+    Route::get('/all-commandes','FactureController@allCommandes');
 
     Route::resource('/impression','ImpressionController');
     Route::get('/impression/ticket/{id}','ImpressionController@ticket');
@@ -38,6 +42,7 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'CommandeController@index');
+
 
 //    Route::get('/test', 'CommandeController@test');
 

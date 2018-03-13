@@ -9,21 +9,17 @@
         th{
             font-size: 10px;
         }
-        .btn-secondary-delete {
+        .btn-edit{
+            color: #fff;
+            background-color: #00acfc;
+            border-color: #00acfc;
             padding: 0px 8px;
-            color: #fefefe;
-            background-color: #ff413e;
-            border-color: #ff413e;
-            margin: 1px;
-            cursor: pointer;
         }
-        .btn-secondary-edit {
-             padding: 0px 8px;
-             color: #fefefe;
-             background-color: #367cff;
-             border-color: #367cff;
-             margin: 1px;
-            cursor: pointer;
+        .btn-delete{
+            color: #fff;
+            background-color: #fb5953;
+            border-color: #fb5953;
+            padding: 0px 8px;
         }
         .upload-btn-wrapper {
             position: relative;
@@ -73,8 +69,7 @@
 
 
     <h2 class="content-heading">Gestion d'Utilisateur</h2>
-
-    @if ($errors->any())
+@if ($errors->any())
     <div class="block pull-r-l" style="margin: 10px 0;">
 @else
     <div class="block pull-r-l block-mode-hidden" style="margin: 10px 0;">
@@ -84,7 +79,7 @@
                 <i class="fa fa-fw fa-user font-size-default mr-5"></i>Ajouter un nouveau utilisateur
             </h3>
             <div class="block-options">
-                <button type="button" style="color: black" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
+                <button type="button" style="color: white" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
             </div>
         </div>
         <div class="block-content">
@@ -157,10 +152,19 @@
                                             <label for="user_confirm_password">Confirme le mot de pass<span style="color: red">*</span></label>
                                         </div>
                                     </div>
+                                    {{--<div class="form-group col-md-3 col-sm-12">--}}
+                                        {{--<div class="upload-btn-wrapper form-material">--}}
+                                            {{--<button class="btn-upload" type="button">Uploader Photo de Profile</button>--}}
+                                            {{--<input type="file" name="user_picture" id="user_picture" />--}}
+                                        {{--</div>--}}
+                                    {{--</div>--}}
                                     <div class="form-group col-md-3 col-sm-12">
-                                        <div class="upload-btn-wrapper form-material">
-                                            <button class="btn-upload" type="button">Uploader Photo de Profile</button>
-                                            <input type="file" name="user_picture" id="user_picture" />
+                                        <label for="profile_picture">Photo de Profile <span style="font-size: 11px;">(optionnel)</span></label>
+                                        <input type="file" id="user_picture" name="user_picture" style="display: none">
+                                        <div class="col-md-12 text-center photo-user-profile">
+                                            <span >
+                                                <b id="photo-name-user">Click to upload</b>
+                                            </span>
                                         </div>
                                     </div>
                                     <div class="form-group col-md-12 col-sm-12">
@@ -251,14 +255,14 @@
                         <td class="text-center">
                             <div class="btn-group">
                                 <a href="/users/{{$user->id}}">
-                                    <button type="button" class="btn btn-sm btn-secondary-edit" data-toggle="tooltip" title="Edit">
+                                    <button type="button" class="btn btn-sm btn-edit" data-toggle="tooltip" title="Edit">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                 </a>
                                 <form action="/users/{{$user->id}}" method="post">
                                     {{ method_field('DELETE') }}
                                     {{csrf_field()}}
-                                    <button type="submit" class="btn btn-sm btn-secondary-delete" data-toggle="tooltip" title="Delete">
+                                    <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
                                         <i class="fa fa-times"></i>
                                     </button>
                                 </form>

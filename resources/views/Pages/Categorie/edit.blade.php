@@ -1,7 +1,11 @@
 @extends('Pages.main')
 
 @section('page_style')
-
+    <style>
+        .btn{
+            margin: 1px;
+        }
+    </style>
 
 @endsection
 
@@ -24,24 +28,21 @@
                         <form class="js-validation-bootstrap" action="/categories/{{$categorie->id_categorie}}" method="post">
                             {{ method_field('PUT') }}
                             {{csrf_field()}}
-                            <div class="col-md-6 col-md-offset-3">
+                            <div class="form-group col-md-12">
                                 <div class="row">
-                                    <div class="form-group col-md-12">
-                                        <div class="row">
-                                            <label class="col-md-4 col-sm-12 col-form-label" for="categorie_name">Nom du Categorie <span class="text-danger">*</span></label>
-                                            <div class="col-md-6 col-sm-12 ">
-                                                <input type="text" class="form-control" id="categorie_name" name="categorie_name" required placeholder="Enter le de categorie.." value="{{$categorie->categorie_name}}">
-                                            </div>
-                                            <div class="col-md-2 col-sm-12 ">
-                                                <button type="submit" class="btn btn-alt-primary">Modifier</button>
-                                            </div>
-                                        </div>
+                                    <label class="col-md-2 col-sm-12 col-form-label" for="categorie_name">Nom du Categorie <span class="text-danger">*</span></label>
+                                    <div class="col-md-6 col-sm-12 ">
+                                        <input type="text" class="form-control" id="categorie_name" name="categorie_name" required placeholder="Enter le de categorie.." value="{{$categorie->categorie_name}}">
+                                    </div>
+                                    <div class="col-md-3 col-sm-12 input-group">
+                                        <button type="submit" class="btn btn-alt-primary" data-toggle="tooltip" title="Modifier">Modifier</button>
+                                        <a href="/categories"><button type="button" title="Annuler" data-toggle="tooltip" class="btn btn-alt-default">Annuler</button></a>
                                     </div>
                                 </div>
                             </div>
                         </form>
                         <div class="form-group col-md-12">
-                            <span class="text-danger">*</span> <label class="col-lg-4 col-form-label" for="date"> : Champ Obligatoire</label>
+                             <label><span class="text-danger">*</span> : Champ Obligatoire</label>
                         </div>
                     </div>
                 </div>

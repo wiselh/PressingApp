@@ -17,16 +17,16 @@ class CreateCommandesTable extends Migration
             $table->engine = 'InnoDB';
 
             $table->increments('id_commande');
-            $table->string('commande_num');
+            $table->integer('commande_num');
             $table->dateTime("commande_date");
             $table->dateTime("commande_date_retrait");
-            $table->string("commande_paid");
             $table->integer("commande_quantity");
-            $table->float('commande_montant');
+            $table->float("commande_montant");
             $table->integer('id_client')->unsigned();
             $table->foreign('id_client')->references('id_client')->on('clients')->onDelete('cascade');
-            $table->softDeletes();
+
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

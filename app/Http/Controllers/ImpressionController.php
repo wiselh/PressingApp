@@ -21,8 +21,14 @@ class ImpressionController extends Controller
     }
     public function destroy($id)
     {
-        DB::table('commandes')->where('id_commande', '=', $id)->delete();
-        return redirect('/factures');
+      //
     }
+    public function show($id)
+    {
+        $facture = DB::table('factures')->where('id_commande',$id)->first();
 
+        return view('Pages.Impression.generate', [
+            'facture' => $facture,
+        ]);
+    }
 }

@@ -47,7 +47,7 @@
                                     Pressing is our service.
                                 </p>
                                 <p class="font-italic text-white-op">
-                                    Copyright &copy; <span class="js-year-copy">2017</span>
+                                    Copyright &copy; <span class="js-year-copy">2018</span>
                                 </p>
                             </div>
                         </div>
@@ -60,7 +60,7 @@
                                         <span class="font-size-xl text-primary-dark">Press</span><span class="font-size-xl">ing</span>
                                     </a>
                                     <h1 class="h3 font-w700 mt-30 mb-10">Dashboard</h1>
-                                    <h2 class="h5 font-w400 text-muted mb-0">S'il veut plait entrez</h2>
+                                    {{--<h2 class="h5 font-w400 text-muted mb-0">S'il veut plait entrez</h2>--}}
                                 </div>
                                 <!-- END Header -->
 
@@ -71,6 +71,15 @@
                                     <form class="js-validation-signin px-30" method="POST" action="{{ route('login') }}">
                                         {{ csrf_field() }}
                                     <div class="form-group row">
+                                        <div class="col-md-12">
+                                            @if ($errors->has('email'))
+                                                <div class="alert alert-danger alert-dismissable" role="alert">
+                                                    <span class="help-block">
+                                                        <p class="mb-0">Ces identifiants ne correspondent pas à nos enregistrements</p>
+                                                    </span>
+                                                </div>
+                                            @endif
+                                        </div>
                                         <div class="col-12">
                                             <div class="form-material floating">
                                                 <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
@@ -80,6 +89,9 @@
                                                          {{--<strong>{{ $errors->first('email') }}</strong>--}}
                                                     {{--</span>--}}
                                                 {{--@endif--}}
+
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -92,6 +104,13 @@
                                                     {{--<span class="help-block">--}}
                                                         {{--<strong>{{ $errors->first('password') }}</strong>--}}
                                                     {{--</span>--}}
+                                                {{--@endif--}}
+                                                {{--@if ($errors->has('password'))--}}
+                                                    {{--<div class="alert alert-danger alert-dismissable" role="alert">--}}
+                                                                {{--<span class="help-block">--}}
+                                                                    {{--<p class="mb-0">{{ $errors->first('password') }}</p>--}}
+                                                                {{--</span>--}}
+                                                    {{--</div>--}}
                                                 {{--@endif--}}
                                             </div>
                                         </div>

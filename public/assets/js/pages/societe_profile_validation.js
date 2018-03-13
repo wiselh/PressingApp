@@ -1,18 +1,19 @@
 // Init form validation on material wizard form
 $(function() {
 
-    var warning = '<div class="alert alert-warning"> <strong>Warning!</strong> No Image sélectionner.</div>';
-    $("#logo_location").html(warning);
+    $('.browse').click(function(){ $('#societe_logo').trigger('click'); });
+    $('#logo_name').click(function(){ $('#societe_logo').trigger('click'); });
+    // Societe Logo
+    if($('#societe_logo').val()!=''){
+        var filename = $('#societe_logo').val().split('\\').pop();
+        $("#logo_name").val(filename);
 
-    $('#societe_logo').change(function () {
-        if($("#societe_logo").val()==''){
-            $("#logo_location").html(warning);
-        }
-        else {
-            var filename = $('#societe_logo').val().split('\\').pop();
-            var success = '<div class="alert alert-success"> <strong>Success!</strong> Image '+filename+' a été sélectionner .</div>';
-            $("#logo_location").html(success);
-        }
+    }else $('#logo_name').val('No image selectionner');
+
+    $("#societe_logo").change(function(){
+        var filename = $('#societe_logo').val().split('\\').pop();
+        $("#logo_name").val(filename);
+
     });
 
     $('.societe-form').validate({
@@ -46,6 +47,9 @@ $(function() {
             'societe_city': 'S\'il vous plaît entrer la ville de la Societe'
         }
     });
+
+
+
     });
 
 

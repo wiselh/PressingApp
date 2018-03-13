@@ -9,7 +9,9 @@ class Commande extends Model
 {
 
     use SoftDeletes;
-
+    protected $table = 'commandes';
+    public $primaryKey = 'id_commande';
+    public $num = 0;
     /**
      * The attributes that should be mutated to dates.
      *
@@ -18,7 +20,7 @@ class Commande extends Model
     protected $dates = ['deleted_at'];
 
     /**
-     * Get the comments for the blog post.
+     * Get the vetements for the Commande.
      */
     public function vetements()
     {
@@ -26,11 +28,19 @@ class Commande extends Model
     }
 
     /**
-     * Get the post that owns the comment.
+     * Get the client that owns the commande.
      */
     public function client()
     {
         return $this->belongsTo(Client::class);
+    }
+
+    /**
+     * Get the payments for the Commande.
+     */
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 
 }

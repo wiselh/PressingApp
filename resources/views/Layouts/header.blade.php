@@ -26,7 +26,7 @@
 
                     <!-- Logo -->
                     <div class="content-header-item">
-                        <a class="link-effect font-w700" href="#">
+                        <a class="link-effect font-w700" href="/">
                             <i class="si si-fire text-primary"></i>
                             <span class="font-size-xl text-dual-primary-dark">Press</span><span class="font-size-xl text-primary">ing</span>
                         </a>
@@ -41,13 +41,13 @@
             <div class="content-side content-side-full content-side-user px-10 align-parent">
                 <!-- Visible only in mini mode -->
                 <div class="sidebar-mini-visible-b align-v animated fadeIn">
-                    <img class="img-avatar img-avatar32" src="assets/img/avatars/avatar15.jpg" alt="">
+                    <img class="img-avatar img-avatar32" src="{{asset('assets/img/avatars/avatar15.jpg')}}" alt="">
                 </div>
                 <!-- END Visible only in mini mode -->
 
                 <!-- Visible only in normal mode -->
                 <div class="sidebar-mini-hidden-b text-center">
-                    <a class="img-link" href="be_pages_generic_profile.html">
+                    <a class="img-link">
                         <img class="img-avatar" src="{{ $logo }}" alt="">
                     </a>
                     <ul class="list-inline mt-10">
@@ -129,7 +129,7 @@
             </button>
             <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
             <div class="content-header-item">
-                <a class="link-effect font-w700" href="index">
+                <a class="link-effect font-w700" href="/">
                     {{--<i class="si si-fire text-primary"></i>--}}
                     <span class="font-size-xl text-dual-primary-dark">Press</span><span class="font-size-xl text-primary">ing</span>
                 </a>

@@ -16,27 +16,38 @@
                 <!-- Default Pills -->
                 <div class="block">
                     <div class="block-header block-header-default">
-                        <h3 class="block-title">Default Style</h3>
+                        <h3 class="block-title">La Commande {{$facture->commande_num}}</h3>
                     </div>
                     <div class="block-content ">
                         <div class="container">
+                            <div class="col-md-12">
+                                Nom Client : {{$facture->client_name}}
+                            </div>
+                            <div class="col-md-12">
+                                Montant Total : {{$facture->commande_montant}}DH (TTC)
+                            </div>
+                            <div class="col-md-12">
+                                Total de Pieces : {{$facture->commande_quantity}} Pieces
+                            </div>
                             <div class="text-center">
                                 <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                                    <i class="fa fa-download mr-5"></i>Imprimer le Ticket
+                                    Imprimer le Ticket <i class="fa fa-print"></i>
                                 </button>
                                 <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                                    <i class="fa fa-download mr-5"></i>Imprimer le Code Bar
+                                    Imprimer le Code Bar <i class="fa fa-barcode"></i>
                                 </button>
                                 <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                                    <i class="fa fa-download mr-5"></i>Imprimer la Facture
+                                    Imprimer la Facture <i class="fa fa-print"></i>
                                 </button>
                             </div>
                         </div>
                         <div class="container">
                             <div class="text-center">
+                                <a href="/factures">
                                 <button type="button" class="btn btn-alt-secondary min-width-125">
                                     <i class="fa fa-chevron-left fa-1x"></i> Retour
                                 </button>
+                                </a>
                             </div>
                         </div>
                     </div>

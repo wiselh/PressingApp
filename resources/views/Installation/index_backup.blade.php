@@ -59,41 +59,7 @@
             position: relative;
             height: 100%;
             width:100%;
-
         }
-        .logo-div .icon{
-            position:absolute;
-            left:47.5%;
-            bottom:0;
-            margin:auto;
-            display: none;
-
-        }
-        .icon i{
-            font-size: 30px;
-            cursor: pointer;
-        }
-
-        /*.btn-file input[type=file] {*/
-            /*position: absolute;*/
-            /*top: 0;*/
-            /*right: 0;*/
-            /*min-width: 100%;*/
-            /*min-height: 100%;*/
-            /*font-size: 100px;*/
-            /*text-align: right;*/
-            /*filter: alpha(opacity=0);*/
-            /*opacity: 0;*/
-            /*outline: none;*/
-            /*background: white;*/
-            /*cursor: inherit;*/
-            /*display: block;*/
-            /*border-bottom: 1px solid #555555;*/
-            /*border-left: 1px solid #555555;*/
-            /*border-top: 1px solid #555555;*/
-        /*}*/
-
-
     </style>
 
     <!-- END Stylesheets -->
@@ -147,16 +113,14 @@
                                                     </div>
                                                     <br>
                                                     <div class="form-group">
-                                                            <h6 style="line-height: 1.5;color: #575757;">Photo de Profile <span style="font-size: 11px;">(optionnel)</span></h6>
+                                                            <h6 style="line-height: 1.5;color: #575757;">Logo <span style="font-size: 11px;">(optionnel)</span></h6>
+
                                                             <div class="form-material logo-div">
                                                                     <input  type="file" id="user_picture" name="user_picture" style="display: none">
                                                                     <img id="review" src="#"/>
-                                                                <div class="icon"><i class="fa fa-camera"></i></div>
-
                                                             </div>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <span class="pull-right maximum">Maximum 2Mb </span>
+                                                            <span class="pull-right maximum">Maximum 2Mb </span>
+                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
@@ -229,29 +193,27 @@
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_tele" name="societe_tele">
-                                                            <label for="societe_tele">Telephone-Fax de la Societe</label>
+                                                            <label for="societe_tele">Telephone-Fax de la Societe <span style="color: red">*</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_email" name="societe_email">
-                                                            <label for="societe_email">Email de la Societe</label>
+                                                            <label for="societe_email">Email de la Societe <span style="color: red">*</span></label>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">
                                                             <input class="form-control" type="text" id="societe_website" name="societe_website">
-                                                            <label for="societe_website">Site de la Societe</label>
+                                                            <label for="societe_website">Site de la Societe<span style="color: red">*</span></label>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
-                                                            <label class="col-md-6 col-sm-12">Logo de Societe</label>
-                                                            <div class="col-md-6 col-sm-12">
-                                                                <label class="custom-file pull-right" style="position: unset;">
-                                                                    <input class="custom-file-input " id="societe_logo" name="societe_logo" type="file">
-                                                                    <span class="custom-file-control" id="logo_name" style="width: 100%"></span>
-                                                                </label>
-                                                            </div>
+                                                    <div class="form-group">
+                                                        <div class="form-material floating">
+                                                            <h6 style="line-height: 1.5;color: #575757;">Logo de la Societe<span style="color: red">*</span></h6>
+                                                            <input  type="file" id="societe_logo" name="societe_logo">
+                                                            <span style="background-color: #f3a8a0;padding: 4px 10px;">Maximum 2Mb</span>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- END Step 2 -->
@@ -363,22 +325,6 @@
 <!-- Page JS Code -->
 <script src="{{asset('assets/js/pages/installation_form.js')}}"></script>
 <script type="text/javascript">
-$(function () {
-
-    // Societe Logo
-    if($('#societe_logo').val()!=''){
-        var filename = $('#societe_logo').val().split('\\').pop();
-        $("#logo_name").html(filename);
-
-    }else $('#logo_name').html('No image selectionner');
-
-    $("#societe_logo").change(function(){
-        var filename = $('#societe_logo').val().split('\\').pop();
-        $("#logo_name").html(filename);
-
-    });
-
-    // cities
     var serviceArray= ["Rabat","Ad Dakhla","Agadir","Al Hoceima","Azilal","Beni Mellal","Ben Slimane",
                         "Boujdour","Boulemane","Casablanca","Chaouen","El Jadida","El Kelaa des Sraghna",
                         "Er Rachidia","Essaouira","Es Smara","Fes","Figuig","Guelmim","Ifrane","Kenitra",
@@ -390,15 +336,11 @@ $(function () {
         var data = '<option value="'+serviceArray[i]+'">' + serviceArray[i] + '</option>';
         $('#societe_city').append(data);
     }
-    // User Photo Profile
+    //photos
     if($('#user_picture').val()!=''){
         readURL($('#user_picture').get( 0 ));
     }
     else $('#review').attr('src','{{asset("assets/img/avatars/avatar0.jpg")}}');
-
-    $("#user_picture").change(function(){
-        readURL(this);
-    });
 
     function readURL(input) {
         if (input.files && input.files[0]) {
@@ -412,15 +354,12 @@ $(function () {
         }
     }
 
-    $('#review').click(function(){ $('#user_picture').trigger('click'); });
-    $('.icon').click(function(){ $('#user_picture').trigger('click'); });
-
-    $('#review').hover(function(){$('.icon').css('display','block');});
-    $('.icon').hover(function(){$('.icon').css('display','block');});
-    $('#review').mouseout(function(){$('.icon').css('display','none');});
-
+    $("#user_picture").change(function(){
+        readURL(this);
     });
 
+    $('#review').click(function(){ $('#user_picture').trigger('click'); });
+    
 
 </script>
 </body>

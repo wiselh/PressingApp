@@ -27,8 +27,13 @@ class CommandeController extends Controller
 
         $services = DB::table('services')->get();
         $categories = DB::table('categories')->get();
+        $clients = DB::table('clients')->get();
 
-        return view('Pages.Commande.create', ['services' => $services,'categories' => $categories]);
+        return view('Pages.Commande.add', [
+            'services' => $services,
+            'categories' => $categories,
+            'clients' => $clients
+        ]);
     }
 
     /**
@@ -41,7 +46,8 @@ class CommandeController extends Controller
         return view('Pages.Commande.create');
     }
 //    public function test(){
-//        return view('Pages.Commande.test');
+//        $v =(int)(date('dmy')."00");
+//        die(var_dump($v+2));
 //
 //    }
     /**
@@ -52,25 +58,37 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        $client = new Client();
+        if ($request->check_client=='old'){
+            $client = DB::table('clients')->where('id_client',$request->client)->first();
+        }else{
+            $client = new Client();
+            $client->client_name=$request->client_name;
+            $client->client_tele=$request->client_tele;
+            $client->client_adresse=$request->client_adresse;
+            $client->save();
+        }
+
         $commande = new Commande();
 
-        $client->client_name=$request->client_name;
-        $client->client_tele=$request->client_tele;
-        $client->client_adresse=$request->client_adresse;
-        $client->save();
+        $nbr = DB::table('commandes')->count();
+        if($nbr < 1)
+        {
+            $num_fac = 18031300;
+        }else{
+            $cmd = DB::table('commandes')->max('id_commande')->first();
+            $num_fac = $cmd->commande_num+1;
+        }
 
-        $num_fac = "N°".date('ymdHis');
         $commande->commande_num=$num_fac;
         $commande->commande_date=date('Y-m-d');
         $commande->commande_date_retrait=$request->commande_date_retrait;
         $commande->commande_paid=$request->commande_paid;
-        $commande->id_client=$client->id;
+        $commande->id_client=$client->id_client;
 
         // vetements
         $categorie = Input::get('categorie');
         $service = Input::get('service');
-//      $color = Input::get('vetement_color');
+        $libelle = Input::get('vetement_libelle');
         $price = Input::get('vetement_price');
         $quantity = Input::get('vetement_quantity');
         $total = Input::get('vetement_total');
@@ -92,7 +110,7 @@ class CommandeController extends Controller
             $vetement = new Vetement();
             $vetement->id_categorie=$categorie[$i];
             $vetement->id_service=$service[$i];
-            $vetement->id_commande=$commande->id;
+            $vetement->id_commande=$commande->id_commande;
 //          $vetement->vetement_color=$color[$i];
             $vetement->vetement_price=$price[$i];
             $vetement->vetement_quantity=$quantity[$i];
@@ -146,7 +164,6 @@ class CommandeController extends Controller
      */
     public function destroy($id)
     {
-//        DB::table('c')->where('id_client', '=', $id)->delete();
-//        return redirect('/clients');
+        //
     }
 }

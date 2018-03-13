@@ -1,7 +1,18 @@
 @extends('Pages.main')
 
 @section('page_style')
-
+    <style>
+        .btn-edit{
+            color: #fff;
+            background-color: #00acfc;
+            border-color: #00acfc;
+        }
+        .btn-delete{
+            color: #fff;
+            background-color: #fb5953;
+            border-color: #fb5953;
+        }
+    </style>
 
 @endsection
 
@@ -73,14 +84,14 @@
                             <td class="text-center">
                                 <div class="btn-group">
                                     <a href="/categories/{{$categorie->id_categorie}}">
-                                        <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
+                                        <button type="button" class="btn btn-sm btn-edit" data-toggle="tooltip" title="Edit">
                                             <i class="fa fa-pencil"></i>
                                         </button>
                                     </a>
                                     <form action="/categories/{{$categorie->id_categorie}}" method="post">
                                         {{ method_field('DELETE') }}
                                         {{csrf_field()}}
-                                        <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
+                                        <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </form>

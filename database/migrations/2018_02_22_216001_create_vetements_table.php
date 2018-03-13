@@ -16,7 +16,7 @@ class CreateVetementsTable extends Migration
         Schema::create('vetements', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id_vetement');
-            $table->string("vetement_color")->nullable();
+            $table->string("vetement_libelle");
             $table->float("vetement_price");
             $table->integer("vetement_quantity");
             $table->float("vetement_total");

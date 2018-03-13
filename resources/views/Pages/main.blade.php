@@ -28,7 +28,31 @@
             a.block i,a.block p {
                 display: inline-block;
             }
+            .photo-profile,.photo-user-profile{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 50px;
+                border: 1px dashed #575757;
+                color: #575757;
+                cursor: pointer;
+            }
+            .photo-profile:hover,.photo-user-profile:hover{
+                border: 1px dashed #42a5f5;
+                color: #42a5f5;
+            }
+            .block-header,.block-header-default{
+                background: linear-gradient(135deg,#2095f3 0,#26c6da 100%) !important;
+                color: white !important;
+            }
+            .block-header h3,.block-header-default h3 {
+                 color: white
+             }
+
+
         </style>
+        <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzonejs/min/dropzone.min.css')}}">
     </head>
     <body>
     <!-- Page Container -->
@@ -42,75 +66,88 @@
             <main id="main-container">
                 <!-- Page Content -->
                 <div class="content">
-                    <div class="row gutters-tiny invisible" data-toggle="appear">
+                    {{--<div class="row gutters-tiny invisible" data-toggle="appear">--}}
                         <!-- Row #1 -->
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/commandes">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
-                                    {{--<p class="mt-5">--}}
-                                        <i class="si si-book-open  text-white-op"></i>
-                                    {{--</p>--}}
-                                    <p class="font-w600 text-white">Ajouter</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/factures">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
+                        <div class="row">
+                            <div class="col-6 col-md-4 col-xl-2">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-primary" href="/commandes">
+                                    <div class="block-content bg-black-op-5">
+                                        <p class="font-w600 text-white">Nouveau</p>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>
+                                            <i class="si si-plus fa-2x text-white-op"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4 col-xl-2">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-success" href="/factures">
                                     <div class="ribbon-box">{{$nbr_factures}}</div>
-                                    {{--<p class="mt-5">--}}
-                                        <i class="si si-bubbles text-white-op"></i>
-                                    {{--</p>--}}
-                                    <p class="font-w600 text-white">Commandes</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/users">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
+                                    <div class="block-content bg-black-op-5">
+                                        <p class="font-w600 text-white">Commades</p>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>
+                                            <i class="si si-layers fa-2x text-white-op"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4 col-xl-2">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-gd-sun" href="/services">
                                     <div class="ribbon-box">{{$nbr_factures}}</div>
-                                    {{--<p class="mt-5">--}}
-                                        {{--<i class="si si-book-open fa-3x text-white-op"></i>--}}
-                                    {{--</p>--}}
-                                    <p class="font-w600 text-white">Users</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/services">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
+                                    <div class="block-content bg-black-op-5">
+                                        <p class="font-w600 text-white">Services</p>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>
+                                            <i class="fa fa-flask fa-2x text-white-op"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4 col-xl-2">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-corporate" href="/categories">
                                     <div class="ribbon-box">{{$nbr_factures}}</div>
-                                    {{--<p class="mt-5">--}}
-                                        {{--<i class="si si-bubbles fa-3x text-white-op"></i>--}}
-                                    {{--</p>--}}
-                                    <p class="font-w600 text-white">Services</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/categories">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-dusk">
+                                    <div class="block-content bg-black-op-5">
+                                        <p class="font-w600 text-white">Categorie</p>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>
+                                            <i class="fa fa-tags fa-2x text-white-op"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4 col-xl-2">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-flat" href="/clients">
                                     <div class="ribbon-box">{{$nbr_factures}}</div>
-                                    {{--<p class="mt-5">--}}
-                                        {{--<i class="si si-book-open fa-3x text-white-op"></i>--}}
-                                    {{--</p>--}}
-                                    <p class="font-w600 text-white">Categories</p>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-md-4 col-xl-2">
-                            <a class="block text-center" href="/users">
-                                <div class="block-content ribbon ribbon-bookmark ribbon-crystal ribbon-left bg-gd-sea">
+                                    <div class="block-content bg-black-op-5">
+                                        <p class="font-w600 text-white">Clients</p>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>
+                                            <i class="fa fa-users fa-2x text-white-op"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-4 col-xl-2">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-elegance" href="/users">
                                     <div class="ribbon-box">{{$nbr_factures}}</div>
-                                    {{--<p class="mt-5">--}}
-                                        {{--<i class="si si-bubbles fa-3x text-white-op"></i>--}}
-                                    {{--</p>--}}
-                                    <p class="font-w600 text-white">Utilisateurs</p>
-                                </div>
-                            </a>
+                                    <div class="block-content bg-black-op-5">
+                                        <p class="font-w600 text-white">Utilisateurs</p>
+                                    </div>
+                                    <div class="block-content">
+                                        <p>
+                                            <i class="si si-users fa-2x text-white-op"></i>
+                                        </p>
+                                    </div>
+                                </a>
+                            </div>
+
                         </div>
-                        <!-- END Row #1 -->
-                    </div>
                     @yield('content')
                 </div>
             </main>
@@ -134,7 +171,22 @@
         <!-- Page JS Code -->
         <script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
         <script src="{{asset('assets/js/pages/profile_validation.js')}}"></script>
-
+         <script type="text/javascript">
+             //profile
+            $('.photo-profile').click(function(){ $('#profile_picture').trigger('click'); });
+            //
+            $('#profile_picture').change(function () {
+                var filename = $('#profile_picture').val().split('\\').pop();
+                $("#photo-name").html(filename);
+            });
+            // new profile
+            $('.photo-user-profile').click(function(){ $('#user_picture').trigger('click'); });
+            //
+            $('#user_picture').change(function () {
+                var filename = $('#user_picture').val().split('\\').pop();
+                $("#photo-name-user").html(filename);
+            });
+        </script>
         @yield('page_script')
     </body>
 </html>

@@ -2,7 +2,7 @@
 <!-- Side Overlay-->
 <aside id="side-overlay">
     <!-- Side Overlay Scroll Container -->
-    <div id="side-overlay-scroll">
+    <div id="side-overlay-scroll" data-toggle="slimscroll" data-color="#42a5f5" data-opacity="1" data-always-visible="true">
         <!-- Side Header -->
         <div class="content-header content-header-fullrow">
             <div class="content-header-section align-parent">
@@ -46,9 +46,12 @@
                         {{csrf_field()}}
 
                         <div class="form-group mb-15">
-                            <label for="profile_pictures">Photo de Profile <span style="font-size: 11px;color: #00dd00">(optionnel)</span></label>
-                            <div class="input-group floating">
-                                <input type="file" id="profile_picture" name="profile_picture">
+                            <label for="profile_pictures">Photo de Profile <span style="font-size: 11px;">(optionnel)</span></label>
+                                <input type="file" id="profile_picture" name="profile_picture" style="display: none">
+                            <div class="col-md-12 text-center photo-profile">
+                                <span >
+                                    <b id="photo-name">Click to upload</b>
+                                </span>
                             </div>
                         </div>
                         <div class="form-group mb-15">

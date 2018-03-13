@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Commande;
-use Illuminate\Http\Request;
-use App\Client;
-use App\Facture;
 use App\Vetement;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Database\Query\Builder;
 
-
-class FactureController extends Controller
+class VetementController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -27,24 +21,7 @@ class FactureController extends Controller
      */
     public function index()
     {
-
-        $factures = DB::table('factures')->whereNull('deleted_at')->get();
-
-
-        return view('Pages.Facture.show', [
-            'factures' => $factures,
-
-        ]);
-    }
-
-    public function allCommandes()
-    {
-        $factures = DB::table('factures')->whereNotNull('deleted_at')->get();
-
-        return view('Pages.Facture.allTrashed', [
-            'factures' => $factures,
-
-        ]);
+        //
     }
 
     /**
@@ -54,7 +31,7 @@ class FactureController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -65,9 +42,7 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
+        //
     }
 
     /**
@@ -79,6 +54,14 @@ class FactureController extends Controller
     public function show($id)
     {
 
+        $vetements =  DB::table('vetements')->where('id_commande',$id)->get();
+        $categories =  DB::table('categories')->get();
+        $services =  DB::table('services')->get();
+        return view('Pages.Facture.items', [
+            'vetements' => $vetements,
+            'categories' => $categories,
+            'services' => $services
+        ]);
     }
 
     /**
@@ -112,8 +95,6 @@ class FactureController extends Controller
      */
     public function destroy($id)
     {
-        Commande::destroy($id);
-        return redirect('/factures');
+        //
     }
-
 }

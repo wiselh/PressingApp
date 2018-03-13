@@ -23,7 +23,7 @@
     <!-- Dynamic Table Full -->
     <div class="block">
         <div class="block-header block-header-default">
-            <h3 class="block-title">Tous Les Commandes</h3>
+            <h3 class="block-title">Tous Les Commandes deja Valider</h3>
         </div>
         <div class="block-content block-content-full">
             <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
@@ -50,7 +50,7 @@
                     <td class="font-w600 text-center">{{$facture->client_tele}}</td>
                     <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date))}}</td>
                     <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date_retrait))}}</td>
-                    <td class="font-w600 text-center">{{$facture->commande_quantity}} <a href="/vetements/{{$facture->id_commande}}">(voir)</a></td>
+                    <td class="font-w600 text-center">{{$facture->commande_quantity}}</td>
                     <td class="font-w600 text-center">{{$facture->commande_montant}}DH (TTC)</td>
                     <td class="font-w600 text-center">
                         @if($facture->commande_paid=='oui')

@@ -24,6 +24,22 @@
             position: absolute;
 
         }
+        .form-control[readonly] {
+            background-color: #fdfeff;
+            border-right: none;
+        }
+        .browse{
+            width: 25%;
+            color: #575757;
+            background-color: #e9ecef;
+            border: 1px solid #dcdfe3;
+            border-radius: 0 .25rem .25rem 0;
+        }
+        #logo_name{
+            width: 60%;
+            margin: 0 0 auto
+        }
+
 
     </style>
     <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
@@ -47,13 +63,11 @@
                         </div>
                         <div class="row">
                         <div class="form-group col-md-4 col-sm-12">
-                            <div class="container" >
-                                <label class="label_logo">Changer Logo de Societe</label><br>
-                                <label class="btn btn-alt-primary" for="societe_logo">
-                                    <i class="fa_icon icon-upload-alt margin-correction"></i> upload logo
-                                </label>
-                                <input id="societe_logo" type="file">
-                                <div id="logo_location"></div>
+                            <div class="row" style="margin-left: 16px;" >
+                                <label class="label_logo col-12" style="margin-left: 0">Changer Logo de Societe</label>
+                                <input type="text" onfocus="this.blur()" readonly class="form-control" id="logo_name">
+                                <label class="btn browse"  for="societe_logo" >Browse</label>
+                                <input id="societe_logo" type="file" style="display: none" hidden>
                             </div>
                         </div>
                         <div class="form-group col-md-4 col-sm-12">
@@ -80,10 +94,12 @@
                                 <label for="societe_tele">Telephone/Fax de la Societe <span style="font-size: 11px">(optionnel)</span></label>
                             </div>
                         </div>
+
                         <div class="form-group col-md-4 col-sm-12">
-                            <div class="form-material floating col-12">
-                                <input class="form-control" type="text" id="societe_email" value="{{$societe->societe_email}}" name="societe_email">
-                                <label for="societe_email">Adresse Email de la Societe <span style="font-size: 11px">(optionnel)</span></label>
+                            <div class="form-material input-group floating">
+                                <input class="form-control" id="societe_email" name="societe_email" type="email">
+                                <label for="societe_email">Adresse Email <span style="font-size: 11px">(optionnel)</span></label>
+                                <span class="input-group-addon">.example.com</span>
                             </div>
                         </div>
                         </div>
