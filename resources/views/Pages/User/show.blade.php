@@ -21,23 +21,6 @@
             border-color: #fb5953;
             padding: 0px 8px;
         }
-        .upload-btn-wrapper {
-            position: relative;
-            overflow: hidden;
-            display: inline-block;
-
-        }
-
-        .btn-upload {
-            border: 2px solid gray;
-            color: gray;
-            background-color: white;
-            padding: 8px 10px;
-            border-radius: 8px;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
         .upload-btn-wrapper input[type=file] {
             font-size: 20px;
             position: absolute;
@@ -49,232 +32,212 @@
         .btn-block-option{
             cursor: pointer;
         }
-        .error-lbl-color,.error-lbl2-color{
-            color: #ef5350;
-        }
-        .error-border-color,.error-border2-color{
-            border-bottom: 1px solid #ef5350;
-        }
+
+        /*.error-lbl-color,.error-lbl2-color{*/
+            /*color: #ef5350;*/
+        /*}*/
+        /*.error-border-color,.error-border2-color{*/
+            /*border-bottom: 1px solid #ef5350;*/
+        /*}*/
         .optionnel{
             font-size: 11px;
         }
+        .browse {
+            background-color: #dcdfe3;
+        }
+        .browse:hover {
+            background-color: #ebeef2;
+        }
+
     </style>
     {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
-    {{--<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>--}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+
 
 @endsection
 
 @section('content')
-    <!-- All Users -->
 
+<!-- All Users -->
+<div class="block">
+    <div class="block-header block-header-default">
+        <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i> Tous Les Clients</h3>
+        <button type="button" class="btn btn-alt-info ml-auto" data-toggle="modal" data-target="#modal-large">Ajouter Un Utilisateur</button>
+    </div>
+    <div class="block-content block-content-full">
+        <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
+        <table class="table table-bordered table-responsive table-striped table-vcenter js-dataTable-full mytable">
+            <thead>
+            <tr>
+                <th class="text-center" style="width: 5%;">ID</th>
+                <th class="d-none d-sm-table-cell" style="width: 5%;">Photo</th>
+                <th class="d-none d-sm-table-cell" style="width: 15%;">Nom Complete</th>
+                <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Adresse</th>
+                <th class="d-none d-sm-table-cell" style="width: 10%;">Telephone</th>
+                <th class="d-none d-sm-table-cell" style="width: 10%;">Nom de l'Utilisateur</th>
+                <th class="d-none d-sm-table-cell"  style="width: 20%;" >Email</th>
+                <th class="text-center" style="width: 5%;">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($users as $user)
+                <tr>
+                    <td class="text-center">{{$user->id}}</td>
+                    <td class="text-center"><img class="img-avatar img-avatar32" src="{{asset($user->picture)}}" alt="{{$user->fullname}}" ></td>
+                    <td class="font-w400">{{$user->fullname}}</td>
+                    <td class="d-none d-sm-table-cell text-center">
+                        @if($user->adresse=='')
+                            -
+                        @else
+                            {{$user->adresse}}
+                        @endif
+                    </td>
+                    <td class="d-none d-sm-table-cell text-center">
+                        @if($user->tele=='')
+                            -
+                        @else
+                            {{$user->tele}}
+                        @endif
+                    </td>
+                    <td class="font-w400">{{$user->username}}</td>
+                    <td class="font-w400">{{$user->email}}</td>
+                    <td class="text-center">
+                        <div class="btn-group">
+                            <a href="/users/{{$user->id}}">
+                                <button type="button" class="btn btn-sm btn-edit" data-toggle="tooltip" title="Edit">
+                                    <i class="fa fa-pencil"></i>
+                                </button>
+                            </a>
+                            <form action="/users/{{$user->id}}" method="post">
+                                {{ method_field('DELETE') }}
+                                {{csrf_field()}}
+                                <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
 
-    <h2 class="content-heading">Gestion d'Utilisateur</h2>
-@if ($errors->any())
-    <div class="block pull-r-l" style="margin: 10px 0;">
-@else
-    <div class="block pull-r-l block-mode-hidden" style="margin: 10px 0;">
-@endif
-        <div class="block-header block-header-default ">
-            <h3 class="block-title" data-toggle="block-option" >
-                <i class="fa fa-fw fa-user font-size-default mr-5"></i>Ajouter un nouveau utilisateur
-            </h3>
-            <div class="block-options">
-                <button type="button" style="color: white" class="btn-block-option" data-toggle="block-option" data-action="content_toggle"></button>
-            </div>
-        </div>
-        <div class="block-content">
-            <div class="block-content block-content-full">
-                <div class="row justify-content-center py-20">
-                    <div class="col-xl-12 col-md-12">
-                        <form class="add-user-form" action="/users" method="post">
-                            {{csrf_field()}}
-                            <div class="col-md-12 col-md-offset-6">
-                                <div class="row"><span style="color: red">* </span> : Champ obligatoire</div>
-                                <div class="row">
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text" id="user_fullname" name="user_fullname" value="{{old('user_fullname')}}">
-                                            <label for="user_fullname">Nom - Prenom <span style="color: red">*</span></label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text" id="user_adresse" name="user_adresse" value="{{old('user_adresse')}}">
-                                            <label for="user_adresse">Adresse personnel <span class="optionnel">(optionnel)</span></label>
-                                        </div>
-
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text" id="user_tele" name="user_tele" value="{{old('user_tele')}}">
-                                            <label for="user_tele">Telephone <span class="optionnel">(optionnel)</span></label>
-                                        </div>
-                                    </div>
-                                    @if ($errors->has('username'))
-                                    <div class="form-group col-md-3 col-sm-12 username-group is-invalid">
-                                    @else
-                                    <div class="form-group col-md-3 col-sm-12 username-group">
-                                    @endif
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text" id="username" name="username" value="{{old('username')}}">
-                                            <label for="username" id="username-lbl">Nom d'Utilisateur <span style="color: red">*</span></label>
-                                        </div>
-                                        @if ($errors->has('username')&& $errors->first('username')!= '' )
-                                        <div id="er_username-error" style="color: #ef5350" class="animated fadeInDown">
-                                                {{ $errors->first('username') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    @if ($errors->has('email'))
-                                    <div class="form-group col-md-3 col-sm-12 email-group is-invalid">
-                                    @else
-                                    <div class="form-group col-md-3 col-sm-12 email-group">
-                                    @endif
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text"  id="email" name="email" value="{{old('email')}}">
-                                            <label for="email" id="email-lbl">Adresse Email <span style="color: red">*</span></label>
-                                        </div>
-                                        @if ($errors->has('email'))
-                                            <div id="user_email-error" style="color: #ef5350" class="animated fadeInDown">
-                                                {{ $errors->first('email') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text" id="user_password" name="user_password">
-                                            <label for="user_password">Mot de pass<span style="color: red">*</span></label>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <div class="form-material floating">
-                                            <input class="form-control" type="text" id="user_confirm_password" name="user_confirm_password">
-                                            <label for="user_confirm_password">Confirme le mot de pass<span style="color: red">*</span></label>
-                                        </div>
-                                    </div>
-                                    {{--<div class="form-group col-md-3 col-sm-12">--}}
-                                        {{--<div class="upload-btn-wrapper form-material">--}}
-                                            {{--<button class="btn-upload" type="button">Uploader Photo de Profile</button>--}}
-                                            {{--<input type="file" name="user_picture" id="user_picture" />--}}
-                                        {{--</div>--}}
-                                    {{--</div>--}}
-                                    <div class="form-group col-md-3 col-sm-12">
-                                        <label for="profile_picture">Photo de Profile <span style="font-size: 11px;">(optionnel)</span></label>
-                                        <input type="file" id="user_picture" name="user_picture" style="display: none">
-                                        <div class="col-md-12 text-center photo-user-profile">
-                                            <span >
-                                                <b id="photo-name-user">Click to upload</b>
-                                            </span>
-                                        </div>
-                                    </div>
-                                    <div class="form-group col-md-12 col-sm-12">
-                                        <div class="form-material">
-                                            <div class="block">
-                                                <h6 class="block-title">Administration Permission</h6>
-                                                <div class="block-content">
-                                                    <div class="row no-gutters items-push">
-                                                        <div class="col-1">
-                                                            <div class="row">
-                                                                <div class="col-md-6">
-                                                                    <label class="css-control css-control-primary css-radio">
-                                                                        <input class="css-control-input" name="user_permission" value="oui" type="radio">
-                                                                        <span class="css-control-indicator"></span> Yes
-                                                                    </label>
-                                                                </div>
-                                                                <div class="col-md-6">
-                                                                    <label class="css-control css-control-primary css-radio">
-                                                                        <input class="css-control-input" name="user_permission" value="no" checked="" type="radio">
-                                                                        <span class="css-control-indicator"></span> No
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-11 ">
-                                                            <button class="btn btn-success btn-submit pull-right" type="submit">Submit</button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+<!-- Add Users -->
+<div class="block">
+    <!-- Large Modal -->
+    <div class="modal" id="modal-large" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <form class="add-user-form" action="/users" method="post" enctype="multipart/form-data">
+                    {{csrf_field()}}
+                    <div class="block block-themed block-transparent mb-0">
+                        <div class="block-header bg-primary-dark">
+                            <h3 class="block-title">Ajouter Nouvel Utilisateur</h3>
+                            <div class="block-options">
+                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <i class="si si-close"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="block-content row">
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="text" id="fullname" name="fullname" value="{{old('fullname')}}">
+                                        <label for="fullname">Nom - Prenom <span style="color: red">*</span></label>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="text" id="adresse" name="adresse" value="{{old('adresse')}}">
+                                        <label for="adresse">Adresse personnel <span class="optionnel">(optionnel)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="text" id="tele" name="tele" value="{{old('tele')}}">
+                                        <label for="tele">Telephone <span class="optionnel">(optionnel)</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group username-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="text" id="username" name="username" value="{{old('username')}}">
+                                        <label for="username" id="username-lbl">Nom d'Utilisateur <span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group email-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="text"  id="email" name="email" value="{{old('email')}}">
+                                        <label for="email" id="email-lbl">Adresse Email <span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="password" id="password" name="password">
+                                        <label for="password">Mot de pass<span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <div class="form-material floating">
+                                        <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
+                                        <label for="password_confirmation">Confirme le mot de pass<span style="color: red">*</span></label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group">
+                                    <label for="permission">Permissions<span style="font-size: 11px;">(optionnel)</span></label>
+                                    <select name="permission"  class="form-control" id="permission">
+                                        <option value=""></option>
+                                        <option value="admin">Admin</option>
+                                        <option value="">Gestion Users</option>
+                                        <option value="">Gestion Du Commandes</option>
+                                        <option value="">Gestion Du Services</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6 col-xs-12">
+                                <div class="form-group row">
+                                    <label class="">Bootstrap's Custom File Input</label>
+                                    <div class="input-group">
+                                        <label class="input-group-btn">
+                                            <span class="btn browse">
+                                                Browse&hellip; <input type="file" style="display: none;" class="picture" id="picture" name="picture">
+                                            </span>
+                                        </label>
+                                        <input type="text" class="form-control filename"
+                                               onfocus="this.blur()" style="background-color:#FFF !important" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                        <button class="btn btn-alt-success" type="submit" id="submit_btn" >
+                            <i class="fa fa-check"></i> Ajouter
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-
-
-
-    <!-- All Users -->
-    <div class="block">
-        <div class="block-header block-header-default">
-            <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i> Tous Les Clients</h3>
-        </div>
-        <div class="block-content block-content-full">
-            <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
-            <table class="table table-bordered table-responsive table-striped table-vcenter js-dataTable-full mytable">
-                <thead>
-                <tr>
-                    <th class="text-center" style="width: 5%;">ID</th>
-                    <th class="d-none d-sm-table-cell" style="width: 5%;">Photo</th>
-                    <th class="d-none d-sm-table-cell"style="width: 15%;">Nom Complete</th>
-                    <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Adresse</th>
-                    <th class="d-none d-sm-table-cell" style="width: 10%;">Telephone</th>
-                    <th class="d-none d-sm-table-cell" style="width: 10%;">Nom de l'Utilisateur</th>
-                    <th class="d-none d-sm-table-cell"  style="width: 20%;" >Email</th>
-                    <th class="d-none d-sm-table-cell" style="width: 15%;">Mot de pass</th>
-                    <th class="text-center" style="width: 5%;">Action</th>
-                </tr>
-                </thead>
-                <tbody>
-                @foreach($users as $user)
-                    <tr>
-                        <td class="text-center">{{$user->id}}</td>
-                        <td class="text-center"><img class="img-avatar img-avatar32" src="{{asset($user->picture)}}" alt="{{$user->fullname}}" ></td>
-                        <td class="font-w400">{{$user->fullname}}</td>
-                        <td class="d-none d-sm-table-cell text-center">
-                            @if($user->adresse=='')
-                                -
-                            @else
-                                {{$user->adresse}}
-                            @endif
-                        </td>
-                        <td class="d-none d-sm-table-cell text-center">
-                            @if($user->tele=='')
-                                -
-                            @else
-                                {{$user->tele}}
-                            @endif
-                        </td>
-                        <td class="font-w400">{{$user->username}}</td>
-                        <td class="font-w400">{{$user->email}}</td>
-                        <td class="font-w400">*******</td>
-                        <td class="text-center">
-                            <div class="btn-group">
-                                <a href="/users/{{$user->id}}">
-                                    <button type="button" class="btn btn-sm btn-edit" data-toggle="tooltip" title="Edit">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
-                                </a>
-                                <form action="/users/{{$user->id}}" method="post">
-                                    {{ method_field('DELETE') }}
-                                    {{csrf_field()}}
-                                    <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
-                                        <i class="fa fa-times"></i>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                @endforeach
-                </tbody>
-            </table>
-        </div>
-    </div>
-    <!-- END Dynamic Table Full -->
+    <!-- END Large Modal -->
+</div>
 @endsection
 
 @section('page_script')
@@ -290,8 +253,6 @@
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
     <script src="{{('assets/js/pages/users_validation.js')}}"></script>
-
-
 @endsection
 
 

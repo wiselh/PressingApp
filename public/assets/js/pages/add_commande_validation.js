@@ -17,7 +17,13 @@ var BeFormValidation = function() {
             },
             rules: {
                 'client_name': {
-                    required: true,
+                    required:{
+                        depends: function(element){
+                            if($('#client').val()==''){
+                                return true;
+                            }
+                        }
+                    },
                     minlength: 3
                 },
                 'commande_date_retrait': {
@@ -34,6 +40,19 @@ var BeFormValidation = function() {
                 },
                 'categorie[]': {
                     required: true
+                },
+                'vetement_libelle': {
+                    required: true
+                }
+                ,
+                'paid': {
+                    required: true
+                },
+                'payment_paid': {
+                    required: '#paid[value="oui"]:checked'
+                },
+                'payment_mode': {
+                    required: '#paid[value="oui"]:checked'
                 }
             },
             messages: {
@@ -44,8 +63,11 @@ var BeFormValidation = function() {
                 'service[]': 'Le champ Type de service est obligatoire.',
                 'categorie[]': 'Le champ Categorie est obligatoire.',
                 'vetement_price[]': 'Le champ Prix est obligatoire.',
-                'commande_paid': 'Choisez Oui ou Non.',
-                'commande_date_retrait': 'Le champ Date de Retrait est obligatoire.'
+                'paid': 'Choisez Oui ou Non.',
+                'payment_paid': 'Le champ Montant est obligatoire..',
+                'payment_mode': 'Choisez le mode de paiement.',
+                'commande_date_retrait': 'Le champ Date de Retrait est obligatoire.',
+                'vetement_libelle':'Le champ Libelle est obligatoire.'
             }
 
         });

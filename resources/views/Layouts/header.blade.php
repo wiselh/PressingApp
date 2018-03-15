@@ -149,14 +149,14 @@
                     <!-- Toggle Side Overlay -->
                     <!-- Layout API, functionality initialized in Codebase() -> uiApiLayout() -->
                     <a class="dropdown-item" href="javascript:void(0)" data-toggle="layout" data-action="side_overlay_toggle">
-                        <i class="si si-wrench mr-5"></i> Profile
+                        <i class="si si-user mr-5"></i> Profile
                     </a>
                     <!-- END Side Overlay -->
                     <div class="dropdown-divider"></div>
                     <a href="{{ route('logout') }}" class="dropdown-item"
                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                        Deconnecter
+                        <i class="si si-logout mr-5"></i> Deconnecter
                     </a>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

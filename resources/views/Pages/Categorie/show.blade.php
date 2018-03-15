@@ -83,11 +83,10 @@
                             <td class="font-w600">{{$categorie->categorie_name}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <a href="/categories/{{$categorie->id_categorie}}">
-                                        <button type="button" class="btn btn-sm btn-edit" data-toggle="tooltip" title="Edit">
-                                            <i class="fa fa-pencil"></i>
-                                        </button>
-                                    </a>
+                                    <button type="button" class="btn btn-sm btn-edit" data-toggle="modal" data-target="#modal-fromright"
+                                            data-name="{{$categorie->categorie_name}}" data-id="{{$categorie->id_categorie}}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
                                     <form action="/categories/{{$categorie->id_categorie}}" method="post">
                                         {{ method_field('DELETE') }}
                                         {{csrf_field()}}
@@ -102,6 +101,49 @@
                         @endforeach
                         </tbody>
                     </table>
+                    <!-- From Right Modal -->
+                    <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-fromright" role="document">
+                            <div class="modal-content">
+                                <form class="js-validation-bootstrap" method="post">
+                                    <div class="block block-themed block-transparent mb-0">
+                                        <div class="block-header bg-primary-dark">
+                                            <h3 class="block-title">Edit la Categorie</h3>
+                                            <div class="block-options">
+                                                <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                                    <i class="si si-close"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="block-content">
+                                                {{ method_field('PUT') }}
+                                                {{csrf_field()}}
+                                                <div class="form-group col-md-12">
+                                                    <div class="row">
+                                                        <label class="col-md-6 col-sm-12 col-form-label" for="categorie_name">Nom du Categorie <span class="text-danger">*</span></label>
+                                                        <div class="col-md-6 col-sm-12 ">
+                                                            <input type="text" class="form-control" id="categorie_name" name="categorie_name" required placeholder="Enter le nom du categorie.." >
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            <div class="form-group col-md-12">
+                                                <label><span class="text-danger">*</span> : Champ Obligatoire</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-alt-success">
+                                            <i class="fa fa-check"></i> Enregister
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- END From Right Modal -->
+
                 </div>
             </div>
         </div>
@@ -123,6 +165,17 @@
 
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
+
+    <script type="text/javascript">
+        $(function () {
+            $('.btn-edit').click(function () {
+                var IdCat = $(this).data('id');
+                var NameCat = $(this).data('name');
+                $(".js-validation-bootstrap #categorie_name").val(NameCat);
+                $(".js-validation-bootstrap ").attr("action", "/categories/"+IdCat);
+            })
+        });
+    </script>
 @endsection
 
 

@@ -74,6 +74,7 @@
             cursor: pointer;
         }
 
+
         /*.btn-file input[type=file] {*/
             /*position: absolute;*/
             /*top: 0;*/
@@ -218,11 +219,11 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="form-material floating">
+                                                        <div class="form-material ">
                                                             {{--<input class="form-control" type="text" id="societe_city" name="societe_city">--}}
                                                             <label for="societe_city">Ville <span style="color: red">*</span></label>
                                                             <select name="societe_city" id="societe_city" class="form-control">
-                                                                <option>Choisez la Ville</option>
+                                                                <option value="">Choisez la Ville</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -233,18 +234,21 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="form-material floating">
-                                                            <input class="form-control" type="text" id="societe_email" name="societe_email">
-                                                            <label for="societe_email">Email de la Societe</label>
+                                                        <div class="form-material input-group floating">
+                                                            <input class="form-control" id="societe_email" name="societe_email" type="email">
+                                                            <label for="societe_email">Email de la Societe <span style="font-size: 11px">(optionnel)</span></label>
+                                                            <span class="input-group-addon">.example.com</span>
                                                         </div>
                                                     </div>
                                                     <div class="form-group">
-                                                        <div class="form-material floating">
+                                                        <div class="form-material input-group floating">
                                                             <input class="form-control" type="text" id="societe_website" name="societe_website">
                                                             <label for="societe_website">Site de la Societe</label>
+                                                            <span class="input-group-addon">https://exemple.com</span>
                                                         </div>
                                                     </div>
-                                                    <div class="form-group row">
+                                                    <div class="form-group" style="margin-top: 5px">
+                                                        <div class="row" >
                                                             <label class="col-md-6 col-sm-12">Logo de Societe</label>
                                                             <div class="col-md-6 col-sm-12">
                                                                 <label class="custom-file pull-right" style="position: unset;">
@@ -252,6 +256,7 @@
                                                                     <span class="custom-file-control" id="logo_name" style="width: 100%"></span>
                                                                 </label>
                                                             </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <!-- END Step 2 -->
@@ -308,7 +313,7 @@
                                                         </button>
                                                     </div>
                                                     <div class="col-6 text-right">
-                                                        <button type="button" class="btn btn-alt-secondary" data-wizard="next">
+                                                        <button type="button" class="btn btn-alt-secondary" id="test" data-wizard="next">
                                                             Suivant <i class="fa fa-angle-right ml-5"></i>
                                                         </button>
                                                         <button type="submit" class="btn btn-alt-primary d-none" data-wizard="finish">
@@ -365,6 +370,7 @@
 <script type="text/javascript">
 $(function () {
 
+
     // Societe Logo
     if($('#societe_logo').val()!=''){
         var filename = $('#societe_logo').val().split('\\').pop();
@@ -390,11 +396,12 @@ $(function () {
         var data = '<option value="'+serviceArray[i]+'">' + serviceArray[i] + '</option>';
         $('#societe_city').append(data);
     }
-    // User Photo Profile
+//     User Photo Profile
     if($('#user_picture').val()!=''){
         readURL($('#user_picture').get( 0 ));
     }
     else $('#review').attr('src','{{asset("assets/img/avatars/avatar0.jpg")}}');
+
 
     $("#user_picture").change(function(){
         readURL(this);
@@ -413,11 +420,6 @@ $(function () {
     }
 
     $('#review').click(function(){ $('#user_picture').trigger('click'); });
-    $('.icon').click(function(){ $('#user_picture').trigger('click'); });
-
-    $('#review').hover(function(){$('.icon').css('display','block');});
-    $('.icon').hover(function(){$('.icon').css('display','block');});
-    $('#review').mouseout(function(){$('.icon').css('display','none');});
 
     });
 

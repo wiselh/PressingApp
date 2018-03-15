@@ -47,38 +47,40 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $rules = [
             'username' => "unique:users",
-            'email' => 'email|unique:users'
+            'email' => 'unique:users',
         ];
-
-       $this->validate($request,$rules);
-
-
-        $user = new User();
-        $user->fullname=$request->user_fullname;
-        $user->username=$request->username;
-        $user->adresse=$request->user_adresse;
-        $user->email=$request->email;
-        $user->tele=$request->user_tele;
-
-        $pic = Input::file('user_picture');
-        if ($pic==null){
-            $picture_local='assets/img/avatars/avatar.png';
-        }else{
-            $picture_name = $request->username.'.'.$request->user_picture->extension();
-            $picture_local='assets/img/avatars/'.$picture_name;
-            $pic->move('assets/img/avatars', $picture_name);
-        }
-
-        $user->picture=$picture_local;
-        $user->password=bcrypt($request->user_password);
-        $user->admin=$request->user_permission;
-        $user->save();
+        $messages =[
+        'username.unique' => 'Cet nom d\'utilisateur est déjà utilisé!',
+        'email.unique' => 'Cet adresse email est déjà utilisé!',
+        ];
+        $this->validate($request,$rules,$messages);
 
 
-        return redirect('/users');
+//        $user = new User();
+//        $user->fullname=$request->user_fullname;
+//        $user->username=$request->username;
+//        $user->adresse=$request->user_adresse;
+//        $user->email=$request->email;
+//        $user->tele=$request->user_tele;
+//
+//        $pic = Input::file('user_picture');
+//        if ($pic==null){
+//            $picture_local='assets/img/avatars/avatar.png';
+//        }else{
+//            $picture_name = $request->username.'.'.$request->user_picture->extension();
+//            $picture_local='assets/img/avatars/'.$picture_name;
+//            $pic->move('assets/img/avatars', $picture_name);
+//        }
+//
+//        $user->picture=$picture_local;
+//        $user->password=bcrypt($request->user_password);
+//        $user->admin=$request->user_permission;
+//        $user->save();
+
+
+//        return redirect('/users');
     }
 
     /**

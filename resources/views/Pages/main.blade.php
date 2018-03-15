@@ -33,7 +33,7 @@
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                height: 50px;
+                height: 35px;
                 border: 1px dashed #575757;
                 color: #575757;
                 cursor: pointer;

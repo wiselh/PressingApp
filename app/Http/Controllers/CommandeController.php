@@ -58,68 +58,69 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        if ($request->check_client=='old'){
-            $client = DB::table('clients')->where('id_client',$request->client)->first();
-        }else{
-            $client = new Client();
-            $client->client_name=$request->client_name;
-            $client->client_tele=$request->client_tele;
-            $client->client_adresse=$request->client_adresse;
-            $client->save();
-        }
-
-        $commande = new Commande();
-
-        $nbr = DB::table('commandes')->count();
-        if($nbr < 1)
-        {
-            $num_fac = 18031300;
-        }else{
-            $cmd = DB::table('commandes')->max('id_commande')->first();
-            $num_fac = $cmd->commande_num+1;
-        }
-
-        $commande->commande_num=$num_fac;
-        $commande->commande_date=date('Y-m-d');
-        $commande->commande_date_retrait=$request->commande_date_retrait;
-        $commande->commande_paid=$request->commande_paid;
-        $commande->id_client=$client->id_client;
-
-        // vetements
-        $categorie = Input::get('categorie');
-        $service = Input::get('service');
-        $libelle = Input::get('vetement_libelle');
-        $price = Input::get('vetement_price');
-        $quantity = Input::get('vetement_quantity');
-        $total = Input::get('vetement_total');
-        $description = Input::get('vetement_description');
-        $montant =0;
-        $pieces =0;
-
-        for($i = 0;$i<count($categorie);$i++)
-        {
-            $montant += $total[$i];
-            $pieces+=$quantity[$i];
-        }
-        $commande->commande_montant=$montant;
-        $commande->commande_quantity=$pieces;
-        $commande->save();
-
-        for($i = 0;$i<count($categorie);$i++)
-        {
-            $vetement = new Vetement();
-            $vetement->id_categorie=$categorie[$i];
-            $vetement->id_service=$service[$i];
-            $vetement->id_commande=$commande->id_commande;
-//          $vetement->vetement_color=$color[$i];
-            $vetement->vetement_price=$price[$i];
-            $vetement->vetement_quantity=$quantity[$i];
-            $vetement->vetement_total=$total[$i];
-            $vetement->vetement_description=$description[$i];
-            $vetement->save();
-        }
-
-        return redirect('/commandes');
+//        if ($request->check_client=='old'){
+//            $client = DB::table('clients')->where('id_client',$request->client)->first();
+//        }else{
+//            $client = new Client();
+//            $client->client_name=$request->client_name;
+//            $client->client_tele=$request->client_tele;
+//            $client->client_adresse=$request->client_adresse;
+//            $client->save();
+//        }
+//
+//        $commande = new Commande();
+//
+//        $nbr = DB::table('commandes')->count();
+//        if($nbr < 1)
+//        {
+//            $num_fac = 18031300;
+//        }else{
+//            $cmd = DB::table('commandes')->max('id_commande')->first();
+//            $num_fac = $cmd->commande_num+1;
+//        }
+//
+//        $commande->commande_num=$num_fac;
+//        $commande->commande_date=date('Y-m-d');
+//        $commande->commande_date_retrait=$request->commande_date_retrait;
+//        $commande->commande_paid=$request->commande_paid;
+//        $commande->id_client=$client->id_client;
+//
+//        // vetements
+//        $categorie = Input::get('categorie');
+//        $service = Input::get('service');
+//        $libelle = Input::get('vetement_libelle');
+//        $price = Input::get('vetement_price');
+//        $quantity = Input::get('vetement_quantity');
+//        $total = Input::get('vetement_total');
+//        $description = Input::get('vetement_description');
+//        $montant =0;
+//        $pieces =0;
+//
+//        for($i = 0;$i<count($categorie);$i++)
+//        {
+//            $montant += $total[$i];
+//            $pieces+=$quantity[$i];
+//        }
+//        $commande->commande_montant=$montant;
+//        $commande->commande_quantity=$pieces;
+//        $commande->save();
+//
+//        for($i = 0;$i<count($categorie);$i++)
+//        {
+//            $vetement = new Vetement();
+//            $vetement->id_categorie=$categorie[$i];
+//            $vetement->id_service=$service[$i];
+//            $vetement->id_commande=$commande->id_commande;
+////          $vetement->vetement_color=$color[$i];
+//            $vetement->vetement_price=$price[$i];
+//            $vetement->vetement_quantity=$quantity[$i];
+//            $vetement->vetement_total=$total[$i];
+//            $vetement->vetement_description=$description[$i];
+//            $vetement->save();
+//        }
+//
+//        return redirect('/commandes');
+        die('goood');
     }
 
     /**

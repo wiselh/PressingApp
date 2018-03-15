@@ -85,7 +85,7 @@ var BeFormWizard = function() {
                 'societe_tele': {
                     required: true
                 },
-                'societe_ville': {
+                'societe_city': {
                     required: true
                 }
                 // 'societe_logo': {
@@ -112,7 +112,7 @@ var BeFormWizard = function() {
                 // 'societe_email': 'S\'il vous plaît entrer l\'email de la societe',
                 'societe_adresse': 'S\'il vous plaît entrer l\'adresse de la societe',
                 'societe_tele': 'S\'il vous plaît entrer le telephone de la societe',
-                'societe_ville': 'S\'il vous plaît entrer la ville de la societe'
+                'societe_city': 'S\'il vous plaît entrer la ville de la societe'
                 // 'societe_logo': 'S\'il vous plaît entrer le logo de la societe'
 
             }

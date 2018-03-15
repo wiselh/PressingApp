@@ -44,56 +44,86 @@ $(function () {
     //         $(this).css('border','1px solid red');
     // });
 
-    // $('#client').change(function () {
-    //     if($('#client').val()!=''){
-    //         $('#client_name').prop('disabled', true);
-    //         $('#client_tele').prop('disabled', true);
-    //         $('#client_adresse').prop('disabled', true);
-    //         $('#client_name').val('');
-    //         $('#client_tele').val('');
-    //         $('#client_adresse').val('');
-    //         $(this).closest('.client').find('.form-group').removeClass('is-invalid');
-    //         $('#check_client').val('old');
-    //
-    //     }else {
-    //         $('#client_name').prop('disabled', false);
-    //         $('#client_tele').prop('disabled', false);
-    //         $('#client_adresse').prop('disabled', false);
-    //         $('#check_client').val('new');
-    //     }
-    //
-    // });
-    // if($('#client').val()!='')$('#check_client').val('old');
-    // else $('#check_client').val('new');
-    //
-    // $('.new-client-block').addClass('animated lightSpeedOut');
-    // $('.new-client-block').css('display','none');
-    //
-    //
-    //
-    // $('#clickme2').css('display','none');
-    //
-    // $('#clickme2').click(function () {
-    //
-    //     $('#clickme2').css('display','none');
-    //     $('#clickme').css('display','inherit');
-    //     $('.new-client-block').toggleClass("lightSpeedIn lightSpeedOut");
-    //
-    //
-    // });
-    //
-    // $('#clickme').click(function () {
-    //
-    //     $('#clickme2').css('display','inherit');
-    //     $('#clickme').css('display','none');
-    //
-    //     $('#client').val('').trigger('change');
-    //
-    //     $('.new-client-block').css('display','inherit');
-    //     $('.new-client-block').toggleClass("lightSpeedIn lightSpeedOut");
-    //
-    //     console.log($("#client").val());
-    // });
+// check payment mode
+
+    if($("input[type='radio']:checked").val()=='oui'){
+        $('#payment_mode').prop('disabled', false);
+        $('#payment_paid').prop('disabled', false);
+        $('#payment_mode').css('cursor','inherit');
+        $('#payment_paid').css('cursor','inherit');
+    }else{
+        $('#payment_mode').prop('disabled', true);
+        $('#payment_paid').prop('disabled', true);
+        $('#payment_mode').css('cursor','no-drop');
+        $('#payment_paid').css('cursor','no-drop');
+    }
+    $("input[type='radio']").change(function () {
+        if($("input[type='radio']:checked").val()=='oui'){
+            $('#payment_mode').prop('disabled', false);
+            $('#payment_paid').prop('disabled', false);
+            $('#payment_mode').css('cursor','inherit');
+            $('#payment_paid').css('cursor','no-inherit');
+
+        }else{
+            $('#payment_mode').prop('disabled', true);
+            $('#payment_paid').prop('disabled', true);
+            $('#payment_mode').css('cursor','no-drop');
+            $('#payment_paid').css('cursor','no-drop');
+        }
+    });
+
+
+
+    // set inputs empty when we the client is selected
+
+    $('#client').change(function () {
+        if($('#client').val()!=''){
+            $('#client_name').prop('disabled', true);
+            $('#client_tele').prop('disabled', true);
+            $('#client_adresse').prop('disabled', true);
+            $('#client_name').val('');
+            $('#client_tele').val('');
+            $('#client_adresse').val('');
+            $(this).closest('.client').find('.form-group').removeClass('is-invalid');
+            $('#check_client').val('old');
+
+        }else {
+            $('#client_name').prop('disabled', false);
+            $('#client_tele').prop('disabled', false);
+            $('#client_adresse').prop('disabled', false);
+            $('#check_client').val('new');
+        }
+
+    });
+
+    // check if is old client or new one
+    if($('#client').val()!='')$('#check_client').val('old');
+    else $('#check_client').val('new');
+
+
+
+    // show and hide client form
+
+    $('#clickme2').click(function () {
+
+        $('#clickme2').css('display','none');
+        $('#clickme').css('display','inherit');
+        $('.new-client-block').toggleClass("bounceOutRight bounceInRight");
+
+
+    });
+    $('#clickme').click(function () {
+
+        $('#clickme2').css('display','inherit');
+        $('#clickme').css('display','none');
+
+        $('#client').val('').trigger('change');
+
+        $('.new-client-block').css('display','inherit');
+        $('.new-client-block').toggleClass("bounceInRight bounceOutRight");
+
+        console.log($("#client").val());
+    });
 
 });
 
