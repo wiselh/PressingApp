@@ -1,9 +1,3 @@
-/*
- *  Document   : op_auth_signin.js
- *  Author     : pixelcave
- *  Description: Custom JS code used in Sign In Page
- */
-
 var OpAuthSignIn = function() {
     // Init Sign In Form Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation
     var initValidationSignIn = function(){
@@ -22,7 +16,8 @@ var OpAuthSignIn = function() {
             },
             rules: {
                 'email': {
-                    required: true
+                    required: true,
+                    email: true
                 },
                 'password': {
                     required: true
@@ -30,7 +25,8 @@ var OpAuthSignIn = function() {
             },
             messages: {
                 'email': {
-                    required: 'Entrez votre email'
+                    required: 'Entrez votre email',
+                    email:'S\'il veux plait enter l\'adresse email valid'
                 },
                 'password': {
                     required: 'Entrez votre mot de pass'

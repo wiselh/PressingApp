@@ -22,13 +22,15 @@ class AppServiceProvider extends ServiceProvider
 
         view()->composer('Pages.main', function($view)
         {
-            $nbr_factures = DB::table('commandes')->count();
+            $nbr_commandes = DB::table('commandes')->count();
+            $nbr_users = DB::table('users')->count();
             $nbr_clients = DB::table('clients')->count();
             $nbr_categories = DB::table('categories')->count();
             $nbr_services = DB::table('services')->count();
             $logo = DB::table('societes')->get()->first();
             $view->with([
-                'nbr_factures'=>$nbr_factures,
+                'nbr_commandes'=>$nbr_commandes,
+                'nbr_users'=>$nbr_users,
                 'nbr_clients'=>$nbr_clients,
                 'nbr_categories'=>$nbr_categories,
                 'nbr_services'=>$nbr_services,

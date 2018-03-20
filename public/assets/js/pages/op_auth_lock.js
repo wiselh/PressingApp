@@ -1,8 +1,3 @@
-/*
- *  Document   : op_auth_lock.js
- *  Author     : pixelcave
- *  Description: Custom JS code used in Lock Page
- */
 
 var OpAuthLock = function() {
     // Init Lock Form Validation, for more examples you can check out https://github.com/jzaefferer/jquery-validation

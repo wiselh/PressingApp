@@ -13,13 +13,10 @@
             border-color: #fb5953;
         }
     </style>
-
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
 @section('content')
-
-    <!-- Bootstrap Forms Validation -->
-    {{--<h2 class="content-heading">Bootstrap Forms</h2>--}}
 
     <div class="block" style="padding: 10px">
         <div class="row">
@@ -32,19 +29,15 @@
                         <div class="col-xl-12 col-md-12">
                             <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/be_forms_validation.js) -->
                             <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                            <form class="js-validation-bootstrap" action="/services" method="post">
+                            <form class="add-service-form" action="/services" method="post">
                                 {{csrf_field()}}
-
                                 <div class="col-md-12 col-md-offset-6">
                                     <div class="row">
-                                        {{--<div class="block-header block-header-default col-md-12 col-md-12" style="margin-bottom: 10px;">--}}
-                                            {{--<h3 class="block-title">Categorie</h3>--}}
-                                        {{--</div>--}}
                                         <div class="form-group col-md-12">
                                             <div class="row">
                                                 <label class="col-md-4 col-sm-12 col-form-label" for="service_name">Nom du Service <span class="text-danger">*</span></label>
                                                 <div class="col-md-6 col-sm-12 ">
-                                                    <input type="text" class="form-control" id="service_name" name="service_name" placeholder="Entez le nom du categorie" required>
+                                                    <input type="text" class="form-control" id="service_name" name="service_name" placeholder="Entez le nom du service" required>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 ">
                                                     <button type="submit" class="btn btn-alt-primary">Ajouter</button>
@@ -110,7 +103,9 @@
         <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright" aria-hidden="true">
             <div class="modal-dialog modal-dialog-fromright" role="document">
                 <div class="modal-content">
-                    <form class="js-validation-bootstrap" method="post">
+                    <form class="edit-service-form" method="post" action="/services">
+                        {{ method_field('PUT') }}
+                        {{csrf_field()}}
                         <div class="block block-themed block-transparent mb-0">
                             <div class="block-header bg-primary-dark">
                                 <h3 class="block-title">Edit le Service</h3>
@@ -121,11 +116,10 @@
                                 </div>
                             </div>
                             <div class="block-content">
-                                {{ method_field('PUT') }}
-                                {{csrf_field()}}
+
                                 <div class="form-group col-md-12">
                                     <div class="row">
-                                        <label class="col-md-6 col-sm-12 col-form-label" for="categorie_name">Nom du Categorie <span class="text-danger">*</span></label>
+                                        <label class="col-md-6 col-sm-12 col-form-label" for="service_name">Nom du Categorie <span class="text-danger">*</span></label>
                                         <div class="col-md-6 col-sm-12 ">
                                             <input type="text" class="form-control" id="service_name" name="service_name" required placeholder="Enter le nom du service.." >
                                         </div>
@@ -149,8 +143,6 @@
         </div>
         <!-- END From Right Modal -->
     </div>
-    <!-- Bootstrap Forms Validation -->
-
 @endsection
 
 @section('page_script')
@@ -166,14 +158,20 @@
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
 
+    <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
     <script type="text/javascript">
         $(function () {
             $('.btn-edit').click(function () {
                 var IdServ = $(this).data('id');
                 var NameServ = $(this).data('name');
-                $(".js-validation-bootstrap #service_name").val(NameServ);
-                $(".js-validation-bootstrap ").attr("action", "/services/"+IdServ);
+                $(".edit-service-form #service_name").val(NameServ);
+                $(".edit-service-form").attr("action", "/services/"+IdServ);
             })
+        });
+        $('.btn-delete').click(function () {
+            swal('Succès', 'le service a été supprimé.!', 'success');
         });
     </script>
 @endsection

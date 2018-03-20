@@ -120,7 +120,6 @@
                                                                     <img id="review" src="#"/>
                                                             </div>
                                                             <span class="pull-right maximum">Maximum 2Mb </span>
-                                                        </div>
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="form-material floating">

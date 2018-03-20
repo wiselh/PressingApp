@@ -41,7 +41,7 @@ class InstallationController extends Controller
         $societe = new Societe;
 
         $user->username=$request->username;
-        $user->fullname=$request->user_name;
+        $user->fullname=$request->user_fullname;
         $user->adresse=$request->user_adresse;
         $user->email=$request->user_email;
         $user->tele=$request->user_tele;
@@ -57,7 +57,7 @@ class InstallationController extends Controller
 
         $user->picture=$picture_local;
         $user->password=bcrypt($request->password);
-        $user->admin='oui';
+        $user->permission='admin';
 
         $societe->societe_name=$request->societe_name;
         $societe->societe_adresse=$request->societe_adresse;

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 use Response;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
@@ -38,6 +39,9 @@ class UserController extends Controller
     {
         //
     }
+     public function sweet(){
+        return view('Pages.User.sweetalert');
+     }
 
     /**
      * Store a newly created resource in storage.
@@ -47,6 +51,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
+
         $rules = [
             'username' => "unique:users",
             'email' => 'unique:users',
@@ -56,6 +61,7 @@ class UserController extends Controller
         'email.unique' => 'Cet adresse email est déjà utilisé!',
         ];
         $this->validate($request,$rules,$messages);
+        return response()->json(['response' => 'Store Method']);
 
 
 //        $user = new User();
@@ -80,7 +86,6 @@ class UserController extends Controller
 //        $user->save();
 
 
-//        return redirect('/users');
     }
 
     /**
@@ -114,6 +119,33 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+
+        $user = DB::table('users')->where('id', $id)->first();
+
+        $rules = [
+            'username' => "unique:users,username,".$id,
+            'email' => 'unique:users,email,'.$id,
+        ];
+        $messages =[
+            'username.unique' => 'Cet nom d\'utilisateur est déjà utilisé!',
+            'email.unique' => 'Cet adresse email est déjà utilisé!',
+        ];
+        $this->validate($request,$rules,$messages);
+
+        return response()->json(['response' => 'Gooood + '.$id]);
+
+
+
+//        $rules = [
+//            'username' => "unique:users,username,".$id,
+//            'email' => 'unique:users,email,'.$id,
+//        ];
+//        $messages =[
+//            'username.unique' => 'Cet nom d\'utilisateur est déjà utilisé!',
+//            'email.unique' => 'Cet adresse email est déjà utilisé!',
+//        ];
+//        $this->validate($request,$rules,$messages);
+
 //        DB::table('users')
 //            ->where('id', $id)
 //            ->update(['' =>$request->fullname ]);
@@ -137,76 +169,4 @@ class UserController extends Controller
 
 
 
-
-    /**
-
-     * Display a listing of the myform.
-
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
-
-    public function myform()
-
-    {
-
-        return view('Pages.User.ajax');
-
-    }
-
-
-    /**
-
-     * Display a listing of the myformPost.
-
-     *
-
-     * @return \Illuminate\Http\Response
-
-     */
-
-    public function myformPost(Request $request)
-
-    {
-
-
-//        $validator = Validator::make($request->all(), [
-//
-////            'email' => 'require',
-//
-//             'username' => "required|string|min:6",
-////
-//            'email' => 'required|email|unique:users',
-////
-////            'address' => 'required',
-//
-//        ]);
-
-        $rules = [
-            'username' => "required|string|min:6|unique:users",
-            'email' => 'required|email|unique:users',
-        ];
-        $messages = [
-            'username.required' => "mother fucker",
-            'email.unique' => 'okkkk',
-
-        ];
-
-
-        $validator = Validator::make($request->all(), $rules, $messages);
-
-
-
-        if (!$validator->fails()) {
-
-            return response()->json(['success'=>'Added new records.']);
-
-        }
-
-
-        return response()->json(['error'=>$validator->errors()->all()]);
-
-    }
 }

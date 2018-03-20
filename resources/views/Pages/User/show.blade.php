@@ -1,7 +1,6 @@
 @extends('Pages.main')
 
 @section('page_style')
-
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
@@ -50,14 +49,10 @@
         }
 
     </style>
-    {{--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-
-
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
 @section('content')
-
 <!-- All Users -->
 <div class="block">
     <div class="block-header block-header-default">
@@ -65,7 +60,6 @@
         <button type="button" class="btn btn-alt-info ml-auto" data-toggle="modal" data-target="#modal-large">Ajouter Un Utilisateur</button>
     </div>
     <div class="block-content block-content-full">
-        <!-- DataTables init on table by adding .js-dataTable-full class, functionality initialized in js/pages/be_tables_datatables.js -->
         <table class="table table-bordered table-responsive table-striped table-vcenter js-dataTable-full mytable">
             <thead>
             <tr>
@@ -81,40 +75,24 @@
             </thead>
             <tbody>
             @foreach($users as $user)
-                <tr>
+                <tr class="mycells">
                     <td class="text-center">{{$user->id}}</td>
-                    <td class="text-center"><img class="img-avatar img-avatar32" src="{{asset($user->picture)}}" alt="{{$user->fullname}}" ></td>
-                    <td class="font-w400">{{$user->fullname}}</td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        @if($user->adresse=='')
-                            -
-                        @else
-                            {{$user->adresse}}
-                        @endif
-                    </td>
-                    <td class="d-none d-sm-table-cell text-center">
-                        @if($user->tele=='')
-                            -
-                        @else
-                            {{$user->tele}}
-                        @endif
-                    </td>
-                    <td class="font-w400">{{$user->username}}</td>
-                    <td class="font-w400">{{$user->email}}</td>
+                    <td class="text-center picture"><img class="img-avatar img-avatar32" src="{{asset($user->picture)}}" alt="{{$user->fullname}}" ></td>
+                    <td class="font-w400 fullname">{{$user->fullname}}</td>
+                    <td class="d-none d-sm-table-cell text-center adresse">{{$user->adresse}}</td>
+                    <td class="d-none d-sm-table-cell text-center tele">{{$user->tele}}</td>
+                    <td class="font-w400 username">{{$user->username}}</td>
+                    <td class="font-w400 email">{{$user->email}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <a href="/users/{{$user->id}}">
-                                <button type="button" class="btn btn-sm btn-edit" data-toggle="tooltip" title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </a>
-                            <form action="/users/{{$user->id}}" method="post">
-                                {{ method_field('DELETE') }}
-                                {{csrf_field()}}
-                                <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
+                            <button type="button" class="btn btn-sm btn-edit" data-toggle="modal" data-id="{{$user->id}}" title="Edit" data-target="#modal-fromright">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            @if($user->id!=1)
+                                <button type="button" data-id="{{$user->id}}" class="js-swal-confirm btn btn-sm btn-delete">
                                     <i class="fa fa-times"></i>
                                 </button>
-                            </form>
+                            @endif
                         </div>
                     </td>
                 </tr>
@@ -123,10 +101,10 @@
         </table>
     </div>
 </div>
+<!-- End All Users -->
 
 <!-- Add Users -->
 <div class="block">
-    <!-- Large Modal -->
     <div class="modal" id="modal-large" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -212,7 +190,7 @@
                             </div>
                             <div class="col-md-4 col-sm-6 col-xs-12">
                                 <div class="form-group row">
-                                    <label class="">Bootstrap's Custom File Input</label>
+                                    <label class="">Photo de Profile</label>
                                     <div class="input-group">
                                         <label class="input-group-btn">
                                             <span class="btn browse">
@@ -238,6 +216,125 @@
     </div>
     <!-- END Large Modal -->
 </div>
+<!-- End Add Users Block -->
+
+<!-- Edit Users -->
+<div class="block">
+    <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-fromright" role="document">
+            <div class="modal-content">
+                <form class="edit-user-form"  method="POST" enctype="multipart/form-data" >
+                    {{csrf_field()}}
+                    <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Edit l'utilisateur</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content row">
+                        <div class="col-md-8 col-sm-12 col-xs-12">
+                            <div class="form-group row">
+                                <div class="col-4"><img class="profile"  width="80px" style="border-radius: 100px;" alt="No Image"></div>
+                                <div class="col-8">
+                                    <label class="">Changer la Photo de Profile</label>
+                                    <div class="input-group">
+                                        <label class="input-group-btn">
+                                            <span class="btn browse">
+                                                Browse&hellip; <input type="file" style="display: none;" class="picture" id="picture" name="picture">
+                                            </span>
+                                        </label>
+                                        <input type="text" class="form-control filename"
+                                               onfocus="this.blur()" style="background-color:#FFF !important" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="text" id="fullname" name="fullname" value="{{old('fullname')}}">
+                                    <label for="fullname">Nom - Prenom <span style="color: red">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="text" id="adresse" name="adresse" value="{{old('adresse')}}">
+                                    <label for="adresse">Adresse personnel <span class="optionnel">(optionnel)</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="text" id="tele" name="tele" value="{{old('tele')}}">
+                                    <label for="tele">Telephone <span class="optionnel">(optionnel)</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group username-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="text" id="username-edit" name="username" value="{{old('username')}}">
+                                    <label for="username" id="username-lbl">Nom d'Utilisateur <span style="color: red">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group email-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="text"  id="email-edit" name="email" value="{{old('email')}}">
+                                    <label for="email" id="email-lbl">Adresse Email <span style="color: red">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="password" id="password-edit" name="password">
+                                    <label for="password">Mot de pass<span style="color: red">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <div class="form-material">
+                                    <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
+                                    <label for="password_confirmation">Confirme le mot de pass<span style="color: red">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6 col-xs-12">
+                            <div class="form-group">
+                                <label for="permission">Permissions<span style="font-size: 11px;">(optionnel)</span></label>
+                                <select name="permission"  class="form-control" id="permission">
+                                    <option value=""></option>
+                                    <option value="admin">Admin</option>
+                                    <option value="">Gestion Users</option>
+                                    <option value="">Gestion Du Commandes</option>
+                                    <option value="">Gestion Du Services</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Fermer</button>
+                    <button type="submit" class="btn btn-alt-success" id="add" >
+                        <i class="fa fa-check"></i> Enregister
+                    </button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Edit User Block -->
+
 @endsection
 
 @section('page_script')
@@ -253,6 +350,16 @@
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
     <script src="{{('assets/js/pages/users_validation.js')}}"></script>
+
+    <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/users_delete.js')}}"></script>
+    <script>
+        jQuery(function () {
+            // Init page helpers (BS Notify Plugin)
+            Codebase.helpers('notify');
+        });
+    </script>
 @endsection
 
 

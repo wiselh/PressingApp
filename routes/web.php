@@ -22,7 +22,11 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::resource('/societe','SocieteController');
     Route::resource('/profile','ProfileController');
+
     Route::resource('/users','UserController');
+    Route::post('/users/update/{id}','UserController@update');
+    Route::get('/users/delete/{id}','UserController@destroy');
+
     Route::post('/profile/password/{id}','ProfileController@updatePassword');
     Route::post('/profile/{id}','ProfileController@updateAdmin');
     Route::resource('/commandes','CommandeController');
@@ -31,7 +35,9 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::resource('/categories','CategorieController');
     Route::resource('/services','ServiceController');
+
     Route::resource('/clients','ClientController');
+    Route::get('/clients/delete/{id}','ClientController@destroy');
 
     Route::get('/all-commandes','FactureController@allCommandes');
 
@@ -42,6 +48,7 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::get('/home', 'HomeController@index')->name('home');
     Route::get('/', 'CommandeController@index');
+    Route::get('/sweet', 'UserController@sweet');
 
 
 //    Route::get('/test', 'CommandeController@test');

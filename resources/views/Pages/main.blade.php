@@ -66,8 +66,6 @@
             <main id="main-container">
                 <!-- Page Content -->
                 <div class="content">
-                    {{--<div class="row gutters-tiny invisible" data-toggle="appear">--}}
-                        <!-- Row #1 -->
                         <div class="row">
                             <div class="col-6 col-md-4 col-xl-2">
                                 <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-primary" href="/commandes">
@@ -83,7 +81,7 @@
                             </div>
                             <div class="col-6 col-md-4 col-xl-2">
                                 <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-success" href="/factures">
-                                    <div class="ribbon-box">{{$nbr_factures}}</div>
+                                    <div class="ribbon-box">{{$nbr_commandes}}</div>
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Commades</p>
                                     </div>
@@ -96,7 +94,7 @@
                             </div>
                             <div class="col-6 col-md-4 col-xl-2">
                                 <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-gd-sun" href="/services">
-                                    <div class="ribbon-box">{{$nbr_factures}}</div>
+                                    <div class="ribbon-box">{{$nbr_services}}</div>
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Services</p>
                                     </div>
@@ -109,7 +107,7 @@
                             </div>
                             <div class="col-6 col-md-4 col-xl-2">
                                 <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-corporate" href="/categories">
-                                    <div class="ribbon-box">{{$nbr_factures}}</div>
+                                    <div class="ribbon-box">{{$nbr_categories}}</div>
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Categorie</p>
                                     </div>
@@ -122,7 +120,7 @@
                             </div>
                             <div class="col-6 col-md-4 col-xl-2">
                                 <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-flat" href="/clients">
-                                    <div class="ribbon-box">{{$nbr_factures}}</div>
+                                    <div class="ribbon-box">{{$nbr_clients}}</div>
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Clients</p>
                                     </div>
@@ -135,7 +133,7 @@
                             </div>
                             <div class="col-6 col-md-4 col-xl-2">
                                 <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-elegance" href="/users">
-                                    <div class="ribbon-box">{{$nbr_factures}}</div>
+                                    <div class="ribbon-box">{{$nbr_users}}</div>
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Utilisateurs</p>
                                     </div>
@@ -146,12 +144,10 @@
                                     </div>
                                 </a>
                             </div>
-
                         </div>
                     @yield('content')
                 </div>
             </main>
-
             <!-- END Main Container -->
             @include('Layouts.footer')
         </div>
@@ -162,12 +158,12 @@
         <script src="{{asset('assets/js/core/bootstrap.min.js')}}"></script>
         <script src="{{asset('assets/js/core/jquery.slimscroll.min.js')}}"></script>
         <script src="{{asset('assets/js/core/jquery.scrollLock.min.js')}}"></script>
-        <script src="{{asset('assets/js/core/jquery.appear.min.js')}}"></script>
-        <script src="{{asset('assets/js/core/jquery.countTo.min.js')}}"></script>
-        <script src="{{asset('assets/js/core/js.cookie.min.js')}}"></script>
+{{--        <script src="{{asset('assets/js/core/jquery.appear.min.js')}}"></script>--}}
+        {{--<script src="{{asset('assets/js/core/jquery.countTo.min.js')}}"></script>--}}
+{{--        <script src="{{asset('assets/js/core/js.cookie.min.js')}}"></script>--}}
         <script src="{{asset('assets/js/codebase.js')}}"></script>
         <!-- Page JS Plugins -->
-        <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
+{{--        <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>--}}
         <!-- Page JS Code -->
         <script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
         <script src="{{asset('assets/js/pages/profile_validation.js')}}"></script>

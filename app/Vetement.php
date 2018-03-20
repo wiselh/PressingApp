@@ -26,7 +26,7 @@ class Vetement extends Model
         return $this->belongsTo(Service::class);
     }
 
-    public function categories()
+    public function categorie()
     {
         return $this->belongsTo(Categorie::class);
     }

@@ -10,6 +10,8 @@
             padding: 0px 8px;
         }
     </style>
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
+
 @endsection
 
 @section('content')
@@ -33,7 +35,7 @@
                 </thead>
                 <tbody>
                 @foreach($clients as $client)
-                <tr>
+                <tr class="clients">
                     <td class="text-center">{{$client->id_client}}</td>
                     <td class="font-w600">{{$client->client_name}}</td>
                     <td class="d-none d-sm-table-cell text-center">
@@ -52,18 +54,16 @@
                     </td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <a href="/clients/{{$client->id_client}}">
-                                <button type="button" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Edit">
-                                    <i class="fa fa-pencil"></i>
-                                </button>
-                            </a>
-                            <form action="/clients/{{$client->id_client}}" method="post">
-                                {{ method_field('DELETE') }}
-                                {{csrf_field()}}
-                                <button type="submit" class="btn btn-sm btn-secondary" data-toggle="tooltip" title="Delete">
-                                    <i class="fa fa-times"></i>
-                                </button>
-                            </form>
+                            <button type="button" class="btn btn-sm btn-edit" data-toggle="modal"
+                                    data-id="{{$client->id_client}}"
+                                    data-name="{{$client->client_name}}"
+                                    data-tele="{{$client->client_tele}}"
+                                    data-adresse="{{$client->client_adresse}}" title="Edit" data-target="#modal-fromright">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button type="button" data-id="{{$client->id_client}}" class="btn btn-sm btn-delete">
+                                <i class="fa fa-times"></i>
+                            </button>
                         </div>
                     </td>
                 </tr>
@@ -74,6 +74,62 @@
     </div>
     <!-- END Dynamic Table Full -->
 
+    <!-- Edit Users -->
+    <div class="block">
+        <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright" aria-hidden="true">
+            <div class="modal-dialog  modal-dialog-fromright" role="document">
+                <div class="modal-content">
+                    <form class="edit-client-form" action="/clients" method="POST">
+                        {{ method_field('PUT') }}
+                        {{csrf_field()}}
+                        <div class="block block-themed block-transparent mb-0">
+                            <div class="block-header bg-primary-dark">
+                                <h3 class="block-title">Edit Client</h3>
+                                <div class="block-options">
+                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                        <i class="si si-close"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="block-content row">
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="form-material">
+                                            <input class="form-control" type="text" id="fullname" name="fullname" value="{{old('fullname')}}">
+                                            <label for="fullname">Nom et Prenom <span style="color: red">*</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="form-material">
+                                            <input class="form-control" type="text" id="adresse" name="adresse" value="{{old('adresse')}}">
+                                            <label for="adresse">Adresse personnel <span class="optionnel">(optionnel)</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="form-group">
+                                        <div class="form-material">
+                                            <input class="form-control" type="text" id="tele" name="tele" value="{{old('tele')}}">
+                                            <label for="tele">Telephone <span class="optionnel">(optionnel)</span></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Fermer</button>
+                            <button type="submit" class="btn btn-alt-success" id="add" >
+                                <i class="fa fa-check"></i> Enregister
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Edit User Block -->
 @endsection
 
 @section('page_script')
@@ -88,6 +144,11 @@
 
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
+
+    <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+    <script src="{{asset('assets/js/pages/clients_delete.js')}}"></script>
+    <script src="{{('assets/js/pages/clients_validation.js')}}"></script>
 
 @endsection
 

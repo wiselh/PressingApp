@@ -13,7 +13,7 @@
             border-color: #fb5953;
         }
     </style>
-
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
 @section('content')
@@ -29,9 +29,7 @@
                 <div class="block-content">
                     <div class="row justify-content-center py-20">
                         <div class="col-xl-12 col-md-12">
-                            <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/be_forms_validation.js) -->
-                            <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
-                            <form class="js-validation-bootstrap" action="/categories" method="post">
+                            <form class="add-categorie-form" action="/categories" method="post">
                                 {{csrf_field()}}
 
                                 <div class="col-md-12 col-md-offset-6">
@@ -105,7 +103,9 @@
                     <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-fromright" role="document">
                             <div class="modal-content">
-                                <form class="js-validation-bootstrap" method="post">
+                                <form class="edit-categorie-form" method="post" action="/categories">
+                                    {{ method_field('PUT') }}
+                                    {{csrf_field()}}
                                     <div class="block block-themed block-transparent mb-0">
                                         <div class="block-header bg-primary-dark">
                                             <h3 class="block-title">Edit la Categorie</h3>
@@ -116,8 +116,6 @@
                                             </div>
                                         </div>
                                         <div class="block-content">
-                                                {{ method_field('PUT') }}
-                                                {{csrf_field()}}
                                                 <div class="form-group col-md-12">
                                                     <div class="row">
                                                         <label class="col-md-6 col-sm-12 col-form-label" for="categorie_name">Nom du Categorie <span class="text-danger">*</span></label>
@@ -166,14 +164,21 @@
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
 
+    <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
     <script type="text/javascript">
         $(function () {
             $('.btn-edit').click(function () {
                 var IdCat = $(this).data('id');
                 var NameCat = $(this).data('name');
-                $(".js-validation-bootstrap #categorie_name").val(NameCat);
-                $(".js-validation-bootstrap ").attr("action", "/categories/"+IdCat);
-            })
+                $(".edit-categorie-form #categorie_name").val(NameCat);
+                $(".edit-categorie-form").attr("action", "/categories/"+IdCat);
+            });
+
+            $('.btn-delete').click(function () {
+                     swal('Succès', 'la categorie a été supprimé.!', 'success');
+             });
         });
     </script>
 @endsection
