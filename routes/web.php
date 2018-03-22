@@ -32,7 +32,12 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::resource('/commandes','CommandeController');
     Route::resource('/factures','FactureController');
+
     Route::resource('/vetements','VetementController');
+    Route::get('/vetements/delete/{id}','VetementController@destroy');
+    Route::post('/payment','CommandeController@payment');
+
+
 
     Route::resource('/categories','CategorieController');
     Route::resource('/services','ServiceController');

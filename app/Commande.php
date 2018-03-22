@@ -44,7 +44,24 @@ class Commande extends Model
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class,'id_payment');
+        return $this->hasMany(Payment::class,'id_commande');
+    }
+
+    public function latestPayment() {
+        return $this->payments->last();
+    }
+    public function totalPayment()
+    {
+        $total =0 ;
+        foreach ($this->payments as $payment){
+            $total += $payment->payment_paid;
+        }
+        return $total;
+    }
+    public function restPayment()
+    {
+        $rest = $this->payments->last();
+        return $rest->payment_rest;
     }
 
 }

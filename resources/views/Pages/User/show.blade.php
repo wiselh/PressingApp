@@ -331,8 +331,8 @@
     <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
-    <script src="{{('assets/js/pages/users_validation.js')}}"></script>
+    <script src="{{asset('assets/js/pages/be_tables_datatables.js')}}"></script>
+    <script src="{{asset('assets/js/pages/users_validation.js')}}"></script>
 
     <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>

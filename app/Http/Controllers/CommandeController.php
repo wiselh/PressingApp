@@ -164,6 +164,28 @@ class CommandeController extends Controller
 
     }
 
+
+    public function payment(Request $request){
+        $id = $request->id_commande;
+
+        $commande = Commande::find($id);
+        $rest_payment = Commande::find($id)->restPayment();
+
+        $payment = new Payment;
+        $payment->payment_mode=$request->mode;
+        $payment->payment_paid=$request->paid;
+        if ($rest_payment <= $request->paid) {
+             $payment->payment_rest = 0;
+             $commande->commande_paid ='oui';
+        }
+        else $payment->payment_rest= $rest_payment - $request->paid;
+        $payment->id_commande=$request->id_commande;
+
+        $payment->save();
+        $commande->save();
+
+        return redirect('/factures/'.$id);
+    }
     /**
      * Display the specified resource.
      *

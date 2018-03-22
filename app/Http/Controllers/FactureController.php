@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Categorie;
 use App\Commande;
+use App\Service;
 use Illuminate\Http\Request;
 use App\Client;
 use App\Facture;
@@ -73,16 +75,21 @@ class FactureController extends Controller
      */
     public function show($id)
     {
+        $vetements =  Commande::find($id)->vetements;
+        $client =  Commande::find($id)->client;
+        $commande = Commande::find($id);
+//        $payment = Commande::find($id)->latestPayment();
+        $total_payment = Commande::find($id)->totalPayment();
+        $rest_payment = Commande::find($id)->restPayment();
 
-        $commande = DB::table('factures')->where('id_commande', $id)->first();
-        $vetements = Commande::find($id)->vetements;
-
-        $services = DB::table('services')->get();
-        $categories = DB::table('categories')->get();
-
+        $categories =  Categorie::all();
+        $services =  Service::all();
 
         return view('Pages.Facture.edit',[
-            'commandes' => $commande,
+            'total_payment'=>$total_payment,
+            'rest_payment'=>$rest_payment,
+            'client' => $client,
+            'commande' => $commande,
             'vetements' => $vetements,
             'services' => $services,
             'categories' => $categories,

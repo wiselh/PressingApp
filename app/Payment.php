@@ -10,6 +10,6 @@ class Payment extends Model
 
     public function commande()
     {
-        return $this->belongsTo(Commande::class);
+        return $this->belongsTo(Commande::class,'id_commande');
     }
 }
