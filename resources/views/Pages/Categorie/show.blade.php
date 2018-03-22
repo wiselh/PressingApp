@@ -67,28 +67,31 @@
                     <table class="table table-striped table-vcenter">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 10%;">ID</th>
+                            <th class="text-center" style="width: 10%;"></th>
                             <th>Nom Categorie</th>
                             <th class="text-center" style="width: 20%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <?php $count = 1; ?>
                         @foreach($categories as $categorie)
                         <tr>
                             <td class="text-center">
-                                {{$categorie->id_categorie}}
+                                {{$count}}
                             </td>
                             <td class="font-w600">{{$categorie->categorie_name}}</td>
                             <td class="text-center">
                                 <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-edit" data-toggle="modal" data-target="#modal-fromright"
+                                    <span data-toggle="tooltip" title="Modifier">
+                                    <button type="button" class="btn btn-sm btn-alt-primary" style="padding: 0 8px" data-toggle="modal" data-target="#modal-fromright"
                                             data-name="{{$categorie->categorie_name}}" data-id="{{$categorie->id_categorie}}">
                                         <i class="fa fa-pencil"></i>
                                     </button>
+                                        </span>
                                     <form action="/categories/{{$categorie->id_categorie}}" method="post">
                                         {{ method_field('DELETE') }}
                                         {{csrf_field()}}
-                                        <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
+                                        <button type="submit" class="btn btn-sm btn-alt-danger" style="padding: 0 8px" data-toggle="tooltip" title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </form>
@@ -96,6 +99,9 @@
                                 </div>
                             </td>
                         </tr>
+                        <?php
+                        $count ++;
+                        ?>
                         @endforeach
                         </tbody>
                     </table>

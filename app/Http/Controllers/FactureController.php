@@ -33,7 +33,6 @@ class FactureController extends Controller
 
         return view('Pages.Facture.show', [
             'factures' => $factures,
-
         ]);
     }
 
@@ -43,7 +42,6 @@ class FactureController extends Controller
 
         return view('Pages.Facture.allTrashed', [
             'factures' => $factures,
-
         ]);
     }
 
@@ -65,9 +63,6 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
     }
 
     /**
@@ -78,6 +73,20 @@ class FactureController extends Controller
      */
     public function show($id)
     {
+
+        $commande = DB::table('factures')->where('id_commande', $id)->first();
+        $vetements = Commande::find($id)->vetements;
+
+        $services = DB::table('services')->get();
+        $categories = DB::table('categories')->get();
+
+
+        return view('Pages.Facture.edit',[
+            'commandes' => $commande,
+            'vetements' => $vetements,
+            'services' => $services,
+            'categories' => $categories,
+        ]);
 
     }
 

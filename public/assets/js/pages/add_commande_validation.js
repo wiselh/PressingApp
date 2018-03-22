@@ -3,7 +3,7 @@ var BeFormValidation = function() {
 
     var initFormValidation = function(){
         jQuery('.add_commande_form').validate({
-            ignore: [],
+            // ignore: [],
             errorClass: 'invalid-feedback animated fadeInDown error-block',
             errorElement: 'div',
             errorPlacement: function(error, e) {
@@ -44,32 +44,38 @@ var BeFormValidation = function() {
 
             },
             submitHandler: function(e) {
+                swal.setDefaults({
+                    buttonsStyling: false,
+                    confirmButtonClass: 'btn btn-lg btn-alt-success m-5',
+                    cancelButtonClass: 'btn btn-lg btn-alt-danger m-5',
+                    inputClass: 'form-control'
+                });
+
                 $.ajax({
                     url: "/commandes",
                     type:"POST",
                     data:$('.add_commande_form').serialize(),
                     success: function(data) {
-                        // $(document).ajaxStop(function(){
-                        //     window.location.reload();
-                        // });
-                        alert('Success');
+                        swal('Success', 'Everything updated perfectly!', 'success');
                     },
                     error: function(data){
+                        swal('Oops...', 'Something went wrong!', 'error');
                         $errors = data.responseJSON;
-                        $.each( $errors, function( key, value ) {
-                            console.log(key +' ==> '+ value);
-                            var field = key.split('.');
-                            if(field.length>1)
-                                fieldname = '#'+field[0]+'\\.'+field[1];
-                            else
-                                fieldname = '#'+field[0];
-
-                            $(fieldname).parents('.add_commande_form .form-group').removeClass('is-invalid').addClass('is-invalid');
-                            $(fieldname).parents('.add_commande_form .form-group').find('.col-form-label').css('color','#ef5350');
-                            $(fieldname).parents('.add_commande_form .form-group').find('.invalid-feedback').remove();
-                            $(fieldname).parents('.add_commande_form .form-group')
-                                .append('<div class="invalid-feedback animated fadeInDown">'+value+'</div>');
-                        });
+                        console.log(data);
+                        // $.each( $errors, function( key, value ) {
+                        //     console.log(key +' ==> '+ value);
+                        //     var field = key.split('.');
+                        //     if(field.length>1)
+                        //         fieldname = '#'+field[0]+'\\.'+field[1];
+                        //     else
+                        //         fieldname = '#'+field[0];
+                        //
+                        //     $(fieldname).parents('.add_commande_form .form-group').removeClass('is-invalid').addClass('is-invalid');
+                        //     $(fieldname).parents('.add_commande_form .form-group').find('.col-form-label').css('color','#ef5350');
+                        //     $(fieldname).parents('.add_commande_form .form-group').find('.invalid-feedback').remove();
+                        //     $(fieldname).parents('.add_commande_form .form-group')
+                        //         .append('<div class="invalid-feedback animated fadeInDown">'+value+'</div>');
+                        // });
                     }
                 });
             }
@@ -116,31 +122,29 @@ var BeFormValidation = function() {
     };
     var initCheckPaymentMode = function () {
         // check payment mode
-        if($("input[type='radio']:checked").val()=='oui'){
-            $('#payment_mode').prop('disabled', false);
-            $('#payment_paid').prop('disabled', false);
-            }else{
+        // if($("input[type='radio']:checked").val()=='oui'){
+        //     $('#payment_mode').prop('disabled', false);
+        //     $('#payment_paid').prop('disabled', false);
+        // }
+        // else{
             $('#payment_mode').prop('disabled', true);
             $('#payment_paid').prop('disabled', true);
-        }
+        // }
+
         $("input[type='radio']").change(function () {
             if($("input[type='radio']:checked").val()=='oui'){
                 $('#payment_mode').prop('disabled', false);
                 $('#payment_paid').prop('disabled', false);
-                // $('#payment_mode').css('cursor','inherit');
-                // $('#payment_paid').css('cursor','no-inherit');
-
             }else{
                 $('#payment_mode').prop('disabled', true);
                 $('#payment_paid').prop('disabled', true);
-                // $('#payment_mode').css('cursor','no-drop');
-                // $('#payment_paid').css('cursor','no-drop');
+
             }
         });
     };
     var initCheckClient = function () {
         // check if is old client or new one
-        if($('#old_clientclient').val()!='')$('#check_client').val('old');
+        if($('#old_client').val()!='')$('#check_client').val('old');
         else $('#check_client').val('new');
 
         // set inputs empty when we the client is selected
@@ -173,7 +177,7 @@ var BeFormValidation = function() {
         // $('#add-new-client').click(function () {
         //     $('#close-new-client-form').css('display','inherit');
         //     $('#add-new-client').css('display','none');
-        //     $('#old_clientclient').val('').trigger('change');
+        //     $('#old_client').val('').trigger('change');
         //     $('.new-client-block').css('display','inherit');
         //     $('.new-client-block').toggleClass("bounceInRight bounceOutRight");
         // });
@@ -186,7 +190,7 @@ var BeFormValidation = function() {
                 if($(this).val()!='')
                 {
                     $(this).parents('.add_commande_form .form-group').removeClass('is-invalid');
-                    $(fieldname).parents('.add_commande_form .form-group').find('.col-form-label').css('color','#575757');
+                    $(this).parents('.add_commande_form .form-group').find('.col-form-label').css('color','#575757');
                     $(this).parents('.add_commande_form .form-group').find('.invalid-feedback').remove();
                 }
             });

@@ -60,29 +60,35 @@ class CommandeController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = [
-            'categorie.*' => "required",
-            'service.*' => 'required',
-            'price.*' => 'required',
-            'libelle.*' => 'required',
-            'paid' => 'required',
-            'commande_date_retrait' => 'required'
+//        $commande = Vetement::find(1)->commande;
+//        $client = Commande::find($commande->id_commande)->client;
+//        $vetements = Commande::find($commande->id_commande)->vetements;
+//         return ['vetement du commande 1' => $client,'vetemnts'=> $vetements];
 
-        ];
-        $messages = [
-            'categorie.*' => 'S\'il vous plaît entrer la categorie du pièce!',
-            'service.*' => 'S\'il vous plaît entrer le service pour cette pièce!',
-            'price.*' => 'S\'il vous plaît entrer le prix du pièce!',
-            'libelle.*' => 'S\'il vous plaît entrer le nom du pièce!',
-            'commande_date_retrait' => 'Le champ Date de Retrait est obligatoire.!',
-            'paid' => 'Choisez Oui ou Non.'
+//        $rules = [
+//            'categorie.*' => "required",
+//            'service.*' => 'required',
+//            'price.*' => 'required',
+//            'libelle.*' => 'required',
+//            'paid' => 'required',
+//            'commande_date_retrait' => 'required'
+//
+//        ];
+//        $messages = [
+//            'categorie.*' => 'S\'il vous plaît entrer la categorie du pièce!',
+//            'service.*' => 'S\'il vous plaît entrer le service pour cette pièce!',
+//            'price.*' => 'S\'il vous plaît entrer le prix du pièce!',
+//            'libelle.*' => 'S\'il vous plaît entrer le nom du pièce!',
+//            'commande_date_retrait' => 'Le champ Date de Retrait est obligatoire.!',
+//            'paid' => 'Choisez Oui ou Non.'
+//
+//        ];
+//        $this->validate($request, $rules, $messages);
 
-        ];
-        $this->validate($request, $rules, $messages);
 
-
+/*
         if ($request->check_client == 'old') {
-            $client = DB::table('clients')->where('id_client', $request->client)->first();
+            $client = DB::table('clients')->where('id_client', $request->client);
         } else {
             $client = new Client();
             $client->client_name = $request->client_name;
@@ -97,7 +103,7 @@ class CommandeController extends Controller
         if ($nbr < 1) {
             $num_fac = 18031300;
         } else {
-            $cmd = DB::table('commandes')->max('id_commande')->first();
+            $cmd = DB::table('commandes')->max('id_commande');
             $num_fac = $cmd->commande_num + 1;
         }
 
@@ -111,10 +117,10 @@ class CommandeController extends Controller
         // vetements
         $categorie = Input::get('categorie');
         $service = Input::get('service');
-        $libelle = Input::get('vetement_libelle');
-        $price = Input::get('vetement_price');
-        $quantity = Input::get('vetement_quantity');
-        $total = Input::get('vetement_total');
+        $libelle = Input::get('libelle');
+        $price = Input::get('price');
+        $quantity = Input::get('quantity');
+        $total = Input::get('total_price');
         $description = Input::get('vetement_description');
         $montant = 0;
         $pieces = 0;
@@ -125,11 +131,13 @@ class CommandeController extends Controller
         }
         $commande->commande_montant = $montant;
         $commande->commande_quantity = $pieces;
+        $commande->commande_paid =$request->paid;
         $commande->save();
 
         //payment
         $payment = new Payment();
         if ($request->paid == 'oui') {
+
             $payment->payment_mode = $request->payment_mode;
             $payment->payment_paid = $request->payment_paid;
             $rest = $montant - $request->payment_paid;
@@ -143,6 +151,7 @@ class CommandeController extends Controller
             $vetement->id_categorie=$categorie[$i];
             $vetement->id_service=$service[$i];
             $vetement->id_commande=$commande->id_commande;
+            $vetement->vetement_libelle=$libelle;
             $vetement->vetement_price=$price[$i];
             $vetement->vetement_quantity=$quantity[$i];
             $vetement->vetement_total=$total[$i];
@@ -151,6 +160,7 @@ class CommandeController extends Controller
         }
 
         return redirect('/commandes');
+*/
 
     }
 

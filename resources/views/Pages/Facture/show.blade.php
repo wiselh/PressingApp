@@ -6,15 +6,36 @@
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
     <style type="text/css">
-        .btn{
-            padding: 0px 8px;
+        .btn-table {
+            padding: 0 8px;
         }
-        th{
+
+        th {
             text-transform: none !important;
             font-size: 13px;
         }
-        .badge{
+
+        .badge {
             padding: 5px 10px 5px 10px;
+        }
+
+        .modal {
+            text-align: center;
+            padding: 0!important;
+        }
+
+        .modal:before {
+            content: '';
+            display: inline-block;
+            height: 100%;
+            vertical-align: middle;
+            margin-right: -4px;
+        }
+
+        .modal-dialog {
+            display: inline-block;
+            text-align: left;
+            vertical-align: middle;
         }
     </style>
 @endsection
@@ -44,48 +65,116 @@
                 </thead>
                 <tbody>
                 @foreach($factures as $facture)
-                <tr>
-                    <td class="font-w600 text-center ">{{$facture->commande_num}}</td>
-                    <td class="font-w600 text-center">{{$facture->client_name}}</td>
-                    <td class="font-w600 text-center">{{$facture->client_tele}}</td>
-                    <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date))}}</td>
-                    <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date_retrait))}}</td>
-                    <td class="font-w600 text-center">{{$facture->commande_quantity}} <a href="/vetements/{{$facture->id_commande}}">(voir)</a></td>
-                    <td class="font-w600 text-center">{{$facture->commande_montant}}DH (TTC)</td>
-                    <td class="font-w600 text-center">
-                        @if($facture->commande_paid=='oui')
-                            <span class="badge badge-success">Oui</span>
-                        @else
-                            <span class="badge badge-danger">No</span>
-                        @endif
-
-                    </td>
-                    <td class="text-center">
-                        <div class="btn-group">
-                            <form action="/factures/{{$facture->id_commande}}" method="post">
-                                {{ method_field('DELETE') }}
-                                {{csrf_field()}}
-                                <button type="submit" class="btn btn-alt-danger mr-5 mb-5">
-                                    <i class="fa fa-times mr-5"></i>Delete
+                    <tr>
+                        <td class="font-w600 text-center ">{{$facture->commande_num}}</td>
+                        <td class="font-w600 text-center">{{$facture->client_name}}</td>
+                        <td class="font-w600 text-center">{{$facture->client_tele}}</td>
+                        <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date))}}</td>
+                        <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date_retrait))}}</td>
+                        <td class="font-w600 text-center">{{$facture->commande_quantity}}</td>
+                        <td class="font-w600 text-center">{{$facture->commande_montant}}DH (TTC)</td>
+                        <td class="font-w600 text-center">
+                            @if($facture->commande_paid=='oui')
+                                <span class="badge badge-success">Oui</span>
+                            @else
+                                <span class="badge badge-danger">No</span>
+                            @endif
+                        </td>
+                        <td class="text-center">
+                            <div class="btn-group">
+                                <a href="/factures/{{$facture->id_commande}}">
+                                    <button type="button" class="btn btn-sm btn-table btn-alt-primary" data-toggle="tooltip" title="Edit"
+                                            data-id="{{$facture->id_commande}}">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                </a>
+                                <button type="button" class="btn btn-sm btn-table btn-alt-danger" data-toggle="tooltip" title="Delete"
+                                        data-id="{{$facture->id_commande}}">
+                                    <i class="fa fa-times"></i>
                                 </button>
-                            </form>
-                            <a href="/impression/{{$facture->id_commande}}">
-
-                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
-                                    <i class="fa fa-upload mr-5"></i>Impression
-                                </button>
-                            </a>
-
-
-                        </div>
-                    </td>
-                </tr>
+                                <span data-toggle="tooltip" title="Impression">
+                                    <button type="button" class="btn btn-sm btn-table btn-alt-warning"  data-toggle="modal"
+                                            data-target="#modal-normal"
+                                            data-id="{{$facture->id_commande}}">
+                                        <i class="fa fa-upload" ></i>
+                                    </button>
+                                </span>
+                            </div>
+                        </td>
+                    </tr>
                 @endforeach
                 </tbody>
             </table>
         </div>
     </div>
-    <!-- END Dynamic Table Full -->
+
+
+    {{--Impression--}}
+    <div class="modal" id="modal-normal"  tabindex="-1" role="dialog" aria-labelledby="modal-normal" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Impression</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12 ">
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    Ticket <i class="fa fa-print"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    Code Bar <i class="fa fa-barcode"></i>
+                                </button>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                    Facture <i class="fa fa-print"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        Pressing 2018
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Show items -->
+    <div class="modal" id="modal-items" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Pieces de cette commande</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{--<button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>--}}
+                    {{--<button type="button" class="btn btn-alt-success" data-dismiss="modal">--}}
+                    {{--<i class="fa fa-check"></i> Perfect--}}
+                    {{--</button>--}}
+                </div>
+            </div>
+        </div>
+    </div>
 
 @endsection
 

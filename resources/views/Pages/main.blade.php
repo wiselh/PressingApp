@@ -6,8 +6,8 @@
         @yield('page_style')
         <style type="text/css">
             #page-container.page-header-modern #page-header > .content-header{
-                padding-top: 0px;
-                padding-bottom: 0px;
+                padding-top: 0;
+                padding-bottom: 0;
             }
             #page-container.page-header-modern #page-header {
                 background-color: #fff;
@@ -38,6 +38,7 @@
                 color: #575757;
                 cursor: pointer;
             }
+            /*necessary*/
             .photo-profile:hover,.photo-user-profile:hover{
                 border: 1px dashed #42a5f5;
                 color: #42a5f5;
@@ -49,7 +50,6 @@
             .block-header h3,.block-header-default h3 {
                  color: white
              }
-
 
         </style>
         <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzonejs/min/dropzone.min.css')}}">
@@ -163,7 +163,7 @@
 {{--        <script src="{{asset('assets/js/core/js.cookie.min.js')}}"></script>--}}
         <script src="{{asset('assets/js/codebase.js')}}"></script>
         <!-- Page JS Plugins -->
-{{--        <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>--}}
+        <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
         <!-- Page JS Code -->
         <script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
         <script src="{{asset('assets/js/pages/profile_validation.js')}}"></script>

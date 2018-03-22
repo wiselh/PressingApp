@@ -1,9 +1,3 @@
-/*
- *  Document   : be_ui_activity.js
- *  Author     : pixelcave
- *  Description: Custom JS code used in Activity Page
- */
-
 var BeUIActivity = function() {
 
     // SweetAlert2, for more examples you can check out https://github.com/limonte/sweetalert2

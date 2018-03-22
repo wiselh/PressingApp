@@ -16,8 +16,7 @@ var OpAuthSignIn = function() {
             },
             rules: {
                 'email': {
-                    required: true,
-                    email: true
+                    required: true
                 },
                 'password': {
                     required: true
@@ -25,8 +24,7 @@ var OpAuthSignIn = function() {
             },
             messages: {
                 'email': {
-                    required: 'Entrez votre email',
-                    email:'S\'il veux plait enter l\'adresse email valid'
+                    required: 'Entrez votre adresse email ou nom d\'utilisateur '
                 },
                 'password': {
                     required: 'Entrez votre mot de pass'

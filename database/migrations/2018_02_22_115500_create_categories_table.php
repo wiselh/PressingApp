@@ -19,6 +19,8 @@ class CreateCategoriesTable extends Migration
             $table->increments('id_categorie');
             $table->string("categorie_name");
             $table->timestamps();
+            $table->softDeletes();
+
         });
     }
 

@@ -109,9 +109,7 @@ class CategorieController extends Controller
      */
     public function destroy($id)
     {
-//        $categorie = Categorie::findOrFail($id);
-//        $categorie = DB::table('categories')->where('id_categorie', $id)->first();
-        DB::table('categories')->where('id_categorie', '=', $id)->delete();
+        Categorie::destroy($id);
         return redirect('/categories');
     }
 }

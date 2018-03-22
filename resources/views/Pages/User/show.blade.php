@@ -2,23 +2,15 @@
 
 @section('page_style')
     <!-- Stylesheets -->
-    <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
+
     <style type="text/css">
         th{
             font-size: 10px;
         }
-        .btn-edit{
-            color: #fff;
-            background-color: #00acfc;
-            border-color: #00acfc;
-            padding: 0px 8px;
-        }
-        .btn-delete{
-            color: #fff;
-            background-color: #fb5953;
-            border-color: #fb5953;
-            padding: 0px 8px;
+        .btn-table{
+            padding: 0 8px;
         }
         .upload-btn-wrapper input[type=file] {
             font-size: 20px;
@@ -31,13 +23,6 @@
         .btn-block-option{
             cursor: pointer;
         }
-
-        /*.error-lbl-color,.error-lbl2-color{*/
-            /*color: #ef5350;*/
-        /*}*/
-        /*.error-border-color,.error-border2-color{*/
-            /*border-bottom: 1px solid #ef5350;*/
-        /*}*/
         .optionnel{
             font-size: 11px;
         }
@@ -47,17 +32,15 @@
         .browse:hover {
             background-color: #ebeef2;
         }
-
     </style>
-    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
 @section('content')
 <!-- All Users -->
 <div class="block">
     <div class="block-header block-header-default">
-        <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i> Tous Les Clients</h3>
-        <button type="button" class="btn btn-alt-info ml-auto" data-toggle="modal" data-target="#modal-large">Ajouter Un Utilisateur</button>
+        <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i>Tous Les Clients</h3>
+        <button type="button" class="btn btn-alt-info ml-auto" data-toggle="modal" data-target="#modal-large">Ajouter un Utilisateur</button>
     </div>
     <div class="block-content block-content-full">
         <table class="table table-bordered table-responsive table-striped table-vcenter js-dataTable-full mytable">
@@ -85,11 +68,11 @@
                     <td class="font-w400 email">{{$user->email}}</td>
                     <td class="text-center">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-edit" data-toggle="modal" data-id="{{$user->id}}" title="Edit" data-target="#modal-fromright">
+                            <button type="button" class="btn btn-sm btn-alt-primary btn-table" data-toggle="modal" data-id="{{$user->id}}" title="Edit" data-target="#modal-fromright">
                                 <i class="fa fa-pencil"></i>
                             </button>
                             @if($user->id!=1)
-                                <button type="button" data-id="{{$user->id}}" class="js-swal-confirm btn btn-sm btn-delete">
+                                <button type="button" data-id="{{$user->id}}" class="js-swal-confirm btn-table btn btn-sm btn-alt-danger">
                                     <i class="fa fa-times"></i>
                                 </button>
                             @endif
@@ -344,8 +327,8 @@
     <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
     <!-- Page JS Plugins -->
-    <script src="{{('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page JS Code -->
     <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>

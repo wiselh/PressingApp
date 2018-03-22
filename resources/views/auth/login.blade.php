@@ -83,15 +83,7 @@
                                         <div class="col-12">
                                             <div class="form-material floating">
                                                 <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
-                                                <label for="email">Nom d'autilisateur</label>
-                                                {{--@if ($errors->has('email'))--}}
-                                                    {{--<span class="help-block">--}}
-                                                         {{--<strong>{{ $errors->first('email') }}</strong>--}}
-                                                    {{--</span>--}}
-                                                {{--@endif--}}
-
-
-
+                                                <label for="email">Nom d'autilisateur ou Adresse e-mail</label>
                                             </div>
                                         </div>
                                     </div>
@@ -100,18 +92,6 @@
                                             <div class="form-material floating">
                                                 <input type="password" class="form-control" id="password" name="password" >
                                                 <label for="password">Mot de pass</label>
-                                                {{--@if ($errors->has('password'))--}}
-                                                    {{--<span class="help-block">--}}
-                                                        {{--<strong>{{ $errors->first('password') }}</strong>--}}
-                                                    {{--</span>--}}
-                                                {{--@endif--}}
-                                                {{--@if ($errors->has('password'))--}}
-                                                    {{--<div class="alert alert-danger alert-dismissable" role="alert">--}}
-                                                                {{--<span class="help-block">--}}
-                                                                    {{--<p class="mb-0">{{ $errors->first('password') }}</p>--}}
-                                                                {{--</span>--}}
-                                                    {{--</div>--}}
-                                                {{--@endif--}}
                                             </div>
                                         </div>
                                     </div>
@@ -129,9 +109,6 @@
                                             <i class="si si-login mr-10"></i> Entrez
                                         </button>
                                         <div class="mt-30">
-                                            {{--<a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="op_auth_signup2.html">--}}
-                                                {{--<i class="fa fa-plus mr-5"></i> Create Account--}}
-                                            {{--</a>--}}
                                             <a class="link-effect text-muted mr-10 mb-5 d-inline-block" href="{{ route('password.request') }}">
                                                 <i class="fa fa-warning mr-5"></i>Oubliez le mot de pass!
                                             </a>

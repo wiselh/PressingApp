@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Client;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 use PDF;
 
 class ClientController extends Controller
@@ -87,11 +89,10 @@ class ClientController extends Controller
             ->where('id_client', $id)
             ->update(
                 [
-                    'nom' =>$request->nom,
-                    'tel' =>$request->tel,
-                    'adresse' =>$request->adresse
+                    'client_name' =>$request->fullname,
+                    'client_tele' =>$request->tele,
+                    'client_adresse' =>$request->adresse
                 ]);
-
 
         return redirect('/clients');
     }
@@ -105,6 +106,16 @@ class ClientController extends Controller
     public function destroy($id)
     {
         DB::table('clients')->where('id_client', '=', $id)->delete();
+        return redirect('/clients');
+    }
+    public function deleteChecked(Request $request){
+
+        $ids= $request->id;
+
+        foreach ($ids as $id){
+            Client::destroy($id);
+        }
+
         return redirect('/clients');
     }
 

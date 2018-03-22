@@ -236,7 +236,7 @@ $(function() {
     });
 
     // get data from table to modal
-    $('.btn-edit').click(function () {
+    $('.btn-alt-primary').click(function () {
         $('.edit-user-form').find('#add').removeAttr('data-id');
         $('.edit-user-form').find('.profile').removeAttr('src');
         $('.edit-user-form').find('#username-edit').val('');

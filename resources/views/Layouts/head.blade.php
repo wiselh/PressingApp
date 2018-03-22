@@ -26,5 +26,5 @@
     <!-- Codebase framework -->
     <link rel="stylesheet" id="css-main" href="{{asset('assets/css/codebase.min.css')}}">
 
-{{--    <script src="{{asset('assets/js/jquery/jquery-3.3.1.js')}}"></script>--}}
-{{--    <script src="{{asset('assets/js/jquery/jquery-3.3.1.min.js')}}"></script>--}}
+    <script src="{{asset('assets/js/jquery/jquery-3.3.1.js')}}"></script>
+    <script src="{{asset('assets/js/jquery/jquery-3.3.1.min.js')}}"></script>

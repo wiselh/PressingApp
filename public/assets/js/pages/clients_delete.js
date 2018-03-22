@@ -17,7 +17,7 @@ var BeUIActivity = function() {
         });
 
         // Init an example confirm alert on button click
-        jQuery('.btn-delete').on('click', function(e){
+        jQuery('.btn-alt-danger').on('click', function(e){
             swal({
                 title: 'Vous Êtes Sûr?',
                 text: 'Vous ne pourrez pas récupérer ce client!',
@@ -41,7 +41,7 @@ var BeUIActivity = function() {
                         type:"GET",
                         data:id,
                         success: function(data) {
-                            swal('Supprimé!', 'l\'utilisateur a été supprimé.', 'success');
+                            swal('Supprimé!', 'le client a été supprimé.', 'success');
                             $(e.currentTarget).closest('.clients').remove();
                         },
                         error: function(data){
@@ -54,6 +54,54 @@ var BeUIActivity = function() {
                 }
             );
         });
+        jQuery('.delete_checked').on('click', function (e) {
+            var AllIds = [];
+            $("#checkbox_delete:checked").each(function() {
+                AllIds.push($(this).attr('data-id'));
+            });
+            if(AllIds.length <=0)
+            {
+                swal('<i class="fa fa-"></i>Sélectionné les clients!');
+            }
+            else {
+                swal({
+                    title: 'Vous Êtes Sûr?',
+                    text: 'Vous ne pourrez pas récupérer ces '+AllIds.length+' clients!',
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d26a5c',
+                    confirmButtonText: 'Oui, Supprimer!',
+                    html: false,
+                    preConfirm: function() {
+                        return new Promise(function (resolve) {
+                            setTimeout(function () {
+                                resolve();
+                            }, 50);
+                        });
+                    }
+                }).then(
+                    function (result) {
+                        var data =  AllIds ;
+                        $.ajax({
+                            url: "/deleteChecked",
+                            type:"get",
+                            data: {id:data},
+                            success: function(data) {
+                                swal('Supprimé!', 'le client a été supprimé.', 'success');
+                                $.each(AllIds,function (index,value) {
+                                        $('*[data-id="'+value+'"]').closest('.client_row').remove();
+                                });
+                            },
+                            error: function(data){
+                                // $errors = data.sresponseJSON;
+                                swal('Oops...', 'Quelque chose s\'est mal passé!', 'error');
+                            }
+                        });
+                    }, function(dismiss) {
+                        // dismiss can be 'cancel', 'overlay', 'esc' or 'timer'
+                    }
+                )}
+            });
     };
 
     return {

@@ -26,6 +26,7 @@
         </style>
 {{--        <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2.min.css')}}">--}}
 {{--        <link rel="stylesheet" href="{{asset('assets/js/plugins/select2/select2-bootstrap.min.css')}}">--}}
+        <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 
 @endsection
 
@@ -300,6 +301,10 @@
 
         <!-- Page JS Code -->
         <script src="{{asset('assets/js/pages/add_commande_validation.js')}}"></script>
+
+        <!-- sweetalert JS-->
+        <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+        <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
 
 @endsection
 

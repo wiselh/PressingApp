@@ -29,6 +29,7 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::post('/profile/password/{id}','ProfileController@updatePassword');
     Route::post('/profile/{id}','ProfileController@updateAdmin');
+
     Route::resource('/commandes','CommandeController');
     Route::resource('/factures','FactureController');
     Route::resource('/vetements','VetementController');
@@ -38,6 +39,7 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::resource('/clients','ClientController');
     Route::get('/clients/delete/{id}','ClientController@destroy');
+    Route::get('/deleteChecked','ClientController@deleteChecked');
 
     Route::get('/all-commandes','FactureController@allCommandes');
 

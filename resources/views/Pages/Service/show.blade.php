@@ -2,12 +2,13 @@
 
 @section('page_style')
     <style>
-        .btn-edit{
+        .btn-edit {
             color: #fff;
             background-color: #00acfc;
             border-color: #00acfc;
         }
-        .btn-delete{
+
+        .btn-delete {
             color: #fff;
             background-color: #fb5953;
             border-color: #fb5953;
@@ -35,9 +36,12 @@
                                     <div class="row">
                                         <div class="form-group col-md-12">
                                             <div class="row">
-                                                <label class="col-md-4 col-sm-12 col-form-label" for="service_name">Nom du Service <span class="text-danger">*</span></label>
+                                                <label class="col-md-4 col-sm-12 col-form-label" for="service_name">Nom
+                                                    du Service <span class="text-danger">*</span></label>
                                                 <div class="col-md-6 col-sm-12 ">
-                                                    <input type="text" class="form-control" id="service_name" name="service_name" placeholder="Entez le nom du service" required>
+                                                    <input type="text" class="form-control" id="service_name"
+                                                           name="service_name" placeholder="Entez le nom du service"
+                                                           required>
                                                 </div>
                                                 <div class="col-md-2 col-sm-12 ">
                                                     <button type="submit" class="btn btn-alt-primary">Ajouter</button>
@@ -48,7 +52,8 @@
                                 </div>
                             </form>
                             <div class="form-group col-md-12">
-                                <span class="text-danger">*</span> <label class="col-lg-4 col-form-label" for="date"> : Champ Obligatoire</label>
+                                <span class="text-danger">*</span> <label class="col-lg-4 col-form-label" for="date"> :
+                                    Champ Obligatoire</label>
                             </div>
                         </div>
                     </div>
@@ -63,35 +68,41 @@
                     <table class="table table-striped table-vcenter">
                         <thead>
                         <tr>
-                            <th class="text-center" style="width: 10%;">ID</th>
+                            <th class="text-center" style="width: 10%;"></th>
                             <th>Nom du Service</th>
                             <th class="text-center" style="width: 20%">Actions</th>
                         </tr>
                         </thead>
                         <tbody>
+                        <?php $count = 1; ?>
                         @foreach($services as $service)
-                        <tr>
-                            <td class="text-center">
-                                {{$service->id_service}}
-                            </td>
-                            <td class="font-w600">{{$service->service_name}}</td>
-                            <td class="text-center">
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-sm btn-edit" data-toggle="modal" data-target="#modal-fromright"
-                                            data-name="{{$service->service_name}}" data-id="{{$service->id_service}}">
-                                        <i class="fa fa-pencil"></i>
-                                    </button>
+                            <tr>
+                                <td class="text-center">
+                                    {{$count}}
+                                </td>
+                                <td class="font-w600">{{$service->service_name}}</td>
+                                <td class="text-center">
+                                    <div class="btn-group">
+                                    <span data-toggle="tooltip" title="Modifier">
+                                        <button type="button" class="btn btn-sm btn-alt-primary" style="padding: 0 8px" data-toggle="modal"
+                                                data-target="#modal-fromright"
+                                                data-name="{{$service->service_name}}" data-id="{{$service->id_service}}">
+                                            <i class="fa fa-pencil"></i>
+                                        </button>
+                                    </span>
                                     <form action="/services/{{$service->id_service}}" method="post">
                                         {{ method_field('DELETE') }}
                                         {{csrf_field()}}
-                                        <button type="submit" class="btn btn-sm btn-delete" data-toggle="tooltip" title="Delete">
+                                        <button type="submit" class="btn btn-sm btn-alt-danger" style="padding: 0 8px" data-toggle="tooltip"
+                                                title="Delete">
                                             <i class="fa fa-times"></i>
                                         </button>
                                     </form>
 
-                                </div>
-                            </td>
-                        </tr>
+                                    </div>
+                                </td>
+                            </tr>
+                            <?php $count++; ?>
                         @endforeach
                         </tbody>
                     </table>
@@ -100,7 +111,8 @@
             </div>
         </div>
         <!-- From Right Modal -->
-        <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright" aria-hidden="true">
+        <div class="modal fade" id="modal-fromright" tabindex="-1" role="dialog" aria-labelledby="modal-fromright"
+             aria-hidden="true">
             <div class="modal-dialog modal-dialog-fromright" role="document">
                 <div class="modal-content">
                     <form class="edit-service-form" method="post" action="/services">
@@ -110,22 +122,23 @@
                             <div class="block-header bg-primary-dark">
                                 <h3 class="block-title">Edit le Service</h3>
                                 <div class="block-options">
-                                    <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                    <button type="button" class="btn-block-option" data-dismiss="modal"
+                                            aria-label="Close">
                                         <i class="si si-close"></i>
                                     </button>
                                 </div>
                             </div>
                             <div class="block-content">
-
                                 <div class="form-group col-md-12">
                                     <div class="row">
-                                        <label class="col-md-6 col-sm-12 col-form-label" for="service_name">Nom du Categorie <span class="text-danger">*</span></label>
+                                        <label class="col-md-6 col-sm-12 col-form-label" for="service_name">Nom du
+                                            Categorie <span class="text-danger">*</span></label>
                                         <div class="col-md-6 col-sm-12 ">
-                                            <input type="text" class="form-control" id="service_name" name="service_name" required placeholder="Enter le nom du service.." >
+                                            <input type="text" class="form-control" id="service_name"
+                                                   name="service_name" required placeholder="Enter le nom du service..">
                                         </div>
                                     </div>
                                 </div>
-
                                 <div class="form-group col-md-12">
                                     <label><span class="text-danger">*</span> : Champ Obligatoire</label>
                                 </div>
@@ -163,14 +176,14 @@
 
     <script type="text/javascript">
         $(function () {
-            $('.btn-edit').click(function () {
+            $('.btn-alt-primary').click(function () {
                 var IdServ = $(this).data('id');
                 var NameServ = $(this).data('name');
                 $(".edit-service-form #service_name").val(NameServ);
-                $(".edit-service-form").attr("action", "/services/"+IdServ);
+                $(".edit-service-form").attr("action", "/services/" + IdServ);
             })
         });
-        $('.btn-delete').click(function () {
+        $('.btn-alt-danger').click(function () {
             swal('Succès', 'le service a été supprimé.!', 'success');
         });
     </script>

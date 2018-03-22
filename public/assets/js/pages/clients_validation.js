@@ -1,14 +1,14 @@
 // Init form validation on material wizard form
 $(function() {
 
-    $('.btn-edit').click(function () {
+    $('.btn-alt-primary').click(function () {
         var id = $(this).data('id');
         var fullname = $(this).data('name');
         var tele = $(this).data('tele');
         var adresse = $(this).data('adresse');
-
+        // alert(id);
         $('.edit-client-form').find('#fullname').val(fullname);
-        $('.edit-client-form').attr('action','/clients/');
+        $('.edit-client-form').attr('action','/clients/'+id);
         $('.edit-client-form').find('#adresse').val(adresse);
         $('.edit-client-form').find('#tele').val(tele);
 

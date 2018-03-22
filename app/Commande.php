@@ -24,7 +24,7 @@ class Commande extends Model
      */
     public function vetements()
     {
-        return $this->hasMany(Vetement::class);
+        return $this->hasMany(Vetement::class,'id_commande','id_commande');
     }
 
     /**
@@ -32,15 +32,19 @@ class Commande extends Model
      */
     public function client()
     {
-        return $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class,'id_client');
     }
 
+//    public function client()
+//    {
+//        return $this->hasOne(Client::class);
+//    }
     /**
      * Get the payments for the Commande.
      */
     public function payments()
     {
-        return $this->hasMany(Payment::class);
+        return $this->hasMany(Payment::class,'id_payment');
     }
 
 }
