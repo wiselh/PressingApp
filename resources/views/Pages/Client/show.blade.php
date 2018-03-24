@@ -59,7 +59,6 @@
                         </td>
                         <td class="text-center">
                             <p class="font-w600 mb-10">{{$client->client_name}}</p>
-                            {{--<p class="text-muted mb-0">Customer details and further information</p>--}}
                         </td>
                         <td class="d-none d-sm-table-cell text-center">
                             {{$client->client_tele}}
@@ -101,52 +100,6 @@
                     Codebase.helpers('table-tools');
                 });
             </script>
-            {{--<table class="table table-bordered table-responsive table-striped table-vcenter js-dataTable-full mytable">--}}
-                {{--<thead>--}}
-                {{--<tr>--}}
-                    {{--<th class="d-none d-sm-table-cell">Nom</th>--}}
-                    {{--<th class="text-center">Adresse</th>--}}
-                    {{--<th class="d-none d-sm-table-cell" style="width: 20%;">Telephone</th>--}}
-                    {{--<th class="text-center" style="width: 15%;">Action</th>--}}
-                {{--</tr>--}}
-                {{--</thead>--}}
-                {{--<tbody>--}}
-                {{--@foreach($clients as $client)--}}
-                    {{--<tr class="clients">--}}
-                        {{--<td class="font-w600">{{$client->client_name}}</td>--}}
-                        {{--<td class="d-none d-sm-table-cell text-center">--}}
-                            {{--@if($client->client_adresse=='')--}}
-                                {{-----}}
-                            {{--@else--}}
-                                {{--{{$client->client_adresse}}--}}
-                            {{--@endif--}}
-                        {{--</td>--}}
-                        {{--<td class="d-none d-sm-table-cell text-center">--}}
-                            {{--@if($client->client_tele=='')--}}
-                                {{-----}}
-                            {{--@else--}}
-                                {{--{{$client->client_tele}}--}}
-                            {{--@endif--}}
-                        {{--</td>--}}
-                        {{--<td class="text-center">--}}
-                            {{--<div class="btn-group">--}}
-                                {{--<button type="button" class="btn btn-sm btn-edit" data-toggle="modal"--}}
-                                        {{--data-id="{{$client->id_client}}"--}}
-                                        {{--data-name="{{$client->client_name}}"--}}
-                                        {{--data-tele="{{$client->client_tele}}"--}}
-                                        {{--data-adresse="{{$client->client_adresse}}" title="Edit"--}}
-                                        {{--data-target="#modal-fromright">--}}
-                                    {{--<i class="fa fa-pencil"></i>--}}
-                                {{--</button>--}}
-                                {{--<button type="button" data-id="{{$client->id_client}}" class="btn btn-sm btn-delete">--}}
-                                    {{--<i class="fa fa-times"></i>--}}
-                                {{--</button>--}}
-                            {{--</div>--}}
-                        {{--</td>--}}
-                    {{--</tr>--}}
-                {{--@endforeach--}}
-                {{--</tbody>--}}
-            {{--</table>--}}
         </div>
     </div>
     <!-- END Table  -->

@@ -218,7 +218,8 @@ $(function() {
                     // $(document).ajaxStop(function(){
                     //     window.location.reload();
                     // });
-                    alert('Success');
+                    swal('Modifier!', 'l\'utilisateur a été modifier.', 'success');
+                    location.reload();
                 },
                 error: function(data){
                     $errors = data.responseJSON;

@@ -61,7 +61,7 @@ var BeUIActivity = function() {
             });
             if(AllIds.length <=0)
             {
-                swal('<i class="fa fa-"></i>Sélectionné les clients!');
+                    swal('', 'Sélectionné les clients!', 'warning');
             }
             else {
                 swal({
@@ -88,9 +88,10 @@ var BeUIActivity = function() {
                             data: {id:data},
                             success: function(data) {
                                 swal('Supprimé!', 'le client a été supprimé.', 'success');
-                                $.each(AllIds,function (index,value) {
-                                        $('*[data-id="'+value+'"]').closest('.client_row').remove();
-                                });
+                                // $.each(AllIds,function (index,value) {
+                                //         $('*[data-id="'+value+'"]').closest('.client_row').remove();
+                                // });
+                                location.reload();
                             },
                             error: function(data){
                                 // $errors = data.sresponseJSON;

@@ -2,26 +2,17 @@
 
 namespace App\Http\Controllers;
 
-
-use App\Categorie;
 use App\Commande;
-use App\Service;
+use App\Payment;
 use Illuminate\Http\Request;
-use App\Client;
-use App\Facture;
-use App\Vetement;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Database\Query\Builder;
 
-
-class FactureController extends Controller
+class PaymentController extends Controller
 {
-
     public function __construct()
     {
         $this->middleware('auth');
     }
+
     /**
      * Display a listing of the resource.
      *
@@ -29,11 +20,8 @@ class FactureController extends Controller
      */
     public function index()
     {
-
-
+        return redirect('/commandes');
     }
-
-
 
     /**
      * Show the form for creating a new resource.
@@ -42,7 +30,7 @@ class FactureController extends Controller
      */
     public function create()
     {
-
+        //
     }
 
     /**
@@ -53,6 +41,25 @@ class FactureController extends Controller
      */
     public function store(Request $request)
     {
+        $id = $request->id_commande;
+
+        $commande = Commande::find($id);
+        $rest_payment = Commande::find($id)->restPayment();
+
+        $payment = new Payment;
+        $payment->payment_mode=$request->mode;
+        $payment->payment_paid=$request->paid;
+        if ($rest_payment <= $request->paid) {
+            $payment->payment_rest = 0;
+            $commande->commande_paid ='oui';
+        }
+        else $payment->payment_rest= $rest_payment - $request->paid;
+        $payment->id_commande=$request->id_commande;
+
+        $payment->save();
+        $commande->save();
+
+        return redirect('/commandes/'.$id);
     }
 
     /**
@@ -63,7 +70,7 @@ class FactureController extends Controller
      */
     public function show($id)
     {
-
+        return redirect('/commandes');
     }
 
     /**
@@ -97,7 +104,6 @@ class FactureController extends Controller
      */
     public function destroy($id)
     {
-
+        //
     }
-
 }

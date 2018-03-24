@@ -50,32 +50,33 @@ var BeFormValidation = function() {
                     cancelButtonClass: 'btn btn-lg btn-alt-danger m-5',
                     inputClass: 'form-control'
                 });
-
                 $.ajax({
                     url: "/commandes",
                     type:"POST",
                     data:$('.add_commande_form').serialize(),
                     success: function(data) {
                         swal('Success', 'Everything updated perfectly!', 'success');
+                        // location.reload();
+                        window.location.replace("/commandes");
                     },
                     error: function(data){
                         swal('Oops...', 'Something went wrong!', 'error');
                         $errors = data.responseJSON;
                         console.log(data);
-                        // $.each( $errors, function( key, value ) {
-                        //     console.log(key +' ==> '+ value);
-                        //     var field = key.split('.');
-                        //     if(field.length>1)
-                        //         fieldname = '#'+field[0]+'\\.'+field[1];
-                        //     else
-                        //         fieldname = '#'+field[0];
-                        //
-                        //     $(fieldname).parents('.add_commande_form .form-group').removeClass('is-invalid').addClass('is-invalid');
-                        //     $(fieldname).parents('.add_commande_form .form-group').find('.col-form-label').css('color','#ef5350');
-                        //     $(fieldname).parents('.add_commande_form .form-group').find('.invalid-feedback').remove();
-                        //     $(fieldname).parents('.add_commande_form .form-group')
-                        //         .append('<div class="invalid-feedback animated fadeInDown">'+value+'</div>');
-                        // });
+                        $.each( $errors, function( key, value ) {
+                            console.log(key +' ==> '+ value);
+                            var field = key.split('.');
+                            if(field.length>1)
+                                fieldname = '#'+field[0]+'\\.'+field[1];
+                            else
+                                fieldname = '#'+field[0];
+
+                            $(fieldname).parents('.add_commande_form .form-group').removeClass('is-invalid').addClass('is-invalid');
+                            $(fieldname).parents('.add_commande_form .form-group').find('.col-form-label').css('color','#ef5350');
+                            $(fieldname).parents('.add_commande_form .form-group').find('.invalid-feedback').remove();
+                            $(fieldname).parents('.add_commande_form .form-group')
+                                .append('<div class="invalid-feedback animated fadeInDown">'+value+'</div>');
+                        });
                     }
                 });
             }

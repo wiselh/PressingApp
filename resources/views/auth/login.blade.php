@@ -83,7 +83,7 @@
                                         <div class="col-12">
                                             <div class="form-material floating">
                                                 <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
-                                                <label for="email">Nom d'autilisateur ou Adresse e-mail</label>
+                                                <label for="email">Login</label>
                                             </div>
                                         </div>
                                     </div>

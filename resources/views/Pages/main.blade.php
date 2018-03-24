@@ -68,7 +68,8 @@
                 <div class="content">
                         <div class="row">
                             <div class="col-6 col-md-4 col-xl-2">
-                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-primary" href="/commandes">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-primary"
+                                   href="/commande/add">
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Nouveau</p>
                                     </div>
@@ -80,7 +81,7 @@
                                 </a>
                             </div>
                             <div class="col-6 col-md-4 col-xl-2">
-                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-success" href="/factures">
+                                <a class="block block-transparent ribbon ribbon-bookmark ribbon-crystal ribbon-left text-center bg-success" href="/commandes">
                                     <div class="ribbon-box">{{$nbr_commandes}}</div>
                                     <div class="block-content bg-black-op-5">
                                         <p class="font-w600 text-white">Commades</p>

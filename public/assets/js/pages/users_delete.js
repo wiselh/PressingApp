@@ -66,7 +66,8 @@ var BeUIActivity = function() {
                         data:id,
                         success: function(data) {
                             swal('Supprimé!', 'l\'utilisateur a été supprimé.', 'success');
-                            $(e.currentTarget).closest('.mycells').remove();
+                            // $(e.currentTarget).closest('.mycells').remove();
+                            location.reload();
                         },
                         error: function(data){
                             $errors = data.responseJSON;

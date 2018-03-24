@@ -5,11 +5,12 @@
     <!-- Stylesheets -->
     <!-- Page JS Plugins CSS -->
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
+
     <style type="text/css">
-        .btn-table {
+        .btn{
             padding: 0 8px;
         }
-
         th {
             text-transform: none !important;
             font-size: 13px;
@@ -82,13 +83,13 @@
                         </td>
                         <td class="text-center">
                             <div class="btn-group">
-                                <a href="/factures/{{$facture->id_commande}}">
+                                <a href="/commandes/{{$facture->id_commande}}">
                                     <button type="button" class="btn btn-sm btn-table btn-alt-primary" data-toggle="tooltip" title="Edit"
                                             data-id="{{$facture->id_commande}}">
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-table btn-alt-danger" data-toggle="tooltip" title="Delete"
+                                <button type="button" class="btn btn-sm btn-table btn-alt-danger btn-delete" data-toggle="tooltip" title="Delete"
                                         data-id="{{$facture->id_commande}}">
                                     <i class="fa fa-times"></i>
                                 </button>
@@ -149,33 +150,6 @@
         </div>
     </div>
 
-    <!-- Show items -->
-    <div class="modal" id="modal-items" tabindex="-1" role="dialog" aria-labelledby="modal-large" aria-hidden="true">
-        <div class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class="block block-themed block-transparent mb-0">
-                    <div class="block-header bg-primary-dark">
-                        <h3 class="block-title">Pieces de cette commande</h3>
-                        <div class="block-options">
-                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
-                                <i class="si si-close"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="block-content">
-
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    {{--<button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>--}}
-                    {{--<button type="button" class="btn btn-alt-success" data-dismiss="modal">--}}
-                    {{--<i class="fa fa-check"></i> Perfect--}}
-                    {{--</button>--}}
-                </div>
-            </div>
-        </div>
-    </div>
-
 @endsection
 
 @section('page_script')
@@ -185,11 +159,17 @@
     <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
     <!-- Page JS Plugins -->
-    <script src="{{('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-    <script src="{{('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
 
     <!-- Page JS Code -->
-    <script src="{{('assets/js/pages/be_tables_datatables.js')}}"></script>
+    <script src="{{asset('assets/js/pages/be_tables_datatables.js')}}"></script>
+    <script src="{{asset('assets/js/pages/commande_delete.js')}}"></script>
+
+    <!-- sweetalert2-->
+    <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
+    <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
 
 @endsection
 

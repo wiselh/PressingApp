@@ -24,8 +24,7 @@ class CreateCommandesTable extends Migration
             $table->float("commande_montant");
             $table->string("commande_paid");
             $table->integer('id_client')->unsigned();
-            $table->foreign('id_client')->references('id_client')->on('clients')->onDelete('cascade');
-
+            $table->foreign('id_client')->references('id_client')->on('clients');
             $table->timestamps();
             $table->softDeletes();
         });

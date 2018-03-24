@@ -20,7 +20,6 @@ class CreatePaymentsTable extends Migration
             $table->float("payment_rest");
             $table->integer('id_commande')->unsigned();
             $table->foreign('id_commande')->references('id_commande')->on('commandes')->onDelete('cascade');
-
             $table->timestamps();
         });
     }

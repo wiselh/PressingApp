@@ -92,14 +92,14 @@
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                            <div class="block form-group">
-                                                    <label class="col-form-label" for="client_adresse">Adresse <span style="font-size: 11px">(optionnel)</span> </label>
-                                                    <div class="input-group">
-                                                            <span class="input-group-addon"><i class="fa fa-home"></i></span>
-                                                            <input type="text" class="form-control" id="client_adresse" name="client_adresse" placeholder="Entrer l'adresse..">
-                                                    </div>
-                                            </div>
+                                    <div class="block form-group">
+                                        <label class="col-form-label" for="client_adresse">Adresse <span style="font-size: 11px">(optionnel)</span> </label>
+                                        <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-home"></i></span>
+                                                <input type="text" class="form-control" id="client_adresse" name="client_adresse" placeholder="Entrer l'adresse..">
+                                        </div>
                                     </div>
+                                </div>
                             </div>
                             <input type="hidden" id="check_client" name="check_client">
                         </div>
@@ -198,7 +198,7 @@
                                                                placeholder="Entrer la quantity">
                                                     </div>
                                                     <input type="hidden" class="total_price"
-                                                           name="vetement_total[]">
+                                                           name="total_price[]">
                                                 </div>
                                             </div>
                                         </div>
@@ -277,10 +277,10 @@
                         </div>
                         {{--Submit--}}
                         <div class="row">
-                                    <div class="col-lg-3 ml-auto">
-                                            <button type="submit" class="btn btn-alt-primary">Valider la Commande</button>
-                                    </div>
+                            <div class="col-lg-3 ml-auto">
+                                    <button type="submit" class="btn btn-alt-primary">Valider la Commande</button>
                             </div>
+                        </div>
                     </div>
                 </form>
                 <div class="form-group col-12">

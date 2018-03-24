@@ -31,12 +31,13 @@ Route::group(['middleware' => ['installation']], function () {
     Route::post('/profile/{id}','ProfileController@updateAdmin');
 
     Route::resource('/commandes','CommandeController');
-    Route::resource('/factures','FactureController');
+    Route::get('/commande/add','CommandeController@addCommande');
+    Route::get('/commande/delete/{id}','CommandeController@destroy');
 
     Route::resource('/vetements','VetementController');
     Route::get('/vetements/delete/{id}','VetementController@destroy');
-    Route::post('/payment','CommandeController@payment');
 
+    Route::resource('/payment','PaymentController');
 
 
     Route::resource('/categories','CategorieController');
@@ -46,7 +47,7 @@ Route::group(['middleware' => ['installation']], function () {
     Route::get('/clients/delete/{id}','ClientController@destroy');
     Route::get('/deleteChecked','ClientController@deleteChecked');
 
-    Route::get('/all-commandes','FactureController@allCommandes');
+    Route::get('/all-commandes','CommandeController@finishedCommandes');
 
     Route::resource('/impression','ImpressionController');
     Route::get('/impression/ticket/{id}','ImpressionController@ticket');

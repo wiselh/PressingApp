@@ -1,19 +1,17 @@
+/*
+ *  Document   : be_ui_activity.js
+ *  Author     : pixelcave
+ *  Description: Custom JS code used in Activity Page
+ */
+
 var BeUIActivity = function() {
 
-    // SweetAlert2, for more examples you can check out https://github.com/limonte/sweetalert2
-    var sweetAlert2 = function(){
-        // Set default properties
-        swal.setDefaults({
-            buttonsStyling: false,
-            confirmButtonClass: 'btn btn-lg btn-alt-success m-5',
-            cancelButtonClass: 'btn btn-lg btn-alt-danger m-5',
-            inputClass: 'form-control'
-        });
+    var deleteCommande = function(){
 
-        jQuery('.btn-alt-danger').on('click', function(e){
+        jQuery('.btn-delete').on('click', function(e){
             swal({
                 title: 'Vous Êtes Sûr?',
-                text: 'Vous ne pourrez pas récupérer cette Piece!',
+                text: 'Vous ne pourrez pas récupérer cette commande!',
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#d26a5c',
@@ -30,12 +28,11 @@ var BeUIActivity = function() {
                 function (result) {
                     var id = $(e.currentTarget).data('id');
                     $.ajax({
-                        url: "/vetements/delete/"+id,
+                        url: "/commande/delete/"+id,
                         type:"GET",
                         data:id,
                         success: function(data) {
-                            swal('Supprimé!', 'l\'utilisateur a été supprimé.', 'success');
-                            // $(e.currentTarget).closest('.commande_item').remove();
+                            swal('Supprimé!', 'le client a été supprimé.', 'success');
                             location.reload();
                         },
                         error: function(data){
@@ -53,7 +50,7 @@ var BeUIActivity = function() {
     return {
         init: function() {
 
-            sweetAlert2();
+            deleteCommande();
         }
     };
 }();

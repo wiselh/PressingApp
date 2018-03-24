@@ -35,10 +35,6 @@ class Commande extends Model
         return $this->belongsTo(Client::class,'id_client');
     }
 
-//    public function client()
-//    {
-//        return $this->hasOne(Client::class);
-//    }
     /**
      * Get the payments for the Commande.
      */
@@ -50,18 +46,28 @@ class Commande extends Model
     public function latestPayment() {
         return $this->payments->last();
     }
+
     public function totalPayment()
     {
-        $total =0 ;
-        foreach ($this->payments as $payment){
-            $total += $payment->payment_paid;
+        $total = 0;
+        if (count($this->payments)>0){
+            foreach ($this->payments as $payment){
+                $total += $payment->payment_paid;
+            }
         }
         return $total;
     }
+
     public function restPayment()
     {
-        $rest = $this->payments->last();
-        return $rest->payment_rest;
+        if (count($this->payments)>0) {
+            $rest = $this->payments->last();
+            $rest =$rest->payment_rest;
+        }
+        else {
+            $rest = $this->commande_montant;
+        }
+        return $rest;
     }
 
 }
