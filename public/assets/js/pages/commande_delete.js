@@ -9,6 +9,8 @@ var BeUIActivity = function() {
     var deleteCommande = function(){
 
         jQuery('.btn-delete').on('click', function(e){
+            e.preventDefault();
+            var form = $(this).parents('form');
             swal({
                 title: 'Vous Êtes Sûr?',
                 text: 'Vous ne pourrez pas récupérer cette commande!',
@@ -26,20 +28,22 @@ var BeUIActivity = function() {
                 }
             }).then(
                 function (result) {
-                    var id = $(e.currentTarget).data('id');
-                    $.ajax({
-                        url: "/commande/delete/"+id,
-                        type:"GET",
-                        data:id,
-                        success: function(data) {
-                            swal('Supprimé!', 'le client a été supprimé.', 'success');
-                            location.reload();
-                        },
-                        error: function(data){
-                            $errors = data.responseJSON;
-                            swal('Oops...', 'Quelque chose s\'est mal passé!', 'error');
-                        }
-                    });
+                    // var id = $(e.currentTarget).data('id');
+                    swal('Supprimé!', 'le client a été supprimé.', 'success');
+                    if (result) form.submit();
+                    // $.ajax({
+                    //     url: "/commande/delete/"+id,
+                    //     type:"GET",
+                    //     data:id,
+                    //     success: function(data) {
+                    //         swal('Supprimé!', 'le client a été supprimé.', 'success');
+                    //         location.reload();
+                    //     },
+                    //     error: function(data){
+                    //         $errors = data.responseJSON;
+                    //         swal('Oops...', 'Quelque chose s\'est mal passé!', 'error');
+                    //     }
+                    // });
                 }, function(dismiss) {
                     // dismiss can be 'cancel', 'overlay', 'esc' or 'timer'
                 }

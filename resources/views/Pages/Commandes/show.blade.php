@@ -89,10 +89,14 @@
                                         <i class="fa fa-pencil"></i>
                                     </button>
                                 </a>
-                                <button type="button" class="btn btn-sm btn-table btn-alt-danger btn-delete" data-toggle="tooltip" title="Delete"
-                                        data-id="{{$facture->id_commande}}">
-                                    <i class="fa fa-times"></i>
-                                </button>
+                                <form action="/commandes/{{$facture->id_commande}}" method="post">
+                                    {{csrf_field()}}
+                                    {{method_field('DELETE')}}
+                                    <button type="button" class="btn btn-sm btn-table btn-alt-danger btn-delete" data-toggle="tooltip" title="Delete"
+                                            data-id="{{$facture->id_commande}}">
+                                        <i class="fa fa-times"></i>
+                                    </button>
+                                </form>
                                 <span data-toggle="tooltip" title="Impression">
                                     <button type="button" class="btn btn-sm btn-table btn-alt-warning"  data-toggle="modal"
                                             data-target="#modal-normal"
@@ -131,12 +135,12 @@
                                 </button>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5" >
                                     Code Bar <i class="fa fa-barcode"></i>
                                 </button>
                             </div>
                             <div class="col-md-4 col-sm-4 col-xs-12">
-                                <button type="button" class="btn btn-alt-info mr-5 mb-5">
+                                <button type="button" class="btn btn-alt-info mr-5 mb-5" onclick="Codebase.helpers('print-page');">
                                     Facture <i class="fa fa-print"></i>
                                 </button>
                             </div>
@@ -154,7 +158,7 @@
 
 @section('page_script')
     <!-- Page JS Plugins -->
-    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>
+{{--    <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>--}}
     <script src="{{asset('assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 

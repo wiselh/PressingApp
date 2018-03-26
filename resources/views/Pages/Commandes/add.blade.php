@@ -277,8 +277,8 @@
                         </div>
                         {{--Submit--}}
                         <div class="row">
-                            <div class="col-lg-3 ml-auto">
-                                    <button type="submit" class="btn btn-alt-primary">Valider la Commande</button>
+                            <div class="col-12">
+                                    <button type="submit" class="btn btn-alt-primary pull-right">Valider la Commande</button>
                             </div>
                         </div>
                     </div>

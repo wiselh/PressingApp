@@ -119,17 +119,16 @@ class CommandeController extends Controller
 
         //commande
         $commande = new Commande;
-        $nbr = DB::table('commandes')->count();
+        $nbr = Commande::withTrashed()->count();
 
 
         if ($nbr == 0) {
             $num_fac = 18031300;
         } else {
-            $cmd_id = DB::table('commandes')->max('id_commande');
-            $cmd = Commande::find($cmd_id);
+            $cmd_id = Commande::withTrashed()->max('id_commande');
+            $cmd = Commande::withTrashed()->find($cmd_id);
             $num_fac = $cmd->commande_num + 1;
         }
-
         $commande->commande_num = $num_fac;
         $commande->commande_date = date('Y-m-d');
         $commande->commande_date_retrait = $request->commande_date_retrait;
@@ -259,8 +258,7 @@ class CommandeController extends Controller
      */
     public function destroy($id)
     {
-        return ['name'=> 'hakim '.$id];
-//        Commande::destroy($id);
-//        return redirect('/commandes');
+        Commande::destroy($id);
+        return redirect('/commandes');
     }
 }

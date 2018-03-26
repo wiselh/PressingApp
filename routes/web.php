@@ -32,7 +32,9 @@ Route::group(['middleware' => ['installation']], function () {
 
     Route::resource('/commandes','CommandeController');
     Route::get('/commande/add','CommandeController@addCommande');
-    Route::get('/commande/delete/{id}','CommandeController@destroy');
+//    Route::get('/commande/delete/{id}','CommandeController@destroy');
+    Route::get('/all-commandes','CommandeController@finishedCommandes');
+
 
     Route::resource('/vetements','VetementController');
     Route::get('/vetements/delete/{id}','VetementController@destroy');
@@ -47,7 +49,6 @@ Route::group(['middleware' => ['installation']], function () {
     Route::get('/clients/delete/{id}','ClientController@destroy');
     Route::get('/deleteChecked','ClientController@deleteChecked');
 
-    Route::get('/all-commandes','CommandeController@finishedCommandes');
 
     Route::resource('/impression','ImpressionController');
     Route::get('/impression/ticket/{id}','ImpressionController@ticket');
@@ -59,7 +60,10 @@ Route::group(['middleware' => ['installation']], function () {
     Route::get('/sweet', 'UserController@sweet');
 
 
-//    Route::get('/test', 'CommandeController@test');
+    Route::get('/statistics','StatisticController@index');
+    Route::get('/statistics/period/{value}','StatisticController@statistic');
+    Route::get('/statistics/between','StatisticController@statisticBetweenTwoDates');
+    Route::get('/date','StatisticController@statistic');
 
 
 });

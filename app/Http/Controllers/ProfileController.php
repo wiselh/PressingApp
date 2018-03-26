@@ -26,10 +26,10 @@ class ProfileController extends Controller
 
         $user = User::findOrFail($id);
 
-//        $this->validate($request, [
-//            'profile_username' => "required|string|min:6|unique:username,$id",
-//            'profile_email' => "required|email|unique:email,$id"
-//        ]);
+        $this->validate($request, [
+            'profile_username' => "required|string|min:6|unique:username,$id",
+            'profile_email' => "required|email|unique:email,$id"
+        ]);
 
         if ($request->hasFile('profile_picture')) {
             $pic = $request->profile_picture;

@@ -64,7 +64,7 @@ var BeFormValidation = function() {
                         $errors = data.responseJSON;
                         console.log(data);
                         $.each( $errors, function( key, value ) {
-                            console.log(key +' ==> '+ value);
+                            // console.log(key +' ==> '+ value);
                             var field = key.split('.');
                             if(field.length>1)
                                 fieldname = '#'+field[0]+'\\.'+field[1];

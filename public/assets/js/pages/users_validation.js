@@ -264,4 +264,6 @@ $(function() {
         $('.edit-user-form').find('#adresse').val(adresse);
         $('.edit-user-form').find('#tele').val(tele);
     });
+
+    $
 });

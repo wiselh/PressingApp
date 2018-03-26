@@ -73,26 +73,29 @@
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-cup"></i><span class="sidebar-mini-hide">Gestion</span></a>
                         <ul>
                             <li>
-                                <a href="/users">Users</a>
+                                <a class="{{ Request::is('users') ? 'active' : ''}}" href="/users">Users</a>
                             </li>
                             <li>
-                                <a class="active" href="/factures">Factures</a>
+                                <a class="{{ Request::is('commandes') ? 'active' : ''}}" href="/commandes">Commandes</a>
                             </li>
                             <li>
-                                <a href="/commandes">Commandes</a>
+                                <a class="{{ Request::is('services') ? 'active' : ''}}" href="/services">Services</a>
                             </li>
                             <li>
-                                <a href="/services">Services</a>
+                                <a class="{{ Request::is('categories') ? 'active' : ''}}" href="/categories">Categories</a>
                             </li>
                             <li>
-                                <a href="/categories">Categories</a>
+                                <a class="{{ Request::is('statistics') ? 'active' : ''}}" href="/statistics">Statistiques</a>
+                            </li>
+                            <li>
+                                <a class="{{ Request::is('societe') ? 'active' : ''}}" href="/societe">Societe Profile</a>
                             </li>
                         </ul>
                     </li>
                     <li>
                         <a href="bd_dashboard.html"><i class="si si-compass"></i><span class="sidebar-mini-hide">Boxed Backend</span></a>
                     </li>
-                    <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">User Interface</span></li>
+                    <li class="nav-main-heading"><span class="sidebar-mini-visible">UI</span><span class="sidebar-mini-hidden">Interface d'Admin </span></li>
                     <li>
                         <a class="nav-submenu" data-toggle="nav-submenu" href="#"><i class="si si-puzzle"></i><span class="sidebar-mini-hide">Blocks</span></a>
                         <ul>
