@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
     <!-- Stylesheets -->

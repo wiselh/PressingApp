@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
     <!-- Stylesheets -->
@@ -34,7 +34,9 @@
         }
     </style>
 @endsection
-
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Utilisateurs</h1>
+@endsection
 @section('content')
 <!-- All Users -->
 <div class="block">

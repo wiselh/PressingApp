@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
     <!-- Stylesheets -->
@@ -12,8 +12,12 @@
 
 @endsection
 
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Details de la Commande</h1>
+@endsection
+
 @section('content')
-    <!-- les pieces -->
+    <!-- Commande Infos -->
     <div class="block">
         <div class="block-header block-header-default">
             <h3 class="block-title">Les information du commande</h3>

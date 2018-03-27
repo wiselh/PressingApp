@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
     <style>
@@ -17,6 +17,10 @@
     <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Services</h1>
+@endsection
+
 @section('content')
 
     <div class="block" style="padding: 10px">
@@ -28,25 +32,19 @@
                 <div class="block-content">
                     <div class="row justify-content-center py-20">
                         <div class="col-xl-12 col-md-12">
-                            <!-- jQuery Validation (.js-validation-bootstrap class is initialized in js/pages/be_forms_validation.js) -->
-                            <!-- For more examples you can check out https://github.com/jzaefferer/jquery-validation -->
                             <form class="add-service-form" action="/services" method="post">
                                 {{csrf_field()}}
-                                <div class="col-md-12 col-md-offset-6">
+                                <div class="form-group">
                                     <div class="row">
-                                        <div class="form-group col-md-12">
-                                            <div class="row">
-                                                <label class="col-md-4 col-sm-12 col-form-label" for="service_name">Nom
-                                                    du Service <span class="text-danger">*</span></label>
-                                                <div class="col-md-6 col-sm-12 ">
-                                                    <input type="text" class="form-control" id="service_name"
-                                                           name="service_name" placeholder="Entez le nom du service"
-                                                           required>
-                                                </div>
-                                                <div class="col-md-2 col-sm-12 ">
-                                                    <button type="submit" class="btn btn-alt-primary">Ajouter</button>
-                                                </div>
-                                            </div>
+                                        <label class="col-12 col-form-label" for="service_name">Nom
+                                            du Service <span class="text-danger">*</span></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" id="service_name"
+                                                   name="service_name" placeholder="Entez le nom du service"
+                                                   required>
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="submit" class="btn btn-alt-primary">Ajouter</button>
                                         </div>
                                     </div>
                                 </div>

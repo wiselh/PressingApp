@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
     <style>
@@ -17,10 +17,12 @@
     <link rel="stylesheet" href="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.css')}}">
 @endsection
 
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Categories</h1>
+@endsection
+
 @section('content')
 
-    <!-- Bootstrap Forms Validation -->
-    {{--<h2 class="content-heading">Bootstrap Forms</h2>--}}
     <div class="block">
         <div class="row">
             <div class="col-md-6">
@@ -32,25 +34,17 @@
                         <div class="col-xl-12 col-md-12">
                             <form class="add-categorie-form" action="/categories" method="post">
                                 {{csrf_field()}}
-
-                                <div class="col-md-12 col-md-offset-6">
+                                <div class="form-group">
                                     <div class="row">
-                                        {{--<div class="block-header block-header-default col-md-12 col-md-12" style="margin-bottom: 10px;">--}}
-                                        {{--<h3 class="block-title">Categorie</h3>--}}
-                                        {{--</div>--}}
-                                        <div class="form-group col-md-12">
-                                            <div class="row">
-                                                <label class="col-md-4 col-sm-12 col-form-label" for="nom">Nom du
-                                                    Categorie <span class="text-danger">*</span></label>
-                                                <div class="col-md-6 col-sm-12 ">
-                                                    <input type="text" class="form-control" id="categorie_name"
-                                                           name="categorie_name" placeholder="Entez le nom du categorie"
-                                                           required>
-                                                </div>
-                                                <div class="col-md-2 col-sm-12 ">
-                                                    <button type="submit" class="btn btn-alt-primary">Ajouter</button>
-                                                </div>
-                                            </div>
+                                        <label class="col-12 col-form-label" for="nom">Nom du
+                                            Categorie <span class="text-danger">*</span></label>
+                                        <div class="col-8">
+                                            <input type="text" class="form-control" id="categorie_name"
+                                                   name="categorie_name" placeholder="Entez le nom du categorie"
+                                                   required>
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="submit" class="btn btn-alt-primary">Ajouter</button>
                                         </div>
                                     </div>
                                 </div>
@@ -61,7 +55,6 @@
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
             <div class="col-md-6">

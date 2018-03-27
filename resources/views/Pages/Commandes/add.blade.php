@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
         <style type="text/css">
@@ -30,9 +30,12 @@
 
 @endsection
 
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Ajouter une Commande</h1>
+@endsection
+
 @section('content')
 
-<h2 class="content-heading">Créer Nouveau Commande</h2>
 <div class="block">
     <div class="block-content">
         <div class="row justify-content-center py-20">
@@ -295,7 +298,7 @@
 
 @section('page_script')
         <!-- Page JS Plugins -->
-{{--        <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>--}}
+        {{-- <script src="{{asset('assets/js/plugins/select2/select2.full.min.js')}}"></script>--}}
         <script src="{{asset('assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
         <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.min.js')}}"></script>
 
@@ -304,8 +307,7 @@
 
         <!-- sweetalert JS-->
         <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
-        <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
-
+        <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>/
 @endsection
 
 

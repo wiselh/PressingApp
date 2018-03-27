@@ -1,5 +1,8 @@
+@extends('main')
 
-@extends('Pages.main')
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Profile de la Societe</h1>
+@endsection
 
 @section('page_style')
     <!-- Stylesheets -->
@@ -47,10 +50,7 @@
 
 @section('content')
 
-    <!-- Dynamic Table Full -->
-    <h2 class="content-heading">Edit le Profile de Societe</h2>
     <div class="block">
-
         <div class="block-content block-content-full">
             <!-- Societe -->
             <div class="block pull-r-l">

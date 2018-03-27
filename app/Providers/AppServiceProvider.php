@@ -20,7 +20,7 @@ class AppServiceProvider extends ServiceProvider
 
         
 
-        view()->composer('Pages.main', function($view)
+        view()->composer('main', function($view)
         {
             $nbr_commandes = DB::table('commandes')->whereNull('deleted_at')->count();
             $nbr_users = DB::table('users')->count();

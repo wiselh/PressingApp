@@ -72,7 +72,7 @@ class VetementController extends Controller
         $vetement->vetement_description=$description;
         $vetement->save();
 
-        return redirect('/factures/'.$id_commande);
+        return redirect('/commandes/'.$id_commande);
 
     }
 
@@ -147,7 +147,7 @@ class VetementController extends Controller
 
         $commande->save();
 
-        return redirect('/factures/'.$vetement->id_commande);
+        return redirect('/commandes/'.$vetement->id_commande);
 
     }
 

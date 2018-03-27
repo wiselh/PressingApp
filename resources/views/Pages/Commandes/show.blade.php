@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
 
@@ -41,6 +41,10 @@
     </style>
 @endsection
 
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Les Commandes Non Valide</h1>
+@endsection
+
 @section('content')
     <!-- Dynamic Table Full -->
     <div class="block">
@@ -55,7 +59,7 @@
                     {{--<th class="text-center" style="width: 10%;">ID</th>--}}
                     <th class="text-center" style="width: 10%;">NO°</th>
                     <th class="d-none d-sm-table-cell">Nom du Client</th>
-                    <th class="text-center">Telephone du Client</th>
+                    {{--<th class="text-center">Telephone du Client</th>--}}
                     <th class="text-center">Date de Facture</th>
                     <th class="text-center">Date de Retrait</th>
                     <th class="text-center">Nombre de Pieces</th>
@@ -69,7 +73,7 @@
                     <tr>
                         <td class="font-w600 text-center ">{{$facture->commande_num}}</td>
                         <td class="font-w600 text-center">{{$facture->client_name}}</td>
-                        <td class="font-w600 text-center">{{$facture->client_tele}}</td>
+                        {{--<td class="font-w600 text-center">{{$facture->client_tele}}</td>--}}
                         <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date))}}</td>
                         <td class="font-w600 text-center">{{date("d-m-Y",strtotime($facture->commande_date_retrait))}}</td>
                         <td class="font-w600 text-center">{{$facture->commande_quantity}}</td>
@@ -92,9 +96,9 @@
                                 <form action="/commandes/{{$facture->id_commande}}" method="post">
                                     {{csrf_field()}}
                                     {{method_field('DELETE')}}
-                                    <button type="button" class="btn btn-sm btn-table btn-alt-danger btn-delete" data-toggle="tooltip" title="Delete"
+                                    <button type="button" class="btn btn-sm btn-table btn-alt-success btn-delete" data-toggle="tooltip" title="Valider"
                                             data-id="{{$facture->id_commande}}">
-                                        <i class="fa fa-times"></i>
+                                        <i class="fa fa-check"></i>
                                     </button>
                                 </form>
                                 <span data-toggle="tooltip" title="Impression">

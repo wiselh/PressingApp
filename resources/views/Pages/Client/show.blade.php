@@ -1,4 +1,4 @@
-@extends('Pages.main')
+@extends('main')
 
 @section('page_style')
 
@@ -22,6 +22,10 @@
         }
     </style>
 
+@endsection
+
+@section('page_title')
+    <h1 class="font-w700 text-white mb-10 invisible" data-toggle="appear" data-class="animated fadeInUp">Clients</h1>
 @endsection
 
 @section('content')

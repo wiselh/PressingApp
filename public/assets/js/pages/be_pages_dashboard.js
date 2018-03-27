@@ -1,9 +1,3 @@
-/*
- *  Document   : be_pages_dahboard.js
- *  Author     : pixelcave
- *  Description: Custom JS code used in Dashboard Page
- */
-
 var BePagesDashboard = function() {
     // Chart.js Charts, for more examples you can check out http://www.chartjs.org/docs
     var initDashboardChartJS = function () {
@@ -28,7 +22,7 @@ var BePagesDashboard = function() {
 
         // Lines Charts Data
         var chartDashboardLinesData = {
-            labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+            labels: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'],
             datasets: [
                 {
                     label: 'This Week',
@@ -62,7 +56,7 @@ var BePagesDashboard = function() {
         };
 
         var chartDashboardLinesData2 = {
-            labels: ['MON', 'TUE', 'WED', 'THU', 'FRI', 'SAT', 'SUN'],
+            labels: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'],
             datasets: [
                 {
                     label: 'This Week',
