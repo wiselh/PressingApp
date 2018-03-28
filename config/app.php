@@ -164,6 +164,8 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
 
+        jeremykenedy\LaravelRoles\RolesServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

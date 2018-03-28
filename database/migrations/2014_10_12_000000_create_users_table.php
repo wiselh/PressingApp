@@ -24,7 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('tele')->nullable();
             $table->text('picture')->nullable();
             $table->string('password');
-            $table->string('permission');
+//            $table->string('permission');
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

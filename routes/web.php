@@ -63,7 +63,7 @@ Route::group(['middleware' => ['installation']], function () {
     Route::get('/statistics','StatisticController@index');
     Route::get('/statistics/period/{value}','StatisticController@statistic');
     Route::get('/statistics/between','StatisticController@statisticBetweenTwoDates');
-    Route::get('/date','StatisticController@statistic');
+    Route::get('/date','StatisticController@test');
 
 
 });

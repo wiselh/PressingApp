@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Permission;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -37,7 +38,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+
     }
      public function sweet(){
         return view('Pages.User.sweetalert');
@@ -61,29 +62,39 @@ class UserController extends Controller
         'email.unique' => 'Cet adresse email est déjà utilisé!',
         ];
         $this->validate($request,$rules,$messages);
-        return response()->json(['response' => 'Store Method']);
+//        return ['response' => 'Store Method'];
 
 
-//        $user = new User();
-//        $user->fullname=$request->user_fullname;
-//        $user->username=$request->username;
-//        $user->adresse=$request->user_adresse;
-//        $user->email=$request->email;
-//        $user->tele=$request->user_tele;
-//
-//        $pic = Input::file('user_picture');
-//        if ($pic==null){
-//            $picture_local='assets/img/avatars/avatar.png';
-//        }else{
-//            $picture_name = $request->username.'.'.$request->user_picture->extension();
-//            $picture_local='assets/img/avatars/'.$picture_name;
-//            $pic->move('assets/img/avatars', $picture_name);
-//        }
-//
-//        $user->picture=$picture_local;
-//        $user->password=bcrypt($request->user_password);
-//        $user->admin=$request->user_permission;
-//        $user->save();
+        $user = new User;
+        $user->fullname=$request->fullname;
+        $user->username=$request->username;
+        $user->adresse=$request->adresse;
+        $user->email=$request->email;
+        $user->tele=$request->tele;
+
+        $pic = Input::file('picture');
+        if ($pic==null){
+            $picture_local='assets/img/avatars/avatar.png';
+        }else{
+            $picture_name = $request->username.'.'.$request->picture->extension();
+            $picture_local='assets/img/avatars/'.$picture_name;
+            $pic->move('assets/img/avatars', $picture_name);
+        }
+
+        $user->picture=$picture_local;
+        $user->password=bcrypt($request->user_password);
+        $user->permission='oui';
+        $user->save();
+
+        //permissions
+        $permissions = Input::get('permission');
+        $arr = [];
+        foreach ($permissions as $per)
+        {
+            array_push($arr,$per);
+        }
+        $user->syncPermissions($arr);
+
 
 
     }

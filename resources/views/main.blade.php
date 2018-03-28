@@ -247,7 +247,7 @@
         <!-- Page JS Plugins -->
         <script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
         <!-- Page JS Code -->
-        <script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
+        {{--<script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>--}}
         <script src="{{asset('assets/js/pages/profile_validation.js')}}"></script>
          <script type="text/javascript">
              //profile

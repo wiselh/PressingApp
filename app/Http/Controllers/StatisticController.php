@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Commande;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -28,7 +29,7 @@ class StatisticController extends Controller
         foreach ($commandes as $commande){
             $montant += $commande->commande_montant;
         }
-        return view('Pages.Statistics.template', [
+        return view('Pages.Statistics.statistics', [
             'earning' => $montant,
             'commandes_counter'=>$commandes_counter,
             'client_counter'=>$client_counter
@@ -50,6 +51,75 @@ class StatisticController extends Controller
                 break;
             default : return $this->getDataOfInterval(Carbon::now()->subYears(100),$date);
        }
+
+    }
+    public function test(){
+
+        $days=[];
+        $weeks=[];
+        $months=[];
+        $dayRevenu=[];
+        for ($i = 0 ;$i<7;$i++){
+
+            $nbr = DB::table('commandes')
+                ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')->count();
+            $revenuDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')
+                ->sum('commandes.commande_montant');
+            array_push($days,$nbr);
+            array_push($dayRevenu,$revenuDay);
+        }
+//        $year =2018;
+//        $month =03;
+//        $day =28;
+//        Carbon::create($year,$month,$day)
+        $week1 = DB::table('commandes')
+            ->where("commande_date",">=",Carbon::now()->startOfMonth()->subDay())
+            ->where("commande_date","<",Carbon::now()->startOfMonth()->subDay()->addDay(7))
+            ->whereNotNull('deleted_at')->count();
+        $week2 = DB::table('commandes')
+            ->where("commande_date",">=",Carbon::now()->startOfMonth()->subDay()->addDay(7))
+            ->where("commande_date","<",Carbon::now()->startOfMonth()->subDay()->addDay(14))
+            ->whereNotNull('deleted_at')->count();
+        $week3 = DB::table('commandes')
+            ->where("commande_date",">=",Carbon::now()->startOfMonth()->subDay()->addDay(14))
+            ->where("commande_date","<",Carbon::now()->startOfMonth()->subDay()->addDay(21))
+            ->whereNotNull('deleted_at')->count();
+        $week4 =  DB::table('commandes')
+            ->where("commande_date",">=",Carbon::now()->startOfMonth()->subDay()->addDay(21))
+            ->whereMonth("commande_date","=",Carbon::now()->month)
+            ->whereNotNull('deleted_at')->count();
+        array_push($weeks,$week1,$week2,$week3,$week4);
+
+
+
+        for ($i=1;$i<13;$i++){
+           $month =  DB::table('commandes')
+                ->whereYear("commande_date","=",Carbon::now()->year)
+                ->whereMonth("commande_date","=",$i)
+                ->whereNotNull('deleted_at')->count();
+            array_push($months,$month);
+        }
+
+//            return [
+//                'days' => $days,
+//                'weeks' => $weeks,
+//                'months' => $months,
+//                'revenu' =>$dayRevenu,
+//                'revenuOfWeek'=>$revenuOfWeek,
+//                'commandesOfWeek'=>$commandesOfWeek,
+//                'commandesOfMonth'=>$commandesOfMonth,
+//                'revenuOfMonth'=>$revenuOfMonth
+//
+//            ];
+        return  [
+            'days' => $days,
+            'weeks' => $weeks,
+            'months' => $months,
+            'revenu' =>$dayRevenu,
+        ];
 
     }
 
@@ -91,6 +161,14 @@ class StatisticController extends Controller
                 $total+=$commande->commande_montant;
             }
         }
+        //graph
+//        $cmd = DB::table('commandes')
+//            ->where("commande_date","=",Carbon::now()->startOfWeek())
+//            ->whereNotNull('deleted_at')->count();
+//        $cmd = DB::table('commandes')
+//            ->where("commande_date","=",Carbon::now()->startOfWeek())
+//            ->whereNotNull('deleted_at')->count();
+
         return ['money' => $total,
             'commandes_nbr'=>$cmd,
             'commandes'=>$factures,

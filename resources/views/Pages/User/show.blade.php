@@ -32,6 +32,18 @@
         .browse:hover {
             background-color: #ebeef2;
         }
+        .add-permissions-content table td, .add-permissions-content .table th {
+            padding: 5px;
+        }
+        .edit-permissions-content table td, .edit-permissions-content .table th {
+            padding: 5px;
+        }
+        /*.add-permissions-content table,.edit-permissions-content table{*/
+            /*border-left: 1px solid #eaecee;*/
+            /*border-right: 1px solid #eaecee;*/
+            /*border-bottom: 1px solid #eaecee;*/
+        /*}*/
+
     </style>
 @endsection
 @section('page_title')
@@ -42,7 +54,7 @@
 <div class="block">
     <div class="block-header block-header-default">
         <h3 class="block-title"><i class="fa fa-fw fa-users font-size-default mr-5"></i>Tous Les Clients</h3>
-        <button type="button" class="btn btn-alt-info ml-auto" data-toggle="modal" data-target="#modal-large">Ajouter un Utilisateur</button>
+        <button type="button" class="btn btn-alt-default ml-auto" data-toggle="modal" data-target="#modal-large">Ajouter un Utilisateur</button>
     </div>
     <div class="block-content block-content-full">
         <div class="table-responsive">
@@ -54,7 +66,6 @@
                 <th class="d-none d-sm-table-cell text-center" style="width: 15%;">Adresse</th>
                 <th class="d-none d-sm-table-cell text-center" style="width: 10%;">Telephone</th>
                 <th class="d-none d-sm-table-cell text-center" style="width: 10%;">Nom de l'Utilisateur</th>
-                {{--<th class="d-none d-sm-table-cell text-center" style="width: 10%;">Nom de l'Utilisateur</th>--}}
                 <th class="d-none d-sm-table-cell text-center"  style="width: 20%;" >Email</th>
                 <th class="text-center" style="width: 5%;">Action</th>
             </tr>
@@ -106,16 +117,16 @@
                             </div>
                         </div>
                         <div class="block-content">
-                            <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                            <ul class="nav nav-tabs nav-tabs-alt" data-toggle="tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#btabs-static-home">Profile</a>
+                                    <a class="nav-link active add-profile" href="#btabs-alt-static-profile">Profile</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#btabs-static-permissions">Permissions</a>
+                                    <a class="nav-link add-permissions" href="#btabs-alt-static-permission">Permissions</a>
                                 </li>
                             </ul>
-                            <div class="block-content tab-content">
-                                <div class="tab-pane active" id="btabs-static-home" role="tabpanel">
+                            <div class="tab-content">
+                                <div class="tab-pane active add-profile-content" id="btabs-alt-static-profile" role="tabpanel">
                                     <div class="row">
                                         <div class="col-md-4 col-sm-6 col-xs-12">
                                             <div class="form-group">
@@ -174,25 +185,13 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4 col-sm-6 col-xs-12">
-                                            <div class="form-group">
-                                                <label for="permission">Permissions<span style="font-size: 11px;">(optionnel)</span></label>
-                                                <select name="permission"  class="form-control" id="permission">
-                                                    <option value=""></option>
-                                                    <option value="admin">Admin</option>
-                                                    <option value="">Gestion Users</option>
-                                                    <option value="">Gestion Du Commandes</option>
-                                                    <option value="">Gestion Du Services</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12">
                                             <div class="form-group row">
                                                 <label class="">Photo de Profile</label>
                                                 <div class="input-group">
                                                     <label class="input-group-btn">
-                                            <span class="btn browse">
-                                                Browse&hellip; <input type="file" style="display: none;" class="picture" id="picture" name="picture">
-                                            </span>
+                                                        <span class="btn browse">
+                                                            Browse&hellip; <input type="file" style="display: none;" class="picture" id="picture" name="picture">
+                                                        </span>
                                                     </label>
                                                     <input type="text" class="form-control filename"
                                                            onfocus="this.blur()" style="background-color:#FFF !important" readonly>
@@ -201,134 +200,225 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="btabs-static-permissions" role="tabpanel">
+                                <div class="tab-pane add-permissions-content" id="btabs-alt-static-permission" role="tabpanel">
                                     <div class="table-responsive">
-                                        <table class="table">
+                                        <table class="table table-hover table-vcenter">
                                             <thead>
-                                            <tr>
-                                                <th class="font-w700">Section</th>
-                                                <th class="font-w700 text-center" style="width: 20%;">Vue</th>
-                                                <th class="font-w700 text-center" style="width: 20%;">Ajouter</th>
-                                                <th class="font-w700 text-center" style="width: 20%;">Modifier</th>
-                                                <th class="font-w700 text-center" style="width: 20%;">Supprimer</th>
-                                            </tr>
+                                                <tr>
+                                                    <th class="text-center">Section</th>
+                                                    <th class="text-center">Vue</th>
+                                                    <th class="text-center">Ajouter</th>
+                                                    <th class="text-center">Modifier</th>
+                                                    <th class="text-center">Supprimer</th>
+                                                </tr>
                                             </thead>
-                                            <tbody>
-                                            <tr class="client">
-                                                <td class="font-w600">Clients</td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="client_per_view" id="client_per_view" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="client_per_add" id="client_per_add" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="client_per_update" id="client_per_update" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="client_per_delete" id="client_per_delete" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr class="service">
-                                                <td class="font-w600">Categories/Services</td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="service_per_view" id="service_per_view" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="service_per_add" id="service_per_add" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="service_per_update" id="service_per_update" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="service_per_delete" id="service_per_delete" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                            </tr>
-                                            <tr class="commande">
-                                                <td class="font-w600">Commandes</td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="commande_per_view" id="commande_per_view" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="commande_per_add" id="commande_per_add" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="commande_per_update" id="commande_per_update" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                                <td class="text-center">
-                                                    <label class="css-control css-control-success css-checkbox">
-                                                        <input class="css-control-input" name="commande_per_delete" id="commande_per_delete" type="checkbox">
-                                                        <span class="css-control-indicator"></span>
-                                                    </label>
-                                                </td>
-                                            </tr>
+                                            <tbody class="add-user-block">
+                                                <tr class="add-user-row">
+                                                    <td class="font-w600">Utilisateurs</td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="user_per_view" value="1" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="user_per_add" value="2" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="user_per_update" value="3" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="user_per_delete" value="4" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-client-row">
+                                                    <td class="font-w600">Clients</td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="client_per_view" value="5" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="client_per_add" value="6" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="client_per_update" value="7" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="client_per_delete" value="8" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-categorie-row">
+                                                    <td class="font-w600">Categories</td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="categorie_per_view" value="9" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="categorie_per_add" value="10" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="categorie_per_update" value="11" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="categorie_per_delete" value="12" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-service-row">
+                                                    <td class="font-w600">Services</td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="service_per_view" value="13" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="service_per_add" value="14" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="service_per_update" value="15" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="service_per_delete" value="16" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-commande-row">
+                                                    <td class="font-w600">Commandes</td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="commande_per_view" value="17" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="commande_per_add" value="18" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="commande_per_update" value="19" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="commande_per_delete" value="20" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-societe-row">
+                                                    <td class="font-w600">Societe</td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="societe_per_view" value="21" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="societe_per_update" value="22" type="checkbox">
+                                                            <span class="css-control-indicator"></span>
+                                                        </label>
+                                                    </td>
+                                                    <td class="font-w600 text-center"></td>
+                                                    <td class="font-w600 text-center"></td>
+                                                </tr>
+                                                <tr class="add-statistic-row">
+                                                    <td class="font-w600">Statistics</td>
+                                                    <td colspan="4" class="font-w600">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="client_per_view" value="23" type="checkbox">
+                                                            <span class="css-control-indicator"></span>Voir les <b>Statistics</b>
+                                                        </label>
+                                                    </td>
+                                                </tr>
+                                                <tr class="add-facture-row">
+                                                    <td class="font-w600">Facture</td>
+                                                    <td colspan="4" class="font-w600">
+                                                        <label class="css-control css-control-success css-checkbox">
+                                                            <input class="css-control-input" name="permission[]"
+                                                                   id="facture_per_view" value="24" type="checkbox">
+                                                            <span class="css-control-indicator"></span>Imprimer la <b>Facture</b>
+                                                        </label>
+                                                    </td>
+                                                </tr>
                                             </tbody>
                                         </table>
-                                        <script type="text/javascript">
-                                            $(function () {
-                                                $('.client input:checkbox').change(function(){
-                                                    if ($('#client_per_add').prop("checked")||$('#client_per_update').prop("checked")||$('#client_per_delete').prop("checked")) {
-//
-                                                        $('#client_per_view').prop('checked', true);
-                                                    }
-                                                });
-                                                $('.service input:checkbox').change(function(){
-                                                    if ($('#service_per_add').prop("checked")||$('#service_per_update').prop("checked")||$('#service_per_delete').prop("checked")) {
-//
-                                                        $('#service_per_view').prop('checked', true);
-                                                    }
-                                                });
-                                                $('.commande input:checkbox').change(function(){
-                                                    if ($('#commande_per_add').prop("checked")||$('#commande_per_update').prop("checked")||$('#commande_per_delete').prop("checked")) {
-//
-                                                        $('#commande_per_view').prop('checked', true);
-                                                    }
-                                                });
-                                            });
-                                        </script>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
-                        <button class="btn btn-alt-success" type="submit" id="submit_btn" >
-                            <i class="fa fa-check"></i> Ajouter
-                        </button>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>
+                            <button class="btn btn-alt-success" type="submit" id="submit_btn">
+                                <i class="fa fa-check"></i> Ajouter
+                            </button>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -354,27 +444,27 @@
                             </div>
                         </div>
                         <div class="block-content">
-                            <ul class="nav nav-tabs nav-tabs-block" data-toggle="tabs" role="tablist">
+                            <ul class="nav nav-tabs nav-tabs-alt" data-toggle="tabs" role="tablist">
                                 <li class="nav-item">
-                                    <a class="nav-link active" href="#btabs-static-home">Profile</a>
+                                    <a class="nav-link active edit-profile" href="#btabs-alt-static-edit-profile">Profile</a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#edit-btabs-static-permissions">Permissions</a>
+                                    <a class="nav-link edit-permissions" href="#btabs-alt-static-edit-permission">Permissions</a>
                                 </li>
                             </ul>
-                            <div class="block-content tab-content">
-                                <div class="tab-pane active" id="btabs-static-home" role="tabpanel">
-                                    <div class="row">
+                            <div class="tab-content">
+                                <div class="tab-pane active edit-profile-content" id="btabs-alt-static-edit-profile" role="tabpanel">
+                                    <div class="row block-content" >
                                         <div class="col-md-8 col-sm-12 col-xs-12">
                                             <div class="form-group row">
-                                                <div class="col-4"><img class="profile"  width="80px" style="border-radius: 100px;" alt="No Image"></div>
+                                                <div class="col-4"><img class="profile"  width="50px" height="50px" style="border-radius: 100px;" alt="No Image"></div>
                                                 <div class="col-8">
                                                     <label class="">Changer la Photo de Profile</label>
                                                     <div class="input-group">
                                                         <label class="input-group-btn">
-                                            <span class="btn browse">
-                                                Browse&hellip; <input type="file" style="display: none;" class="picture" id="picture" name="picture">
-                                            </span>
+                                                        <span class="btn browse">
+                                                            Browse&hellip; <input type="file" style="display: none;" class="picture" id="picture" name="picture">
+                                                        </span>
                                                         </label>
                                                         <input type="text" class="form-control filename"
                                                                onfocus="this.blur()" style="background-color:#FFF !important" readonly>
@@ -438,138 +528,217 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-md-4 col-sm-6 col-xs-12">
-                                        <div class="form-group">
-                                            <label for="permission">Permissions<span style="font-size: 11px;">(optionnel)</span></label>
-                                            <select name="permission"  class="form-control" id="permission">
-                                                <option value=""></option>
-                                                <option value="admin">Admin</option>
-                                                <option value="">Gestion Users</option>
-                                                <option value="">Gestion Du Commandes</option>
-                                                <option value="">Gestion Du Services</option>
-                                            </select>
-                                        </div>
-                                    </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="edit-btabs-static-permissions" role="tabpanel">
+                                <div class="tab-pane add-permissions-content" id="btabs-alt-static-edit-permission" role="tabpanel">
                                         <div class="table-responsive">
-                                            <table class="table">
+                                            <table class="table table-hover table-vcenter">
                                                 <thead>
-                                                <tr>
-                                                    <th class="font-w700">Section</th>
-                                                    <th class="font-w700 text-center" style="width: 20%;">Vue</th>
-                                                    <th class="font-w700 text-center" style="width: 20%;">Ajouter</th>
-                                                    <th class="font-w700 text-center" style="width: 20%;">Modifier</th>
-                                                    <th class="font-w700 text-center" style="width: 20%;">Supprimer</th>
-                                                </tr>
+                                                    <tr>
+                                                        <th>Section</th>
+                                                        <th>Vue</th>
+                                                        <th>Ajouter</th>
+                                                        <th>Modifier</th>
+                                                        <th>Supprimer</th>
+                                                    </tr>
                                                 </thead>
-                                                <tbody>
-                                                <tr class="edit_client">
-                                                    <td class="font-w600">Clients</td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_client_per_view" id="edit_client_per_view" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_client_per_add" id="edit_client_per_add" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_client_per_update" id="edit_client_per_update" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_client_per_delete" id="edit_client_per_delete" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr class="edit_service">
-                                                    <td class="font-w600">Categories/Services</td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_service_per_view" id="edit_service_per_view" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_service_per_add" id="edit_service_per_add" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_service_per_update" id="edit_service_per_update" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_service_per_delete" id="edit_service_per_delete" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
-                                                <tr class="edit_commande">
-                                                    <td class="font-w600">Commandes</td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_commande_per_view" id="edit_commande_per_view" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_commande_per_add" id="edit_commande_per_add" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_commande_per_update" id="edit_commande_per_update" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                    <td class="text-center">
-                                                        <label class="css-control css-control-success css-checkbox">
-                                                            <input class="css-control-input" name="edit_commande_per_delete" id="edit_commande_per_delete" type="checkbox">
-                                                            <span class="css-control-indicator"></span>
-                                                        </label>
-                                                    </td>
-                                                </tr>
+                                                <tbody class="edit-user-block">
+                                                    <tr class="edit-user-row">
+                                                        <td class="font-w600">Utilisateurs</td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="user_per_view" value="1" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="user_per_add" value="2" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="user_per_update" value="3" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="user_per_delete" value="4" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="edit-client-row">
+                                                        <td class="font-w600">Clients</td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="client_per_view" value="5" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="client_per_add" value="6" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="client_per_update" value="7" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="client_per_delete" value="8" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="edit-categorie-row">
+                                                        <td class="font-w600">Categories</td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="categorie_per_view" value="9" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="categorie_per_add" value="10" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="categorie_per_update" value="11" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="categorie_per_delete" value="12" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="edit-service-row">
+                                                        <td class="font-w600">Services</td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="service_per_view" value="13" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="service_per_add" value="14" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="service_per_update" value="15" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="service_per_delete" value="16" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="edit-commande-row">
+                                                        <td class="font-w600">Commandes</td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="commande_per_view" value="17" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="commande_per_add" value="18" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="commande_per_update" value="19" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="commande_per_delete" value="20" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="edit-societe-row">
+                                                        <td class="font-w600">Societe</td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="societe_per_view" value="21" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="societe_per_update" value="22" type="checkbox">
+                                                                <span class="css-control-indicator"></span>
+                                                            </label>
+                                                        </td>
+                                                        <td class="font-w600"></td>
+                                                        <td class="font-w600"></td>
+                                                    </tr>
+                                                    <tr class="edit-statistic-row">
+                                                        <td class="font-w600">Statistics</td>
+                                                        <td colspan="4" class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="client_per_view" value="23" type="checkbox">
+                                                                <span class="css-control-indicator"></span>Voir les statistics
+                                                            </label>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="edit-facture-row">
+                                                        <td class="font-w600">Facture</td>
+                                                        <td colspan="4" class="font-w600">
+                                                            <label class="css-control css-control-success css-checkbox">
+                                                                <input class="css-control-input" name="permission[]"
+                                                                       id="facture_per_view" value="24" type="checkbox">
+                                                                <span class="css-control-indicator"></span>Imprimer la facture
+                                                            </label>
+                                                        </td>
+                                                    </tr>
                                                 </tbody>
                                             </table>
-                                            <script type="text/javascript">
-                                                $(function () {
-                                                    $('.edit_client input:checkbox').change(function(){
-                                                        if ($('#edit_client_per_add').prop("checked")||$('#edit_client_per_update').prop("checked")||$('#edit_client_per_delete').prop("checked")) {
-//
-                                                            $('#edit_client_per_view').prop('checked', true);
-                                                        }
-                                                    });
-                                                    $('.edit_service input:checkbox').change(function(){
-                                                        if ($('#edit_service_per_add').prop("checked")||$('#edit_service_per_update').prop("checked")||$('#edit_service_per_delete').prop("checked")) {
-//
-                                                            $('#edit_service_per_view').prop('checked', true);
-                                                        }
-                                                    });
-                                                    $('.edit_commande input:checkbox').change(function(){
-                                                        if ($('#edit_commande_per_add').prop("checked")||$('#edit_commande_per_update').prop("checked")||$('#edit_commande_per_delete').prop("checked")) {
-//
-                                                            $('#edit_commande_per_view').prop('checked', true);
-                                                        }
-                                                    });
-                                                });
-                                            </script>
                                         </div>
                                 </div>
                             </div>
@@ -607,12 +776,12 @@
     <script src="{{asset('assets/js/plugins/sweetalert2/es6-promise.auto.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins/sweetalert2/sweetalert2.min.js')}}"></script>
     <script src="{{asset('assets/js/pages/users_delete.js')}}"></script>
-    <script>
-        jQuery(function () {
-            // Init page helpers (BS Notify Plugin)
+    <script type="text/javascript">
+        $(function () {
             Codebase.helpers('notify');
         });
     </script>
+
 @endsection
 
 

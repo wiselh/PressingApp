@@ -34,6 +34,21 @@ $(function() {
         $(".edit-user-form .filename").val(filename_edit);
     });
 
+    //permissions
+    $('.add-user-block input:checkbox').change(function(){
+        $('input:checkbox').each(function () {
+            if($(this).prop("checked")){
+                $(this).closest('tr').find('input:checkbox:first').prop('checked', true);
+            }
+        });
+    });
+    $('.edit-user-block input:checkbox').change(function(){
+        $('input:checkbox').each(function () {
+            if($(this).prop("checked")){
+                $(this).closest('tr').find('input:checkbox:first').prop('checked', true);
+            }
+        });
+    });
 
     //validation for Add users
     $('.add-user-form').validate({
@@ -41,6 +56,12 @@ $(function() {
             errorElement: 'div',
             errorPlacement: function (error, e) {
                 jQuery(e).parents('.form-group').append(error);
+
+                $('.add-profile').addClass('active');
+                $('.add-permissions').removeClass('active');
+                $('.add-profile-content').addClass('active');
+                $('.add-permissions-content').removeClass('active');
+
             },
             highlight: function (e) {
                 jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
@@ -72,9 +93,6 @@ $(function() {
                     required: true,
                     equalTo: '#password'
                 },
-                'permission': {
-                    required: true
-                },
                 'picture': {
                     accept: "image/jpg,image/jpeg,image/png",
                     filesize: 2097152
@@ -102,9 +120,6 @@ $(function() {
                     required: "S'il vous plaît entrer votre email",
                     email: 'Votre email m\'est pas valid'
                 },
-                'permission': {
-                    required: "S'il vous plaît entrer les permission pour cet utilisateur"
-                },
                 'picture' : {
                     accept : "Le fichier doit être au format JPG, JPEG ou PNG",
                     filesize :'Le fichier doit être moins de 2 Mb'
@@ -122,6 +137,11 @@ $(function() {
                         alert('Success');
                     },
                     error: function(data){
+                        console.log(data);
+                        $('.add-profile').addClass('active');
+                        $('.add-permissions').removeClass('active');
+                        $('.add-profile-content').addClass('active');
+                        $('.add-permissions-content').removeClass('active');
                         $errors = data.responseJSON;
                         $.each( $errors, function( key, value ) {
                             $('#'+key).parents('.add-user-form .form-group').removeClass('is-invalid');
@@ -139,6 +159,11 @@ $(function() {
         errorElement: 'div',
         errorPlacement: function (error, e) {
             jQuery(e).parents('.form-group').append(error);
+
+            $('.edit-profile').addClass('active');
+            $('.edit-permissions').removeClass('active');
+            $('.edit-profile-content').addClass('active');
+            $('.edit-permissions-content').removeClass('active');
         },
         highlight: function (e) {
             jQuery(e).closest('.form-group').removeClass('is-invalid').addClass('is-invalid');
@@ -223,6 +248,12 @@ $(function() {
                 },
                 error: function(data){
                     $errors = data.responseJSON;
+
+                    $('.edit-profile').addClass('active');
+                    $('.edit-permissions').removeClass('active');
+                    $('.edit-profile-content').addClass('active');
+                    $('.edit-permissions-content').removeClass('active');
+
                     $.each( $errors, function( key, value ) {
                         console.log(key +' ==> '+ value);
                         $('#'+key+'-edit').parents('.edit-user-form .form-group').removeClass('is-invalid');

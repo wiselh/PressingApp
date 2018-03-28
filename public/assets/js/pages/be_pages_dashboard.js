@@ -1,6 +1,6 @@
 var BePagesDashboard = function() {
     // Chart.js Charts, for more examples you can check out http://www.chartjs.org/docs
-    var initDashboardChartJS = function () {
+    var initDashboardChartJS = function (data) {
         // Set Global Chart.js configuration
         Chart.defaults.global.defaultFontColor              = '#555555';
         Chart.defaults.scale.gridLines.color                = "transparent";
@@ -25,7 +25,7 @@ var BePagesDashboard = function() {
             labels: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'],
             datasets: [
                 {
-                    label: 'This Week',
+                    label: 'Cette Semaine',
                     fill: true,
                     backgroundColor: 'rgba(66,165,245,.25)',
                     borderColor: 'rgba(66,165,245,1)',
@@ -33,7 +33,9 @@ var BePagesDashboard = function() {
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(66,165,245,1)',
-                    data: [25, 21, 23, 38, 36, 35, 39]
+                    data: [data.days[0], data.days[1],
+                            data.days[2], data.days[3],
+                            data.days[4], data.days[5], data.days[6]]
                 }
             ]
         };
@@ -49,7 +51,7 @@ var BePagesDashboard = function() {
             tooltips: {
                 callbacks: {
                     label: function(tooltipItems, data) {
-                        return ' ' + tooltipItems.yLabel + ' Sales';
+                        return ' ' + tooltipItems.yLabel + ' Commandes';
                     }
                 }
             }
@@ -59,7 +61,7 @@ var BePagesDashboard = function() {
             labels: ['LUN', 'MAR', 'MER', 'JEU', 'VEN', 'SAM', 'DIM'],
             datasets: [
                 {
-                    label: 'This Week',
+                    label: 'Cette Semaine',
                     fill: true,
                     backgroundColor: 'rgba(156,204,101,.25)',
                     borderColor: 'rgba(156,204,101,1)',
@@ -67,7 +69,9 @@ var BePagesDashboard = function() {
                     pointBorderColor: '#fff',
                     pointHoverBackgroundColor: '#fff',
                     pointHoverBorderColor: 'rgba(156,204,101,1)',
-                    data: [190, 219, 235, 320, 360, 354, 390]
+                    data: [data.revenu[0], data.revenu[1],
+                        data.revenu[2], data.revenu[3],
+                        data.revenu[4], data.revenu[5], data.revenu[6]]
                 }
             ]
         };
@@ -83,7 +87,7 @@ var BePagesDashboard = function() {
             tooltips: {
                 callbacks: {
                     label: function(tooltipItems, data) {
-                        return ' $ ' + tooltipItems.yLabel;
+                        return  tooltipItems.yLabel+' DH ' ;
                     }
                 }
             }
@@ -102,7 +106,18 @@ var BePagesDashboard = function() {
     return {
         init: function () {
             // Init Chart.js Charts
-            initDashboardChartJS();
+            $.ajax({
+                url: "/date",
+                type:"GET",
+                success: function(data) {
+                    initDashboardChartJS(data);
+                },
+                error: function(data){
+                    alert('no');
+                    console.log(data);
+                }
+            });
+
         }
     };
 }();
