@@ -37,7 +37,91 @@ class StatisticController extends Controller
 
 
     }
-    public function statistic($date){
+    public function graphStatistics(){
+        //commandes arrays
+        $days=[];
+        $lastDays=[];
+        $months=[];
+        $lastMonths=[];
+
+        //earnings arrays
+        $revenuDays=[];
+        $revenuLastDays=[];
+        $revenuMonths=[];
+        $revenuLastMonths=[];
+
+        // add this year and last year to arrays
+        array_push($months,Carbon::now()->year);
+        array_push($lastMonths,Carbon::now()->year-1);
+        array_push($revenuMonths,Carbon::now()->year);
+        array_push($revenuLastMonths,Carbon::now()->year-1);
+
+        // get a weeks days data
+        for ($i = 0 ;$i<7;$i++){
+
+            $thisDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')->count();
+            $lastDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::parse('last sunday')->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')->count();
+            $revenuThisDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')
+                ->sum('commandes.commande_montant');
+            $revenuLastDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::parse('last sunday')->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')
+                ->sum('commandes.commande_montant');
+
+            array_push($days,$thisDay);
+            array_push($lastDays,$lastDay);
+            array_push($revenuDays,$revenuThisDay);
+            array_push($revenuLastDays,$revenuLastDay);
+        }
+
+        // get a years months data
+        for ($i=1;$i<13;$i++){
+            $thisMonth =  DB::table('commandes')
+                ->whereYear("commande_date","=",Carbon::now()->year)
+                ->whereMonth("commande_date","=",$i)
+                ->whereNotNull('deleted_at')->count();
+            $revenuThisMonth =  DB::table('commandes')
+                ->whereYear("commande_date","=",Carbon::now()->year)
+                ->whereMonth("commande_date","=",$i)
+                ->whereNotNull('deleted_at')->sum('commandes.commande_montant');
+
+            $lastMonth =  DB::table('commandes')
+                ->whereYear("commande_date","=",(Carbon::now()->year-1))
+                ->whereMonth("commande_date","=",$i)
+                ->whereNotNull('deleted_at')->count();
+            $revenuLastMonth =  DB::table('commandes')
+                ->whereYear("commande_date","=",(Carbon::now()->year-1))
+                ->whereMonth("commande_date","=",$i)
+                ->whereNotNull('deleted_at')->sum('commandes.commande_montant');
+            array_push($months,$thisMonth);
+            array_push($revenuMonths,$revenuThisMonth);
+
+            array_push($lastMonths,$lastMonth);
+            array_push($revenuLastMonths,$revenuLastMonth);
+
+        }
+
+        return  [
+            //commandes counts
+            'days' => $days,
+            'lastDays' => $lastDays,
+            'months' => $months,
+            'lastMonths'=>$lastMonths,
+            // earnings
+            'revenuDays' =>$revenuDays,
+            'revenuLastDays' =>$revenuLastDays,
+            'revenuMonths' =>$revenuMonths,
+            'revenuLastMonths' =>$revenuLastMonths,
+
+        ];
+    }
+    public function headerStatistics($date){
         switch($date){
             case 'day'  : return $this->getDataOfInterval(Carbon::now()->subDay(),$date);
                 break;
@@ -53,22 +137,51 @@ class StatisticController extends Controller
        }
 
     }
+
+    public function tableCommandes(){
+        //commandes arrays
+        $days=[];
+
+        // get a weeks days data
+        for ($i = 0 ;$i<7;$i++){
+            $thisDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')->get();
+
+            array_push($days,$thisDay);
+        }
+//        return ['day'=>$days];
+        return response()
+            ->json(['day'=>$days]);
+
+    }
+
     public function test(){
 
         $days=[];
+        $lastDays=[];
         $weeks=[];
         $months=[];
+        $lastMonths=[];
         $dayRevenu=[];
+        array_push($months,Carbon::now()->year);
+        array_push($lastMonths,Carbon::now()->year-1);
+
         for ($i = 0 ;$i<7;$i++){
 
-            $nbr = DB::table('commandes')
+            $thisDay = DB::table('commandes')
                 ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')->count();
+            $lastDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::parse('last sunday')->startOfWeek()->addDays($i))
                 ->whereNotNull('deleted_at')->count();
             $revenuDay = DB::table('commandes')
                 ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
                 ->whereNotNull('deleted_at')
                 ->sum('commandes.commande_montant');
-            array_push($days,$nbr);
+
+            array_push($days,$thisDay);
+            array_push($lastDays,$lastDay);
             array_push($dayRevenu,$revenuDay);
         }
 //        $year =2018;
@@ -102,26 +215,25 @@ class StatisticController extends Controller
                 ->whereNotNull('deleted_at')->count();
             array_push($months,$month);
         }
+        for ($i=1;$i<13;$i++){
+            $month =  DB::table('commandes')
+                ->whereYear("commande_date","=",(Carbon::now()->year-1))
+                ->whereMonth("commande_date","=",$i)
+                ->whereNotNull('deleted_at')->count();
+            array_push($lastMonths,$month);
+        }
 
-//            return [
-//                'days' => $days,
-//                'weeks' => $weeks,
-//                'months' => $months,
-//                'revenu' =>$dayRevenu,
-//                'revenuOfWeek'=>$revenuOfWeek,
-//                'commandesOfWeek'=>$commandesOfWeek,
-//                'commandesOfMonth'=>$commandesOfMonth,
-//                'revenuOfMonth'=>$revenuOfMonth
-//
-//            ];
         return  [
             'days' => $days,
+            'lastDays' => $lastDays,
             'weeks' => $weeks,
-            'months' => $months,
             'revenu' =>$dayRevenu,
+            'months' => $months,
+            'lastMonths'=>$lastMonths
         ];
 
     }
+
 
     public function getDataOfInterval($date,$period_date){
 
@@ -175,7 +287,7 @@ class StatisticController extends Controller
             'clients_nbr' => $clients,
             'period' => $period];
     }
-    public function statisticBetweenTwoDates(){
+    public function statisticsBetweenTwoDates(){
         $date1 = $_GET['date1'];
         $date2 = $_GET['date2'];
 
@@ -204,69 +316,5 @@ class StatisticController extends Controller
             'period' => $period];
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

@@ -42,7 +42,7 @@
             </div>
             {{--<div class="col-md-6"></div>--}}
         </div>
-        <div class="bg-flat-dark col-2" style="padding: 10px 10px;border-radius: 8px">
+        <div class="block-header block-header-default col-4" style="padding: 10px 10px;border-radius: 8px">
             <h3 class="block-title" style="color: white">Paiement</h3>
         </div>
         <div class="block-content block-content-full">
@@ -78,7 +78,7 @@
         <div class="block-header block-header-default">
             <h3 class="block-title">Pieces</h3>
             <span class="mr-auto">
-                <button type="button" class="btn btn-sm btn-alt-primary" data-toggle="modal" data-target="#add-item" title="Ajouter">
+                <button type="button" class="btn btn-sm btn-alt-default" data-toggle="modal" data-target="#add-item" title="Ajouter">
                     Ajouter
                 </button>
             </span>
