@@ -1,6 +1,7 @@
 <?php
 
 define('LARAVEL_START', microtime(true));
+ini_set ('xdebug.max_nesting_level', 200);
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ define('LARAVEL_START', microtime(true));
 */
 
 require __DIR__.'/../vendor/autoload.php';
+
+

@@ -43,9 +43,8 @@
             color: #42a5f5;
         }
         .block-header,.block-header-default{
-            /*background: linear-gradient(135deg,#2095f3 0,#26c6da 100%) !important;*/
-            background-color: #e1e1e2 !important;
-            color: black !important;
+            background-color: #575757 !important;
+            color: white !important;
         }
         .block-header h3,.block-header-default h3 {
             color: white
@@ -57,6 +56,7 @@
     </style>
     <link rel="stylesheet" href="{{asset('assets/js/plugins/dropzonejs/min/dropzone.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.css')}}">
+
 </head>
 <body>
 <!-- Page Container -->
@@ -135,7 +135,6 @@
             </div>
 
             <div class="row gutters-tiny">
-                <!-- Earnings -->
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-rounded block-transparent bg-gd-elegance" href="javascript:void(0)">
                         <div class="block-content block-content-full block-sticky-options">
@@ -151,11 +150,8 @@
                         </div>
                     </a>
                 </div>
-                <!-- END Earnings -->
-
-                <!-- Orders -->
                 <div class="col-md-6 col-xl-3">
-                    <a class="block block-rounded block-transparent bg-gd-dusk" href="be_pages_ecom_orders.html">
+                    <a class="block block-rounded block-transparent bg-gd-dusk" href="#">
                         <div class="block-content block-content-full block-sticky-options">
                             <div class="block-options">
                                 <div class="block-options-item">
@@ -169,9 +165,6 @@
                         </div>
                     </a>
                 </div>
-                <!-- END Orders -->
-
-                <!-- New Customers -->
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-rounded block-transparent bg-gd-sea" href="javascript:void(0)">
                         <div class="block-content block-content-full block-sticky-options">
@@ -187,9 +180,6 @@
                         </div>
                     </a>
                 </div>
-                <!-- END New Customers -->
-
-                <!-- Conversion Rate -->
                 <div class="col-md-6 col-xl-3">
                     <a class="block block-rounded block-transparent bg-gd-aqua" href="javascript:void(0)">
                         <div class="block-content block-content-full block-sticky-options">
@@ -205,7 +195,6 @@
                         </div>
                     </a>
                 </div>
-                <!-- END Conversion Rate -->
             </div>
 
             <div class="content-heading">
@@ -261,80 +250,125 @@
                     <!-- END Lines Chart -->
                 </div>
             </div>
-            <!-- Latest Orders and Top Products -->
-            <div class="row gutters-tiny">
-                <!-- Latest Orders -->
-                <div class="col-xl-12">
-                    <div class="content-heading">
-                        <div class="dropdown float-right">
-                            <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" id="ecom-dashboard-stats-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Aujourd'hui
-                            </button>
-                            <div class="dropdown-menu dropdown-menu-right" style="min-width: 16rem;" aria-labelledby="ecom-dashboard-stats-drop">
-                                <a class="dropdown-item  commande-option" data-name="day">
-                                    <i class="fa fa-fw fa-calendar mr-5"></i>Aujourd'hui
-                                </a>
-                                <a class="dropdown-item commande-option" data-name="week">
-                                    <i class="fa fa-fw fa-calendar mr-5"></i>Cette Semaine
-                                </a>
-                                <a class="dropdown-item commande-option" data-name="month">
-                                    <i class="fa fa-fw fa-calendar mr-5"></i>Ce Mois
-                                </a>
-                                <a class="dropdown-item commande-option" data-name="year">
-                                    <i class="fa fa-fw fa-calendar mr-5"></i>Cette Année
-                                </a>
-                                <div class="dropdown-divider" ></div>
-                                <a class="dropdown-item commande-option" data-name="lifetime">
-                                    <i class="fa fa-fw fa-circle-o mr-5"></i>Toujours
-                                </a>
-                                <div class="dropdown-item ">
-                                    <div class="input-daterange input-group" data-date-format="yyyy-mm-dd"
-                                         data-week-start="1" data-autoclose="true" data-today-highlight="true">
-                                        <input type="text" class="form-control" id="date1" style="font-size: 11px;"
-                                               name="example-daterange1" placeholder="From" data-week-start="1"
-                                               data-autoclose="true" data-today-highlight="true">
-                                        <span class="input-group-addon font-w600">à</span>
-                                        <input type="text" class="form-control" id="date2" style="font-size: 11px;"
-                                               name="example-daterange2" placeholder="To" data-week-start="1"
-                                               data-autoclose="true" data-today-highlight="true">
-                                    </div>
-                                    <div><button class="getStatisticsBetweenTwoDates btn btn-sm btn-alt-default">Search</button></div>
-                                </div>
-                            </div>
-                        </div>
-                        Commandes
-                    </div>
-                    <div class="block block-rounded">
-                        <div class="block-content">
 
-                            <table class="table table-borderless table-hover table-striped js-dataTable-full mytable">
-                                <thead>
-                                    <tr>
-                                        <th class="text-center" style="width: 10%;">ID</th>
-                                        <th class="d-none d-sm-table-cell text-center" style="width: 10%;">NO°</th>
-                                        <th class="d-none d-sm-table-cell text-center">Nom du Client</th>
-                                        <th class="d-none d-sm-table-cell text-center">Date de Facture</th>
-                                        <th class="d-none d-sm-table-cell text-center">Nombre de Pieces</th>
-                                        <th class="d-none d-sm-table-cell text-center">Montant Total</th>
-                                        <th class="d-none d-sm-table-cell text-center">Paiments</th>
-                                    <tr>
-                                </thead>
-                            </table>
+            <!-- Dynamic Table Full -->
+            <div class="content-heading">
+                <div class="dropdown float-right">
+                    <button type="button" class="btn btn-sm btn-secondary dropdown-toggle" id="ecom-dashboard-stats-drop" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Aujourd'hui
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" style="min-width: 16rem;" aria-labelledby="ecom-dashboard-stats-drop">
+                        <a class="dropdown-item  datatable-option" data-name="day">
+                            <i class="fa fa-fw fa-calendar mr-5"></i>Aujourd'hui
+                        </a>
+                        <a class="dropdown-item datatable-option" data-name="week">
+                            <i class="fa fa-fw fa-calendar mr-5"></i>Cette Semaine
+                        </a>
+                        <a class="dropdown-item datatable-option" data-name="month">
+                            <i class="fa fa-fw fa-calendar mr-5"></i>Ce Mois
+                        </a>
+                        <a class="dropdown-item datatable-option" data-name="year">
+                            <i class="fa fa-fw fa-calendar mr-5"></i>Cette Année
+                        </a>
+                        <div class="dropdown-divider" ></div>
+                        <a class="dropdown-item datatable-option" data-name="lifetime">
+                            <i class="fa fa-fw fa-circle-o mr-5"></i>Toujours
+                        </a>
+                        <div class="dropdown-item ">
+                            <div class="input-daterange input-group" data-date-format="yyyy-mm-dd"
+                                 data-week-start="1" data-autoclose="true" data-today-highlight="true">
+                                <input type="text" class="form-control" id="date3" style="font-size: 11px;"
+                                       name="example-daterange1" placeholder="From" data-week-start="1"
+                                       data-autoclose="true" data-today-highlight="true">
+                                <span class="input-group-addon font-w600">à</span>
+                                <input type="text" class="form-control" id="date4" style="font-size: 11px;"
+                                       name="example-daterange2" placeholder="To" data-week-start="1"
+                                       data-autoclose="true" data-today-highlight="true">
+                            </div>
+                            <div><button class="getStatisticsBetweenTwoDates btn btn-sm btn-alt-default">Search</button></div>
                         </div>
                     </div>
                 </div>
-                <!-- END Latest Orders -->
+                Commandes
             </div>
-            <!-- END Latest Orders and Top Products -->
+            <div class="block">
+                <div class="block-content block-content-full">
+                    <div class="table-responsive">
+                    <table id="my-table" class="table table-bordered table-striped table-vcenter ">
+                        <thead>
+                            <tr>
+                                <th class="text-center" style="width: 10%;">NO°</th>
+                                <th class="d-none d-sm-table-cell text-center" style="width: 10%;">Client</th>
+                                <th class="d-none d-sm-table-cell text-center">Quantity</th>
+                                <th class="d-none d-sm-table-cell text-center">Montant Total</th>
+                                <th class="d-none d-sm-table-cell text-center">Date de Facture</th>
+                                <th class="d-none d-sm-table-cell text-center">Date de Retrait</th>
+                                <th class="d-none d-sm-table-cell text-center">Paiments</th>
+                            </tr>
+                        </thead>
+                    </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
+    <div class="modal fade" id="modal-popout" tabindex="-1" role="dialog" aria-labelledby="modal-popout" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popout" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Terms &amp; Conditions</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        Text
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{--<button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>--}}
+                    {{--<button type="button" class="btn btn-alt-success" data-dismiss="modal">--}}
+                    {{--<i class="fa fa-check"></i> Perfect--}}
+                    {{--</button>--}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="modal-popout2" tabindex="-1" role="dialog" aria-labelledby="modal-popout" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-popout" role="document">
+            <div class="modal-content">
+                <div class="block block-themed block-transparent mb-0">
+                    <div class="block-header bg-primary-dark">
+                        <h3 class="block-title">Terms &amp; Conditions</h3>
+                        <div class="block-options">
+                            <button type="button" class="btn-block-option" data-dismiss="modal" aria-label="Close">
+                                <i class="si si-close"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="block-content">
+                        Text
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    {{--<button type="button" class="btn btn-alt-secondary" data-dismiss="modal">Close</button>--}}
+                    {{--<button type="button" class="btn btn-alt-success" data-dismiss="modal">--}}
+                    {{--<i class="fa fa-check"></i> Perfect--}}
+                    {{--</button>--}}
+                </div>
+            </div>
+        </div>
+    </div>
+    <button>{{asset(Route('getdata'))}}</button>
     <!-- END Main Container -->
     @include('Layouts.footer')
 </div>
-
-<script type="text/javascript">
-    Codebase.helpers(['datepicker']);
-</script>
+{{--<script>--}}
+    {{--location.load();--}}
+{{--</script>--}}
 <!-- Codebase Core JS -->
 <script src="{{asset('assets/js/core/jquery.min.js')}}"></script>
 <script src="{{asset('assets/js/core/popper.min.js')}}"></script>
@@ -345,28 +379,52 @@
 <script src="{{asset('assets/js/core/jquery.countTo.min.js')}}"></script>
 <script src="{{asset('assets/js/core/js.cookie.min.js')}}"></script>
 <script src="{{asset('assets/js/codebase.js')}}"></script>
-<!-- Page JS Plugins -->
-<script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
-<!-- Page JS Code -->
-<script src="{{asset('assets/js/pages/be_pages_dashboard.js')}}"></script>
-<script src="{{asset('assets/js/pages/profile_validation.js')}}"></script>
 
-<script src="{{asset('assets/js/pages/statistics_charts.js')}}"></script>
-<script src="{{asset('assets/js/pages/statistics.js')}}"></script>
 
-<script src="{{asset('assets/js/plugins/flot/jquery.flot.min.js')}}"></script>
-<script src="{{asset('assets/js/plugins/flot/jquery.flot.pie.min.js')}}"></script>
-<script src="{{asset('assets/js/plugins/flot/jquery.flot.stack.min.js')}}"></script>
-<script src="{{asset('assets/js/plugins/flot/jquery.flot.resize.min.js')}}"></script>
 
 <!-- Page JS Plugins -->
 <script src="{{asset('assets/js/plugins/datatables/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/datatables/dataTables.bootstrap4.min.js')}}"></script>
-
-<!-- Page JS Code -->
-<script src="{{asset('assets/js/pages/be_tables_datatables.js')}}"></script>
+<script src="{{asset('assets/js/plugins/chartjs/Chart.bundle.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jquery-validation/jquery.validate.min.js')}}"></script>
 <script src="{{asset('assets/js/plugins/jquery-validation/additional-methods.min.js')}}"></script>
+
+<!-- Page JS Code -->
+<script src="{{asset('assets/js/pages/statistics_charts.js')}}"></script>
+{{--<script src="{{asset('assets/js/pages/be_tables_datatables.js')}}"></script>--}}
+
+<script src="{{asset('assets/js/pages/profile_validation.js')}}"></script>
+
+{{--<script src="{{asset('assets/js/pages/statisticssd.js')}}"></script>--}}
+<script type="text/javascript">
+    $(function () {
+        jQuery('#my-table').dataTable({
+            columnDefs: [],
+            pageLength: 5,
+            lengthMenu: [[5, 8, 15, 20], [5, 8, 15, 20]],
+            autoWidth: false,
+            processing: true,
+            serverSide: true,
+            searching: true,
+            ordering: true,
+//            ajax: "http://127.0.0.1:8000/statistics/datatableCommandes",
+            ajax: "{{asset(Route('getdata'))}}",
+            columns: [
+                {data: 'commande_num', name: 'commande_num'},
+                {data: 'id_client', name: 'id_client'},
+                {data: 'commande_quantity', name: 'commande_quantity'},
+                {data: 'commande_montant', name: 'commande_montant'},
+                {data: 'commande_date', name: 'commande_date'},
+                {data: 'commande_date_retrait', name: 'commande_date_retrait'},
+                {data: 'commande_paid', name: 'commande_paid'}
+            ]
+        });
+
+
+    });
+
+//    , orderable: true, searchable:true
+</script>
 
 </body>
 </html>

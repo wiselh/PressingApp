@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Commande;
+use App\Facture;
+use App\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
+use Yajra\DataTables\CollectionDataTable;
+
 
 class StatisticController extends Controller
 {
@@ -140,22 +146,46 @@ class StatisticController extends Controller
 
     public function tableCommandes(){
         //commandes arrays
-        $days=[];
-
-        // get a weeks days data
+        $commandes=[];
+//
+//        // get a weeks days data
         for ($i = 0 ;$i<7;$i++){
-            $thisDay = DB::table('commandes')
-                ->where("commande_date","=",Carbon::now()->startOfWeek()->addDays($i))
-                ->whereNotNull('deleted_at')->get();
 
-            array_push($days,$thisDay);
+            $thisDay = DB::table('commandes')
+                ->where("commande_date","=",Carbon::parse('last sunday')->startOfWeek()->addDays($i))
+                ->whereNotNull('deleted_at')->get();
+            foreach ($thisDay as $item){
+                array_push($commandes,$item);
+            }
         }
-//        return ['day'=>$days];
-        return response()
-            ->json(['day'=>$days]);
+
+//            return Datatables::of(Facture::all())->make(true);
+        $collection = new Collection($commandes);
+        return (new CollectionDataTable($collection))
+//            ->editColumn('commande_date', function ($commande) {
+//            return $commande->commande_date ? with(new Carbon($commande->commande_date))->format('m/d/Y') : '';})
+//            ->editColumn('commande_date_retrait', function ($commande) {
+//                return $commande->commande_date ? with(new Carbon($commande->commande_date_retrait))->format('m/d/Y') : '';})
+//            ->editColumn('commande_quantity', function ($commande) {
+//                return '<button class="btn btn-sm btn-alt-info" data-toggle="modal" data-target="#modal-popout">'.$commande->commande_quantity.'</button>';
+//            })
+//            ->rawColumns(['commande_date_retrait','commande_date','commande_quantity'])
+            ->make(true);
+//        return ['commandes'=>$commandes];
+
+
+
+
 
     }
 
+ public function datatable()
+ {
+     $pages = Commande::select('*');
+
+     return Datatables::of($pages)
+         ->make(true);
+ }
     public function test(){
 
         $days=[];
@@ -315,6 +345,16 @@ class StatisticController extends Controller
             'clients_nbr' => $clients,
             'period' => $period];
     }
+
+
+
+
+
+
+
+
+
+
 
 
 }
